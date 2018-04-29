@@ -22,3 +22,15 @@ C:\Projets\BusInspector_Api\BusInspector.Data\obj\Debug\BusInspector.Data.csproj
 C:\Projets\BusInspector_Api\BusInspector.Data\obj\Debug\IkeApp.Data.dll
 C:\Projets\BusInspector_Api\BusInspector.Data\obj\Debug\IkeApp.Data.pdb
 C:\Projets\BusInspector_Api\BusInspector.Data\obj\Debug\BusInspector.Data.csprojResolveAssemblyReference.cache
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\bin\BusInspector.Data.dll.config
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\bin\BusInspector.Data.dll
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\bin\BusInspector.Data.pdb
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\bin\EntityFramework.dll
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\bin\EntityFramework.SqlServer.dll
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\bin\EntityFramework.xml
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\bin\EntityFramework.SqlServer.xml
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\obj\Debug\BusInspector.Data.csprojResolveAssemblyReference.cache
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\obj\Debug\BusInspector.Data.csproj.CoreCompileInputs.cache
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\obj\Debug\BusInspector.Data.csproj.CopyComplete
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\obj\Debug\BusInspector.Data.dll
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Api\BusInspector.Data\obj\Debug\BusInspector.Data.pdb
