@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#ok").click(function () {
+                var titulo ="TituloTest";
+                var desc = "MensajeTest";
+                var tipo = "03";
+                var numero = "12094264";
+                //var tipo = "";
+                //var numero = "";
+                //var topic = "/topics/all";
+                var topic = "";
+
+
+                /*
+                if (numero == "")
+                    topic = '';
+                else
+                    topic = "_";
+
+                if (numero == "")
+                    numero = "_";
+
+                if (tipo == "")
+                    tipo = "0";
+                    */
+
+
+                var username = "_ltk_w3b_u53r_749_";
+                var password = "_ltk_w3b_p455wd_194_";
+                var data = "grant_type=password&UserName=" + username + "&Password=" + password + "&client_id=_Latika1234$_";
+                //var url = "http://200.69.217.157:20100/token";
+                var url = "http://localhost:3672/token";
+                //var url_sendpush = "http://200.69.217.157:20100/api/notificacion_mensaje";
+                var url_sendpush = "http://localhost:3672/api/notificacion_mensaje";
+
+                var SELECT_ESTADO = "#id_ajax_label_estado";
+                $(SELECT_ESTADO).html("Enviando ...");
+
+
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    success: function (msg) {
+                        console.log("SUCESS TOKEN", msg);
+                        token = msg.access_token;
+                        //alert( "Data Saved: " + msg );
+                        // alert( "Log OK");
+                        //////////////////////////////////////////////////////////
+
+                        var data = { doc_tipo: tipo, doc_numero: numero, topic: topic, titulo: titulo, descripcion: desc, etiqueta: 'tagOk' };
+                        $.ajax({
+                            type: "POST",
+                            url: url_sendpush,
+                            data: data,
+                            beforeSend: function (xhr) {
+                                //alert("token:"+token);
+                                xhr.setRequestHeader("Authorization", "Bearer " + token);
+                            },
+                            success: function (msg) {
+                                console.log("SUCCESS PUSH", msg);
+
+                                if (msg.estado == "ok") {
+                                    //alert( "Data Saved: " + msg );
+                                    $(SELECT_ESTADO).html("Envio OK");
+                                    alert("Envio exitoso!");
+                                } else {
+                                    $(SELECT_ESTADO).html("Error - Mensaje: "+msg.estado);
+                                    alert("Error al enviar mensaje!");
+                                }                                
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                console.log("ERROR PUSH");
+                                $(SELECT_ESTADO).val("Error");
+                                alert("Ocurrio algun error de comunicacion.");
+                            }
+                        });
+                        /////////////////////////////////////////////////////////
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log("ERROR TOKEN");
+                        $(SELECT_ESTADO).html("Error");
+                        alert("Ocurrio algun error de comunicacion.");
+                    }
+                });
+
+                //alert("fin sendpush");
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <button id="ok">click.</button>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IkeappModelStoreContainer" CdmEntityContainer="IkeappEntities">
+    <EntitySetMapping Name="logs_tipo">
+      <EntityTypeMapping TypeName="IkeappModel.logs_tipo">
+        <MappingFragment StoreEntitySet="logs_tipo">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipodocumentos">
+      <EntityTypeMapping TypeName="IkeappModel.tipodocumento">
+        <MappingFragment StoreEntitySet="tipodocumento">
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="CodigoKWARP" ColumnName="CodigoKWARP" />
+          <ScalarProperty Name="Abreviatura" ColumnName="Abreviatura" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoproductos">
+      <EntityTypeMapping TypeName="IkeappModel.tipoproducto">
+        <MappingFragment StoreEntitySet="tipoproducto">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_vw">
+      <EntityTypeMapping TypeName="IkeappModel.usuario_vw">
+        <MappingFragment StoreEntitySet="usuario_vw">
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="coef" ColumnName="coef" />
+          <ScalarProperty Name="cod_vhe" ColumnName="cod_vhe" />
+          <ScalarProperty Name="plan_cliente" ColumnName="plan_cliente" />
+          <ScalarProperty Name="ctas_vencer" ColumnName="ctas_vencer" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="fecha_adjud" ColumnName="fecha_adjud" />
+          <ScalarProperty Name="conc_ctas" ColumnName="conc_ctas" />
+          <ScalarProperty Name="nro_preimp" ColumnName="nro_preimp" />
+          <ScalarProperty Name="cuit_nro" ColumnName="cuit_nro" />
+          <ScalarProperty Name="doc_nro" ColumnName="doc_nro" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notificacion_token">
+      <EntityTypeMapping TypeName="IkeappModel.notificacion_token">
+        <MappingFragment StoreEntitySet="notificacion_token">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="so" ColumnName="so" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="adjudicaciones_vw">
+      <EntityTypeMapping TypeName="IkeappModel.adjudicacion_vw">
+        <MappingFragment StoreEntitySet="adjudicacion_vw">
+          <ScalarProperty Name="NoAplica" ColumnName="NoAplica" />
+          <ScalarProperty Name="NombreConcesionario" ColumnName="NombreConcesionario" />
+          <ScalarProperty Name="ModeloPlan" ColumnName="ModeloPlan" />
+          <ScalarProperty Name="Condicion" ColumnName="Condicion" />
+          <ScalarProperty Name="TipoAdjudicacion" ColumnName="TipoAdjudicacion" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+          <ScalarProperty Name="PlanMeses" ColumnName="PlanMeses" />
+          <ScalarProperty Name="PlanAPorc" ColumnName="PlanAPorc" />
+          <ScalarProperty Name="DiaActo" ColumnName="DiaActo" />
+          <ScalarProperty Name="MesActo" ColumnName="MesActo" />
+          <ScalarProperty Name="AnioActo" ColumnName="AnioActo" />
+          <ScalarProperty Name="NumeroDeActo" ColumnName="NumeroDeActo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="adjudicaciones">
+      <EntityTypeMapping TypeName="IkeappModel.adjudicacion">
+        <MappingFragment StoreEntitySet="adjudicaciones">
+          <ScalarProperty Name="doc_nro" ColumnName="doc_nro" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="nota" ColumnName="nota" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_web">
+      <EntityTypeMapping TypeName="IkeappModel.usuario_web">
+        <MappingFragment StoreEntitySet="usuario_web">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs_firebase">
+      <EntityTypeMapping TypeName="IkeappModel.log_firebase">
+        <MappingFragment StoreEntitySet="log_firebase">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usuario_obtenerProductosDisponibles" FunctionName="IkeappModel.Store.usuario_obtenerProductosDisponibles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IkeappModel.usuario_obtenerProductosDisponibles_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="notificacion_mensaje">
+      <EntityTypeMapping TypeName="IkeappModel.notificacion_mensaje">
+        <MappingFragment StoreEntitySet="notificacion_mensaje">
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="enviado" ColumnName="enviado" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="etiqueta" ColumnName="etiqueta" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="adjudicaciones_aceptadas">
+      <EntityTypeMapping TypeName="IkeappModel.adjudicacion_aceptada">
+        <MappingFragment StoreEntitySet="adjudicacion_aceptada">
+          <ScalarProperty Name="fecha_insercion" ColumnName="fecha_insercion" />
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notificacion_mensaje_personal">
+      <EntityTypeMapping TypeName="IkeappModel.notificacion_mensaje_personal">
+        <MappingFragment StoreEntitySet="notificacion_mensaje_personal">
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="enviado" ColumnName="enviado" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="etiqueta" ColumnName="etiqueta" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="misavisos_obtener_u3" FunctionName="IkeappModel.Store.misavisos_obtener_u3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="IkeappModel.misavisos_obtener_u3_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="etiqueta" ColumnName="etiqueta" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="enviado" ColumnName="enviado" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="vw_usuario_adjudicado_con_app_token">
+      <EntityTypeMapping TypeName="IkeappModel.vw_usuario_adjudicado_con_app_token">
+        <MappingFragment StoreEntitySet="vw_usuario_adjudicado_con_app_token">
+          <ScalarProperty Name="so" ColumnName="so" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="Nota" ColumnName="Nota" />
+          <ScalarProperty Name="NombreConcesionario" ColumnName="NombreConcesionario" />
+          <ScalarProperty Name="ModeloPlan" ColumnName="ModeloPlan" />
+          <ScalarProperty Name="Condicion" ColumnName="Condicion" />
+          <ScalarProperty Name="TipoAdjudicacion" ColumnName="TipoAdjudicacion" />
+          <ScalarProperty Name="coef" ColumnName="coef" />
+          <ScalarProperty Name="cod_vhe" ColumnName="cod_vhe" />
+          <ScalarProperty Name="plan_cliente" ColumnName="plan_cliente" />
+          <ScalarProperty Name="ctas_vencer" ColumnName="ctas_vencer" />
+          <ScalarProperty Name="conc_ctas" ColumnName="conc_ctas" />
+          <ScalarProperty Name="nro_preimp" ColumnName="nro_preimp" />
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="doc_tipo_desc" ColumnName="doc_tipo_desc" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs">
+      <EntityTypeMapping TypeName="IkeappModel.log">
+        <MappingFragment StoreEntitySet="logs">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="pantalla" ColumnName="pantalla" />
+          <ScalarProperty Name="doc_numero" ColumnName="doc_numero" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="fecha_insercion" ColumnName="fecha_insercion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario_vw_logueados">
+      <EntityTypeMapping TypeName="IkeappModel.usuario_vw_logueados">
+        <MappingFragment StoreEntitySet="usuario_vw_logueados">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="doc_nro" ColumnName="doc_nro" />
+          <ScalarProperty Name="doc_tipo" ColumnName="doc_tipo" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

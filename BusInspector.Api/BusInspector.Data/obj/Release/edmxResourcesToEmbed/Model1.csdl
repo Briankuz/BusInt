@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IkeappModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="IkeappEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="logs_tipo" EntityType="IkeappModel.logs_tipo" />
+    <EntitySet Name="tipodocumentos" EntityType="IkeappModel.tipodocumento" />
+    <EntitySet Name="tipoproductos" EntityType="IkeappModel.tipoproducto" />
+    <EntitySet Name="usuario_vw" EntityType="IkeappModel.usuario_vw" />
+    <AssociationSet Name="fk_usuairo_vw_tipodocumento" Association="IkeappModel.fk_usuairo_vw_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumentos" />
+      <End Role="usuario_vw" EntitySet="usuario_vw" />
+    </AssociationSet>
+    <EntitySet Name="notificacion_token" EntityType="IkeappModel.notificacion_token" />
+    <AssociationSet Name="fk_notificacion_token_tipodocumento" Association="IkeappModel.fk_notificacion_token_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumentos" />
+      <End Role="notificacion_token" EntitySet="notificacion_token" />
+    </AssociationSet>
+    <EntitySet Name="adjudicaciones_vw" EntityType="IkeappModel.adjudicacion_vw" />
+    <EntitySet Name="adjudicaciones" EntityType="IkeappModel.adjudicacion" />
+    <EntitySet Name="usuario_web" EntityType="IkeappModel.usuario_web" />
+    <EntitySet Name="logs_firebase" EntityType="IkeappModel.log_firebase" />
+    <FunctionImport Name="usuario_obtenerProductosDisponibles" ReturnType="Collection(IkeappModel.usuario_obtenerProductosDisponibles_Result)">
+      <Parameter Name="doc_tipo" Mode="In" Type="Int32" />
+      <Parameter Name="doc_nro" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="notificacion_mensaje" EntityType="IkeappModel.notificacion_mensaje" />
+    <AssociationSet Name="FK_notificacion_mensaje_tipodocumento" Association="IkeappModel.FK_notificacion_mensaje_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumentos" />
+      <End Role="notificacion_mensaje" EntitySet="notificacion_mensaje" />
+    </AssociationSet>
+    <EntitySet Name="adjudicaciones_aceptadas" EntityType="IkeappModel.adjudicacion_aceptada" />
+    <AssociationSet Name="fk_adjudicacion_aceptada_tipodocumento" Association="IkeappModel.fk_adjudicacion_aceptada_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumentos" />
+      <End Role="adjudicacion_aceptada" EntitySet="adjudicaciones_aceptadas" />
+    </AssociationSet>
+    <EntitySet Name="notificacion_mensaje_personal" EntityType="IkeappModel.notificacion_mensaje_personal" />
+    <AssociationSet Name="FK_nnotificacion_mensaje_personal_tipodocumento" Association="IkeappModel.FK_nnotificacion_mensaje_personal_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumentos" />
+      <End Role="notificacion_mensaje_personal" EntitySet="notificacion_mensaje_personal" />
+    </AssociationSet>
+    <FunctionImport Name="misavisos_obtener_u3" ReturnType="Collection(IkeappModel.misavisos_obtener_u3_Result)">
+      <Parameter Name="Doc_tipo" Mode="In" Type="Int32" />
+      <Parameter Name="Doc_numero" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="vw_usuario_adjudicado_con_app_token" EntityType="IkeappModel.vw_usuario_adjudicado_con_app_token" />
+    <EntitySet Name="logs" EntityType="IkeappModel.log" />
+    <AssociationSet Name="fk_logs_logs_tipo" Association="IkeappModel.fk_logs_logs_tipo">
+      <End Role="logs_tipo" EntitySet="logs_tipo" />
+      <End Role="log" EntitySet="logs" />
+    </AssociationSet>
+    <EntitySet Name="usuario_vw_logueados" EntityType="IkeappModel.usuario_vw_logueados" />
+  </EntityContainer>
+  <EntityType Name="logs_tipo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="logs" Relationship="IkeappModel.fk_logs_logs_tipo" FromRole="logs_tipo" ToRole="log" />
+  </EntityType>
+  <EntityType Name="tipodocumento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Abreviatura" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoKWARP" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="orden" Type="Int16" />
+    <NavigationProperty Name="usuario_vw" Relationship="IkeappModel.fk_usuairo_vw_tipodocumento" FromRole="tipodocumento" ToRole="usuario_vw" />
+    <NavigationProperty Name="notificacion_token" Relationship="IkeappModel.fk_notificacion_token_tipodocumento" FromRole="tipodocumento" ToRole="notificacion_token" />
+    <NavigationProperty Name="notificacion_mensaje" Relationship="IkeappModel.FK_notificacion_mensaje_tipodocumento" FromRole="tipodocumento" ToRole="notificacion_mensaje" />
+    <NavigationProperty Name="adjudicacion_aceptada" Relationship="IkeappModel.fk_adjudicacion_aceptada_tipodocumento" FromRole="tipodocumento" ToRole="adjudicacion_aceptada" />
+    <NavigationProperty Name="notificacion_mensaje_personal" Relationship="IkeappModel.FK_nnotificacion_mensaje_personal_tipodocumento" FromRole="tipodocumento" ToRole="notificacion_mensaje_personal" />
+  </EntityType>
+  <EntityType Name="tipoproducto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="orden" Type="Int32" Nullable="false" />
+    <Property Name="eliminado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuario_vw">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="grupo" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="orden" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="doc_tipo" Type="Int32" Nullable="false" />
+    <Property Name="doc_nro" Type="Decimal" Nullable="false" Precision="8" Scale="0" />
+    <Property Name="cuit_nro" Type="Decimal" Nullable="false" Precision="11" Scale="0" />
+    <NavigationProperty Name="tipodocumento" Relationship="IkeappModel.fk_usuairo_vw_tipodocumento" FromRole="usuario_vw" ToRole="tipodocumento" />
+    <Property Name="nro_preimp" Type="Int64" />
+    <Property Name="conc_ctas" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="fecha_adjud" Type="DateTime" Precision="3" />
+    <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
+    <Property Name="ctas_vencer" Type="Int32" />
+    <Property Name="plan_cliente" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_vhe" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="coef" Type="Int32" />
+    <Property Name="doc_numero" Type="Decimal" Precision="11" Scale="0" />
+  </EntityType>
+  <Association Name="fk_usuairo_vw_tipodocumento">
+    <End Type="IkeappModel.tipodocumento" Role="tipodocumento" Multiplicity="1" />
+    <End Type="IkeappModel.usuario_vw" Role="usuario_vw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="usuario_vw">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="notificacion_token">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="doc_tipo" Type="Int32" Nullable="false" />
+    <Property Name="doc_numero" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="token" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="so" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="tipodocumento" Relationship="IkeappModel.fk_notificacion_token_tipodocumento" FromRole="notificacion_token" ToRole="tipodocumento" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="fk_notificacion_token_tipodocumento">
+    <End Type="IkeappModel.tipodocumento" Role="tipodocumento" Multiplicity="1" />
+    <End Type="IkeappModel.notificacion_token" Role="notificacion_token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="notificacion_token">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="adjudicacion_vw">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumeroDeActo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="AnioActo" Type="Int32" />
+    <Property Name="MesActo" Type="Int32" />
+    <Property Name="DiaActo" Type="Int32" />
+    <Property Name="PlanAPorc" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="PlanMeses" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Grupo" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="Orden" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="TipoAdjudicacion" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Condicion" Type="String" MaxLength="19" FixedLength="true" Unicode="true" />
+    <Property Name="ModeloPlan" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="NombreConcesionario" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
+    <Property Name="NoAplica" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="adjudicacion">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="doc_tipo" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="grupo" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="orden" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="nota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="doc_tipo" Type="Int32" Nullable="false" />
+    <Property Name="doc_nro" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="usuario_web">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="log_firebase">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="Int32" Nullable="false" />
+    <Property Name="doc_tipo" Type="Int32" />
+    <Property Name="doc_numero" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="token" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="usuario_obtenerProductosDisponibles_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="notificacion_mensaje">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="etiqueta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
+    <Property Name="enviado" Type="Boolean" Nullable="false" />
+    <Property Name="doc_tipo" Type="Int32" />
+    <Property Name="doc_numero" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="tipodocumento" Relationship="IkeappModel.FK_notificacion_mensaje_tipodocumento" FromRole="notificacion_mensaje" ToRole="tipodocumento" />
+  </EntityType>
+  <Association Name="FK_notificacion_mensaje_tipodocumento">
+    <End Type="IkeappModel.tipodocumento" Role="tipodocumento" Multiplicity="0..1" />
+    <End Type="IkeappModel.notificacion_mensaje" Role="notificacion_mensaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="notificacion_mensaje">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="adjudicacion_aceptada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="grupo" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="orden" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="doc_tipo" Type="Int32" />
+    <Property Name="doc_numero" Type="Decimal" Nullable="false" Precision="11" Scale="0" />
+    <Property Name="fecha_insercion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tipodocumento" Relationship="IkeappModel.fk_adjudicacion_aceptada_tipodocumento" FromRole="adjudicacion_aceptada" ToRole="tipodocumento" />
+  </EntityType>
+  <Association Name="fk_adjudicacion_aceptada_tipodocumento">
+    <End Type="IkeappModel.tipodocumento" Role="tipodocumento" Multiplicity="0..1" />
+    <End Type="IkeappModel.adjudicacion_aceptada" Role="adjudicacion_aceptada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="adjudicacion_aceptada">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="notificacion_mensaje_personal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="topic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="etiqueta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_entrega" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="enviado" Type="Boolean" Nullable="false" />
+    <Property Name="doc_tipo" Type="Int32" />
+    <Property Name="doc_numero" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="tipodocumento" Relationship="IkeappModel.FK_nnotificacion_mensaje_personal_tipodocumento" FromRole="notificacion_mensaje_personal" ToRole="tipodocumento" />
+  </EntityType>
+  <Association Name="FK_nnotificacion_mensaje_personal_tipodocumento">
+    <End Type="IkeappModel.tipodocumento" Role="tipodocumento" Multiplicity="0..1" />
+    <End Type="IkeappModel.notificacion_mensaje_personal" Role="notificacion_mensaje_personal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="notificacion_mensaje_personal">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="misavisos_obtener_u3_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="topic" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="etiqueta" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="fecha_entrega" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="enviado" Nullable="false" />
+    <Property Type="Int32" Name="doc_tipo" Nullable="true" />
+    <Property Type="String" Name="doc_numero" Nullable="true" MaxLength="13" />
+  </ComplexType>
+  <EntityType Name="vw_usuario_adjudicado_con_app_token">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="grupo" />
+      <PropertyRef Name="orden" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="doc_tipo_desc" />
+      <PropertyRef Name="doc_tipo" />
+      <PropertyRef Name="token" />
+      <PropertyRef Name="so" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="grupo" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="orden" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="doc_tipo_desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="doc_tipo" Type="Int32" Nullable="false" />
+    <Property Name="doc_numero" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="nro_preimp" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="conc_ctas" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="ctas_vencer" Type="Int32" />
+    <Property Name="plan_cliente" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="cod_vhe" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="coef" Type="Int32" />
+    <Property Name="TipoAdjudicacion" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Condicion" Type="String" MaxLength="19" FixedLength="true" Unicode="true" />
+    <Property Name="ModeloPlan" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="NombreConcesionario" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
+    <Property Name="Nota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="token" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="so" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_insercion" Type="DateTime" Precision="3" />
+    <Property Name="tipo" Type="Int32" />
+    <Property Name="doc_tipo" Type="Int32" />
+    <Property Name="doc_numero" Type="Decimal" Precision="11" Scale="0" />
+    <Property Name="pantalla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="descripcion" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="logs_tipo" Relationship="IkeappModel.fk_logs_logs_tipo" FromRole="log" ToRole="logs_tipo" />
+  </EntityType>
+  <Association Name="fk_logs_logs_tipo">
+    <End Type="IkeappModel.logs_tipo" Role="logs_tipo" Multiplicity="0..1" />
+    <End Type="IkeappModel.log" Role="log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="logs_tipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="log">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="usuario_vw_logueados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="grupo" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="orden" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="doc_tipo" Type="Int32" Nullable="false" />
+    <Property Name="doc_nro" Type="Decimal" Nullable="false" Precision="11" Scale="0" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

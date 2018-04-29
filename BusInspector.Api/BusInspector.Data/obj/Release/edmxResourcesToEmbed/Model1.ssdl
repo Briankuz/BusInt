@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IkeappModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="adjudicacion_aceptada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="grupo" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="orden" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" />
+    <Property Name="doc_numero" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+    <Property Name="fecha_insercion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="adjudicacion_vw">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroDeActo" Type="char" MaxLength="3" />
+    <Property Name="AnioActo" Type="int" />
+    <Property Name="MesActo" Type="int" />
+    <Property Name="DiaActo" Type="int" />
+    <Property Name="PlanAPorc" Type="nchar" MaxLength="30" />
+    <Property Name="PlanMeses" Type="nchar" MaxLength="20" />
+    <Property Name="Grupo" Type="nchar" MaxLength="5" />
+    <Property Name="Orden" Type="nchar" MaxLength="3" />
+    <Property Name="TipoAdjudicacion" Type="nchar" MaxLength="30" />
+    <Property Name="Condicion" Type="nchar" MaxLength="19" />
+    <Property Name="ModeloPlan" Type="nchar" MaxLength="5" />
+    <Property Name="NombreConcesionario" Type="nchar" MaxLength="45" />
+    <Property Name="NoAplica" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="log_firebase">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="int" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" />
+    <Property Name="doc_numero" Type="nvarchar" MaxLength="13" />
+    <Property Name="token" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="4000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="logs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_insercion" Type="datetime" />
+    <Property Name="tipo" Type="int" />
+    <Property Name="doc_tipo" Type="int" />
+    <Property Name="doc_numero" Type="numeric" Precision="11" Scale="0" />
+    <Property Name="pantalla" Type="nvarchar" MaxLength="50" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="logs_tipo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="notificacion_mensaje">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="topic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="titulo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="etiqueta" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_entrega" Type="datetime" />
+    <Property Name="enviado" Type="bit" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" />
+    <Property Name="doc_numero" Type="char" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="notificacion_mensaje_personal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="topic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="titulo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="etiqueta" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_entrega" Type="datetime" Nullable="false" />
+    <Property Name="enviado" Type="bit" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" />
+    <Property Name="doc_numero" Type="char" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="notificacion_token">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" Nullable="false" />
+    <Property Name="doc_numero" Type="char" MaxLength="13" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="datetime" Nullable="false" />
+    <Property Name="token" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="so" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tipodocumento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Abreviatura" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CodigoKWARP" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="orden" Type="smallint" />
+  </EntityType>
+  <EntityType Name="tipoproducto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="orden" Type="int" Nullable="false" />
+    <Property Name="eliminado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usuario_vw">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="grupo" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="orden" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" Nullable="false" />
+    <Property Name="doc_nro" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="cuit_nro" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+    <Property Name="nro_preimp" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="conc_ctas" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="fecha_adjud" Type="datetime" />
+    <Property Name="fecha_entrega" Type="datetime" />
+    <Property Name="ctas_vencer" Type="int" />
+    <Property Name="plan_cliente" Type="char" MaxLength="10" />
+    <Property Name="cod_vhe" Type="varchar" MaxLength="100" />
+    <Property Name="coef" Type="int" />
+    <Property Name="doc_numero" Type="numeric" Precision="11" Scale="0" />
+  </EntityType>
+  <EntityType Name="usuario_vw_logueados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="grupo" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="orden" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" Nullable="false" />
+    <Property Name="doc_nro" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" />
+  </EntityType>
+  <EntityType Name="usuario_web">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="char" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Ikeapp.dbo.adjudicaciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="adjudicaciones">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="doc_tipo" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="grupo" Type="nchar" MaxLength="5" />
+    <Property Name="orden" Type="nchar" MaxLength="3" />
+    <Property Name="nota" Type="nvarchar" MaxLength="50" />
+    <Property Name="doc_tipo" Type="int" Nullable="false" />
+    <Property Name="doc_nro" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Ikeapp.dbo.vw_usuario_adjudicado_con_app_token' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_usuario_adjudicado_con_app_token">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="grupo" />
+      <PropertyRef Name="orden" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="doc_tipo_desc" />
+      <PropertyRef Name="doc_tipo" />
+      <PropertyRef Name="token" />
+      <PropertyRef Name="so" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="grupo" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="orden" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="doc_tipo_desc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="doc_tipo" Type="int" Nullable="false" />
+    <Property Name="doc_numero" Type="nvarchar" MaxLength="30" />
+    <Property Name="nro_preimp" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="conc_ctas" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="ctas_vencer" Type="int" />
+    <Property Name="plan_cliente" Type="char" MaxLength="10" />
+    <Property Name="cod_vhe" Type="varchar" MaxLength="100" />
+    <Property Name="coef" Type="int" />
+    <Property Name="TipoAdjudicacion" Type="nchar" MaxLength="30" />
+    <Property Name="Condicion" Type="nchar" MaxLength="19" />
+    <Property Name="ModeloPlan" Type="nchar" MaxLength="5" />
+    <Property Name="NombreConcesionario" Type="nchar" MaxLength="45" />
+    <Property Name="Nota" Type="nvarchar" MaxLength="50" />
+    <Property Name="token" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="so" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_adjudicacion_aceptada_tipodocumento">
+    <End Role="tipodocumento" Type="Self.tipodocumento" Multiplicity="0..1" />
+    <End Role="adjudicacion_aceptada" Type="Self.adjudicacion_aceptada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="adjudicacion_aceptada">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_logs_logs_tipo">
+    <End Role="logs_tipo" Type="Self.logs_tipo" Multiplicity="0..1" />
+    <End Role="logs" Type="Self.logs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="logs_tipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="logs">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_notificacion_mensaje_tipodocumento">
+    <End Role="tipodocumento" Type="Self.tipodocumento" Multiplicity="0..1" />
+    <End Role="notificacion_mensaje" Type="Self.notificacion_mensaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="notificacion_mensaje">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_notificacion_token_tipodocumento">
+    <End Role="tipodocumento" Type="Self.tipodocumento" Multiplicity="1" />
+    <End Role="notificacion_token" Type="Self.notificacion_token" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="notificacion_token">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_usuairo_vw_tipodocumento">
+    <End Role="tipodocumento" Type="Self.tipodocumento" Multiplicity="1" />
+    <End Role="usuario_vw" Type="Self.usuario_vw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipodocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="usuario_vw">
+        <PropertyRef Name="doc_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="misavisos_obtener_u3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Doc_tipo" Type="int" Mode="In" />
+    <Parameter Name="Doc_numero" Type="char" Mode="In" />
+  </Function>
+  <Function Name="usuario_obtenerProductosDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="doc_tipo" Type="int" Mode="In" />
+    <Parameter Name="doc_nro" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="IkeappModelStoreContainer">
+    <EntitySet Name="adjudicacion_aceptada" EntityType="Self.adjudicacion_aceptada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="adjudicacion_vw" EntityType="Self.adjudicacion_vw" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="log_firebase" EntityType="Self.log_firebase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="notificacion_mensaje" EntityType="Self.notificacion_mensaje" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="notificacion_mensaje_personal" EntityType="Self.notificacion_mensaje_personal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="notificacion_token" EntityType="Self.notificacion_token" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipodocumento" EntityType="Self.tipodocumento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipoproducto" EntityType="Self.tipoproducto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario_vw" EntityType="Self.usuario_vw" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario_vw_logueados" EntityType="Self.usuario_vw_logueados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usuario_web" EntityType="Self.usuario_web" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="adjudicaciones" EntityType="Self.adjudicaciones" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [adjudicaciones].[id] AS [id], 
+    [adjudicaciones].[grupo] AS [grupo], 
+    [adjudicaciones].[orden] AS [orden], 
+    [adjudicaciones].[nota] AS [nota], 
+    [adjudicaciones].[doc_tipo] AS [doc_tipo], 
+    [adjudicaciones].[doc_nro] AS [doc_nro]
+    FROM [dbo].[adjudicaciones] AS [adjudicaciones]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_usuario_adjudicado_con_app_token" EntityType="Self.vw_usuario_adjudicado_con_app_token" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_usuario_adjudicado_con_app_token].[id] AS [id], 
+    [vw_usuario_adjudicado_con_app_token].[grupo] AS [grupo], 
+    [vw_usuario_adjudicado_con_app_token].[orden] AS [orden], 
+    [vw_usuario_adjudicado_con_app_token].[Nombre] AS [Nombre], 
+    [vw_usuario_adjudicado_con_app_token].[doc_tipo_desc] AS [doc_tipo_desc], 
+    [vw_usuario_adjudicado_con_app_token].[doc_tipo] AS [doc_tipo], 
+    [vw_usuario_adjudicado_con_app_token].[doc_numero] AS [doc_numero], 
+    [vw_usuario_adjudicado_con_app_token].[nro_preimp] AS [nro_preimp], 
+    [vw_usuario_adjudicado_con_app_token].[conc_ctas] AS [conc_ctas], 
+    [vw_usuario_adjudicado_con_app_token].[ctas_vencer] AS [ctas_vencer], 
+    [vw_usuario_adjudicado_con_app_token].[plan_cliente] AS [plan_cliente], 
+    [vw_usuario_adjudicado_con_app_token].[cod_vhe] AS [cod_vhe], 
+    [vw_usuario_adjudicado_con_app_token].[coef] AS [coef], 
+    [vw_usuario_adjudicado_con_app_token].[TipoAdjudicacion] AS [TipoAdjudicacion], 
+    [vw_usuario_adjudicado_con_app_token].[Condicion] AS [Condicion], 
+    [vw_usuario_adjudicado_con_app_token].[ModeloPlan] AS [ModeloPlan], 
+    [vw_usuario_adjudicado_con_app_token].[NombreConcesionario] AS [NombreConcesionario], 
+    [vw_usuario_adjudicado_con_app_token].[Nota] AS [Nota], 
+    [vw_usuario_adjudicado_con_app_token].[token] AS [token], 
+    [vw_usuario_adjudicado_con_app_token].[so] AS [so]
+    FROM [dbo].[vw_usuario_adjudicado_con_app_token] AS [vw_usuario_adjudicado_con_app_token]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_adjudicacion_aceptada_tipodocumento" Association="Self.fk_adjudicacion_aceptada_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumento" />
+      <End Role="adjudicacion_aceptada" EntitySet="adjudicacion_aceptada" />
+    </AssociationSet>
+    <AssociationSet Name="fk_logs_logs_tipo" Association="Self.fk_logs_logs_tipo">
+      <End Role="logs_tipo" EntitySet="logs_tipo" />
+      <End Role="logs" EntitySet="logs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_notificacion_mensaje_tipodocumento" Association="Self.FK_notificacion_mensaje_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumento" />
+      <End Role="notificacion_mensaje" EntitySet="notificacion_mensaje" />
+    </AssociationSet>
+    <AssociationSet Name="fk_notificacion_token_tipodocumento" Association="Self.fk_notificacion_token_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumento" />
+      <End Role="notificacion_token" EntitySet="notificacion_token" />
+    </AssociationSet>
+    <AssociationSet Name="fk_usuairo_vw_tipodocumento" Association="Self.fk_usuairo_vw_tipodocumento">
+      <End Role="tipodocumento" EntitySet="tipodocumento" />
+      <End Role="usuario_vw" EntitySet="usuario_vw" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

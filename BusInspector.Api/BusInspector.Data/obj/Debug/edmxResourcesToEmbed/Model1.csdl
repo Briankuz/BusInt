@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BusInspectorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BusInspectorEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="usuario_obtenerProductosDisponibles" ReturnType="Collection(BusInspectorModel.usuario_obtenerProductosDisponibles_Result)">
+      <Parameter Name="doc_tipo" Mode="In" Type="Int32" />
+      <Parameter Name="doc_nro" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="misavisos_obtener_u3" ReturnType="Collection(BusInspectorModel.misavisos_obtener_u3_Result)">
+      <Parameter Name="Doc_tipo" Mode="In" Type="Int32" />
+      <Parameter Name="Doc_numero" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Inspectors" EntityType="BusInspectorModel.Inspector" />
+    <EntitySet Name="logs" EntityType="BusInspectorModel.log" />
+    <EntitySet Name="logs_tipo" EntityType="BusInspectorModel.logs_tipo" />
+    <AssociationSet Name="fk_logs_logs_tipo" Association="BusInspectorModel.fk_logs_logs_tipo">
+      <End Role="logs_tipo" EntitySet="logs_tipo" />
+      <End Role="log" EntitySet="logs" />
+    </AssociationSet>
+    <EntitySet Name="Inspeccions" EntityType="BusInspectorModel.Inspeccion" />
+    <AssociationSet Name="FK_Inspeccion_Inspector" Association="BusInspectorModel.FK_Inspeccion_Inspector">
+      <End Role="Inspector" EntitySet="Inspectors" />
+      <End Role="Inspeccion" EntitySet="Inspeccions" />
+    </AssociationSet>
+    <EntitySet Name="Seccions" EntityType="BusInspectorModel.Seccion" />
+  </EntityContainer>
+  <ComplexType Name="usuario_obtenerProductosDisponibles_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="misavisos_obtener_u3_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="topic" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="titulo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="etiqueta" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="fecha_entrega" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="enviado" Nullable="false" />
+    <Property Type="Int32" Name="doc_tipo" Nullable="true" />
+    <Property Type="String" Name="doc_numero" Nullable="true" MaxLength="13" />
+  </ComplexType>
+  <EntityType Name="Inspector">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="dni" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="legajo" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Inspeccions" Relationship="BusInspectorModel.FK_Inspeccion_Inspector" FromRole="Inspector" ToRole="Inspeccion" />
+  </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="tipo" Type="Int32" />
+    <Property Name="descripcion" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="logs_tipo" Relationship="BusInspectorModel.fk_logs_logs_tipo" FromRole="log" ToRole="logs_tipo" />
+  </EntityType>
+  <EntityType Name="logs_tipo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="logs" Relationship="BusInspectorModel.fk_logs_logs_tipo" FromRole="logs_tipo" ToRole="log" />
+  </EntityType>
+  <Association Name="fk_logs_logs_tipo">
+    <End Type="BusInspectorModel.logs_tipo" Role="logs_tipo" Multiplicity="0..1" />
+    <End Type="BusInspectorModel.log" Role="log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="logs_tipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="log">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Inspeccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Inspector" Type="Int32" />
+    <Property Name="Interno" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Seccion" Type="Int32" />
+    <NavigationProperty Name="Inspector1" Relationship="BusInspectorModel.FK_Inspeccion_Inspector" FromRole="Inspeccion" ToRole="Inspector" />
+  </EntityType>
+  <Association Name="FK_Inspeccion_Inspector">
+    <End Type="BusInspectorModel.Inspector" Role="Inspector" Multiplicity="0..1" />
+    <End Type="BusInspectorModel.Inspeccion" Role="Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspector">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="Inspector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Seccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="nota" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>
