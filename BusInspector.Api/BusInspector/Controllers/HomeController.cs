@@ -13,8 +13,9 @@ namespace BusInspector.Controllers
     {
         // GET: Home
         public ActionResult Index()
-       {            
-            return View();
+       {
+            return Redirect("t2.html");
+            //return RedirectToRoute("t2.html");
         }
     }
 }
