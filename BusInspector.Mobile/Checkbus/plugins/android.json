@@ -1,0 +1,24 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "com.ikevw.android"
+        },
+        "cordova-plugin-spinnerdialog": {
+            "PACKAGE_NAME": "com.ikevw.android"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ikevw.android"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.ikevw.android"
+        }
+    },
+    "dependent_plugins": {}
+}
