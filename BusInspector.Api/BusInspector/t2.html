@@ -15,8 +15,8 @@
         <hr noshade />
         <div>
             <button ng-click="click_get_token()">get token </button>
-            
-           
+
+
 
             <h3>Inspeccion</h3>
             <div>
@@ -39,7 +39,13 @@
             <button ng-click="click_get_Inspecciones()">get api/Inspector</button>
         </div>
         <hr />
-     
+        <hr />
+        <h3>click_get_secciones</h3>
+        <div>
+            <button ng-click="click_get_secciones()">get api/Secciones</button>
+        </div>
+        <hr />
+
         <div>
             <h2>resultado: </h2>
             {{resultado}}
@@ -55,6 +61,7 @@
       
     
         var URL_FIRMAR = url_root + "/api/Inspector";
+        var URL_Seccion = url_root + "/api/Seccion";
                 
 
         var app = angular.module('myApp', []);
@@ -107,8 +114,8 @@
             $scope.click_post_Inspeccion = function () {
                 
                 
-                var data_adjudicacion_aceptada = { Inspector: $scope.Inspector, Interno: $scope.Interno, Seccion: 1};
-                var data = data_adjudicacion_aceptada;
+                var data_ispeccion = { Inspector: $scope.Inspector, Interno: $scope.Interno, Seccion: 1};
+                var data = data_ispeccion;
                 var url =URL_FIRMAR;
                 $http.post(url, data)
                     .then(function (response) {
@@ -121,38 +128,8 @@
                         alert("ERR" + url + " catch");
                     });
             }
-            $scope.Firmar = function () {
-                alert("Firmar");
-                var data_adjudicacion_aceptada = { grupo: $scope.grupo, orden: $scope.orden, doc_tipo: $scope.doc_tipo, doc_numero: $scope.doc_nro };
-                var data = data_adjudicacion_aceptada;
-                var url = URL_ADJUDICACION_ACEPTADA;
-                $http.post(url, data)
-                    .then(function (response) {
-                        //alert("ok /api/logs");
-                        console.log(url + 'ok ' + url, response)
-                        alert("OK " + url + "response:" + JSON.stringify(response.data));
-                        $scope.resultado = JSON.stringify(response.data);
-                    })
-                    .catch(function (data) {
-                        alert("ERR" + url + " catch");
-                    });
-            }
 
-
-            $scope.ultimosmensajes = function () {
-                var url = URL_NOTIF_MENSAJE_GET_ULTIMAS.replace("{tipo}", $scope.doc_tipo).replace("{numero}", $scope.doc_nro);
-                $http.get(url)
-                    .then(function (response) {
-                        //alert("ok ultimosmensajes");
-                        console.log(url + 'ok ' + url, response)
-                        alert("OK " + url + "response:" + JSON.stringify(response.data));
-                        $scope.resultado = JSON.stringify(response.data);
-                    })
-                    .catch(function (data) {
-                        alert("ERR" + url + " catch");
-                    });
-            }
-           
+       
            
             $scope.click_post_token = function () {
                 //alert("click_post_token");
@@ -169,6 +146,25 @@
                         alert("ERR" + url + " catch");
                     });
             }
+            //URL_Seccion
+            //click_get_secciones
+
+            $scope.click_get_secciones = function () {
+                
+                var url_p = URL_Seccion;
+                                
+                alert(url_p);
+                $http.get(url_p)
+                    .then(function (response) {
+                        console.log(url_p + 'click_get_secciones ', response)
+                        alert("OK " + url_p + ": " + JSON.stringify(response.data));
+                        $scope.resultado = response.data;
+                    })
+                    .catch(function (data) {
+                        alert("Error click_get_secciones. url: " + url_p);
+                    });
+            }
+
 
             $scope.click_get_Inspecciones = function () {
                 //alert("click_get_api_dni");
