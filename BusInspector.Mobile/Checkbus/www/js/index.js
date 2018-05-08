@@ -46,7 +46,7 @@ var app = {
 
 		function (result) {
   			Firmar(result.text);
-			 window.location = "home.html";
+			 window.location = "inspeccionar.html";
       },
       function (error) {
           alert("No se leyo el interno: " + error);
@@ -97,11 +97,12 @@ function ocultarCargando() {
     }
 }
 function Firmar(interno) {
-
+var inspectorid = getConfigValue("inspectorid");
+var seccionid = getConfigValue("seccionid");
     var parametros = {
-        Inspector: 1,
+        Inspector: inspectorid,
         Interno: interno,
-        Seccion: 1
+        Seccion: seccionid
     };
     llamarServicioRestPOSTJSON(URL_SERVIDOR_REST + "api/Inspector", parametros);
 	inicializarInspecciones();
@@ -197,8 +198,8 @@ function mostrarCargando() {
 function inicializarInspecciones() {
     //mostrarCargando();
     //inicializarPush();
-
-    var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + 1 ;
+var inspectorid = getConfigValue("inspectorid");
+    var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + inspectorid ;
     listaAdjudicaciones = llamarServicioRestGET(url);
 
     if (listaAdjudicaciones.estado == "ok") {
@@ -226,36 +227,4 @@ function inicializarInspecciones() {
        // log("400", "servicios-Inspecciones", "Error al llamar al servicio " + url);
     }
   //  ocultarCargando();
-}
-function inicializarSeccion() {
-    // mostrarCargando();
-
-
-    var url = URL_SERVIDOR_REST + "api/Seccion" ;
-    lista = llamarServicioRestGET(url);
-
-    if (lista.estado == "ok") {
-        if (lista.respuesta.length > 0) {
-            $.each(lista.respuesta, function(index, item) {
-                var seccion =
-                "<tr>" +
-                    "<td>" +
-                        item.nombre +
-                    "</td>" +
-                    "<td>" +
-                      <button type="button" class="btn btn-primary">Seleccionar</button>
-                    "</td>" +
-                "</tr>";
-
-                $(".tabla-seccion").append(seccion);
-            });
-        } else {
-            $(".tabla-seccion").append("<tr><td colspan='3'>No se encontraron secciones</td></tr>");
-        }
-    } else if (response.errores && response.errores.length > 0) {
-
-    } else {
-
-    }
-    // ocultarCargando();
 }

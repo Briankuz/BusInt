@@ -43,7 +43,7 @@
         <div>
             <button ng-click="click_get_Inspector()">get api/Inspector</button>
         </div>
-        
+
 
         <hr />
         <hr />
@@ -54,11 +54,22 @@
         </div>
         <hr />
 
+
+        <h3>click_get_seccion</h3>
+        <div>
+            seccion: <input type="text" name="" ng-model="seccion" />
+            <button ng-click="click_get_seccion()">get api/click_get_seccion</button>
+        </div>
+        <hr />
+
+
         <div>
             <h2>resultado: </h2>
             {{resultado}}
         </div>
 
+
+        
     </div>
 
     <script>
@@ -182,12 +193,12 @@
                 alert(url_p);
                 $http.get(url_p)
                     .then(function (response) {
-                        console.log(url_p + 'click_get_adjudicaciones ', response)
+                        console.log(url_p + ' ', response)
                         alert("OK " + url_p + ": " + JSON.stringify(response.data));
                         $scope.resultado = response.data;
                     })
                     .catch(function (data) {
-                        alert("Error click_get_adjudicaciones. url: " + url_p);
+                        alert("Error . url: " + url_p);
                     });
             }
 
@@ -199,15 +210,30 @@
                 alert(url_p);
                 $http.get(url_p)
                     .then(function (response) {           
-                        console.log(url_p + 'click_get_adjudicaciones ', response)
+                        console.log(url_p + ' ', response)
                         alert("OK " + url_p + ": " + JSON.stringify(response.data));
                         $scope.resultado = response.data;
                     })
                     .catch(function (data) {
-                        alert("Error click_get_adjudicaciones. url: " + url_p);
+                        alert("Error . url: " + url_p);
                     });
             }
+            $scope.click_get_seccion = function () {
 
+                var url_p = URL_Seccion + "/me";
+                var url_p = url_p + "?seccion=" + $scope.seccion;
+
+                alert(url_p);
+                $http.get(url_p)
+                    .then(function (response) {
+                        console.log(url_p + ' ', response)
+                        alert("OK " + url_p + ": " + JSON.stringify(response.data));
+                        $scope.resultado = response.data;
+                    })
+                    .catch(function (data) {
+                        alert("Error . url: " + url_p);
+                    });
+            }
            
 
             $scope.click_post_log = function () {

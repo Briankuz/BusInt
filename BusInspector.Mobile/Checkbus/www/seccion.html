@@ -9,6 +9,9 @@
         <script type="text/javascript" src="js/functions.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <title>Seccion </title>
+        <div class="nombre-seccion">
+
+        </div>
     </head>
     <body>
           <!-- <div class="app">
@@ -46,6 +49,21 @@
        } else {
            inicializarSeccion();
        }
+
+       // get a reference to the table
+        var table = document.querySelector('table');
+
+        // listen for a click
+        table.addEventListener('click', function(ev){
+            // get the event targets ID
+            var seccionid = ev.target.id;
+            if(seccionid!="")
+            {
+              setConfigValue("seccionid",seccionid);
+                window.location = "inspeccionar.html";
+            }
+
+        })
        </script>
     </body>
 </html>

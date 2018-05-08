@@ -19,10 +19,10 @@
 
 </head>
 <body class="loading-bg">
-	
+
 	<div class="gridContainer clearfix">
 
-	
+
         				<div class="container">
             				<div class="col-xs-12 iconos-modal">
                             	<p class="txt-login"> Completar los siguientes datos </p>
@@ -35,9 +35,9 @@
                 				</a>
             				</div>
         				</div>
-      			
+
 		</div>
-	
+
 
     	<a href="#" class="link-modal"></a>
 		<div id="LayoutDiv0">
@@ -54,6 +54,7 @@
 
     <script type="text/javascript">
         $("#botonIngresar").on("click", function(event) {
+							borrarCache();
             mostrarCargando();
             setConfigValue("legajo", $("[name='Legajo']").val());
             setConfigValue("dni", $("[name='DNI']").val());

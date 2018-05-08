@@ -32,6 +32,24 @@ namespace BusInspector.Controllers.api
             }
 
         }
+        [Route("api/Seccion/me")]
+        [Authorize]
+        [ResponseType(typeof(RespuestaViewModel))]
+        public async Task<RespuestaViewModel> Getseccion(int seccion)
+        {
+            try
+            {
+                Seccion s = db.Seccions.Where(m => m.id == seccion).FirstOrDefault();
+                
+                return RespuestaViewModel.OK(s);
+            }
+            catch (Exception ex)
+            {
+
+                return RespuestaViewModel.Error(ex);
+            }
+
+        }
 
     }
 }

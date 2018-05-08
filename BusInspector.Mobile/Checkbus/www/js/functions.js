@@ -193,11 +193,12 @@ function login() {
 }
 
 function Firmar(Interno) {
-
+  var inspectorid = getConfigValue("inspectorid");
+  var seccionid = getConfigValue("seccionid");
     var parametros = {
-        Inspector: 1,
+        Inspector: inspectorid,
         Interno: Interno,
-        Seccion: 1
+        Seccion: seccionid
     };
     llamarServicioRestPOSTJSON(URL_SERVIDOR_REST + "api/Inspector", parametros);
 }
@@ -243,9 +244,19 @@ function inicializarHome() {
 
 function inicializarInspecciones() {
     mostrarCargando();
+    var seccionid = getConfigValue("seccionid");
+
+  var url = URL_SERVIDOR_REST + "api/seccion/me/"+ "?seccion=" + seccionid;
+  lista = llamarServicioRestGET(url);
+  setConfigValue("seccionnombre",lista.respuesta.nombre);
+  var seccionnombre="<h1>"+ getConfigValue("seccionnombre") + "</h1>";
+      $(".nombre-seccion").append(seccionnombre);
 
 
-    var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + 1 ;
+      
+
+
+    var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + getConfigValue("inspectorid") ;
     lista = llamarServicioRestGET(url);
 
     if (lista.estado == "ok") {
@@ -275,7 +286,15 @@ function inicializarInspecciones() {
 }
 function inicializarSeccion() {
     // mostrarCargando();
+    var dni = getConfigValue("dni");
+    var legajo = getConfigValue("legajo");
+    var url = URL_SERVIDOR_REST + "api/Inspector/me/"+ "?dni=" + dni + "&legajo=" + legajo ;
+    lista = llamarServicioRestGET(url);
+    setConfigValue("inspectorid",lista.respuesta.id);
+    setConfigValue("inspectornombre",lista.respuesta.nombre);
 
+    var seccionnombre="<h2>"+ getConfigValue("inspectornombre") + "</h2>";
+    $(".nombre-seccion").append(seccionnombre);
 
     var url = URL_SERVIDOR_REST + "api/Seccion" ;
     lista = llamarServicioRestGET(url);
@@ -288,7 +307,7 @@ function inicializarSeccion() {
                     "<td>" +
                         item.nombre +
                     "</td>" +
-                    "<td><button type='button' class='btn btn-primary'>Seleccionar</button>" +
+                    "<td><button type='button' id='" + item.id + "' class='btn btn-primary'>Seleccionar</button>" +
 
                     "</td>" +
                 "</tr>";
