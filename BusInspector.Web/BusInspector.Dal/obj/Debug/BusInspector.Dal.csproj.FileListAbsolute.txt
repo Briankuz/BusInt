@@ -1,0 +1,12 @@
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Data.dll.config
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Data.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Data.pdb
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.xml
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CoreCompileInputs.cache
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Data.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Data.pdb

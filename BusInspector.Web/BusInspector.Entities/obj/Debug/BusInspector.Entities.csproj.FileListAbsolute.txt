@@ -1,0 +1,10 @@
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\bin\Debug\BusInspector.Entities.dll.config
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\bin\Debug\BusInspector.Entities.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\bin\Debug\BusInspector.Entities.pdb
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\bin\Debug\EntityFramework.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\bin\Debug\EntityFramework.xml
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\obj\Debug\BusInspector.Entities.csproj.CoreCompileInputs.cache
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\obj\Debug\BusInspector.Entities.csproj.CopyComplete
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\obj\Debug\BusInspector.Entities.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\obj\Debug\BusInspector.Entities.pdb
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Entities\obj\Debug\BusInspector.Entities.csprojResolveAssemblyReference.cache
