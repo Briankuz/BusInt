@@ -1,0 +1,43 @@
+﻿@model BusInspector.Entities.Usuarios
+
+@{
+	ViewBag.Title = "Login";
+	Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<link href="~/Content/Css/Login/Login.css" rel="stylesheet" />
+<script src="~/Content/Js/Login/Login.js"></script>
+
+<div class="container">
+
+	<div class="row" style="margin-top: 20px">
+		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-signin" }))
+			{
+
+				<h2 class="text-center">Login</h2>
+
+
+				<div class="form-group">
+					@Html.Label("Nombre")
+					@Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control input-lg" })
+					@Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+				</div>
+				<div class="form-group">
+					@Html.Label("Contraseña")
+					@Html.PasswordFor(m => m.Password, new { @class = "form-control input-lg" })
+					@Html.ValidationMessageFor(model => model.Password)
+
+				</div>
+
+
+				<div class="row">
+					<div class="center">
+						<input type="submit" class="btn btn-lg btn-success btn-block" value="Login">
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+
+</div>

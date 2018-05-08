@@ -1,0 +1,5 @@
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.pdb
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.csproj.CoreCompileInputs.cache
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.dll
+C:\Desarrollo\BusInt\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.pdb

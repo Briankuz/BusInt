@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Inspeccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Inspector" Type="int" />
+    <Property Name="Interno" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Fecha" Type="datetime" />
+    <Property Name="Seccion" Type="int" />
+  </EntityType>
+  <EntityType Name="Inspector">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="150" />
+    <Property Name="dni" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="legajo" Type="numeric" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="logs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="tipo" Type="int" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="logs_tipo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Seccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="150" />
+    <Property Name="direccion" Type="varchar" MaxLength="500" />
+    <Property Name="nota" Type="varchar" MaxLength="500" />
+    <Property Name="fechaBaja" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Inspeccion_Inspector">
+    <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
+    <End Role="Inspeccion" Type="Self.Inspeccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspector">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Inspeccion">
+        <PropertyRef Name="Inspector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_logs_logs_tipo">
+    <End Role="logs_tipo" Type="Self.logs_tipo" Multiplicity="0..1" />
+    <End Role="logs" Type="Self.logs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="logs_tipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="logs">
+        <PropertyRef Name="tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProyectoModelStoreContainer">
+    <EntitySet Name="Inspeccion" EntityType="Self.Inspeccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Inspeccion_Inspector" Association="Self.FK_Inspeccion_Inspector">
+      <End Role="Inspector" EntitySet="Inspector" />
+      <End Role="Inspeccion" EntitySet="Inspeccion" />
+    </AssociationSet>
+    <AssociationSet Name="fk_logs_logs_tipo" Association="Self.fk_logs_logs_tipo">
+      <End Role="logs_tipo" EntitySet="logs_tipo" />
+      <End Role="logs" EntitySet="logs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
