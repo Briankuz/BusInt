@@ -75,6 +75,9 @@
         },
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.ikevw.android"
+        },
+		"phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "com.phonegap.ryanw.barcodedemo"
         }
     },
     "dependent_plugins": {

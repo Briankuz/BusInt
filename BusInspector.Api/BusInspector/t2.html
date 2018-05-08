@@ -34,12 +34,20 @@
 
         </div>
         <hr />
+
         <h3>click_get_Inspecciones</h3>
         <div>
-            <button ng-click="click_get_Inspecciones()">get api/Inspector</button>
+            <button ng-click="click_get_Inspecciones()">get api/Inspecciones</button>
         </div>
+        <h3>click_get_Inspector</h3>
+        <div>
+            <button ng-click="click_get_Inspector()">get api/Inspector</button>
+        </div>
+        
+
         <hr />
         <hr />
+
         <h3>click_get_secciones</h3>
         <div>
             <button ng-click="click_get_secciones()">get api/Secciones</button>
@@ -174,6 +182,23 @@
                 alert(url_p);
                 $http.get(url_p)
                     .then(function (response) {
+                        console.log(url_p + 'click_get_adjudicaciones ', response)
+                        alert("OK " + url_p + ": " + JSON.stringify(response.data));
+                        $scope.resultado = response.data;
+                    })
+                    .catch(function (data) {
+                        alert("Error click_get_adjudicaciones. url: " + url_p);
+                    });
+            }
+
+            $scope.click_get_Inspector = function () {
+        
+                var url_p = URL_FIRMAR+"/me";
+                var url_p = url_p + "?dni=" + $scope.username + "&legajo=" + $scope.password;
+        
+                alert(url_p);
+                $http.get(url_p)
+                    .then(function (response) {           
                         console.log(url_p + 'click_get_adjudicaciones ', response)
                         alert("OK " + url_p + ": " + JSON.stringify(response.data));
                         $scope.resultado = response.data;

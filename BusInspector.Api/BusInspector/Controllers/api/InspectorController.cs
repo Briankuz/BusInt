@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 
 namespace BusInspector.Controllers.api
 {
+    [Authorize]
     public class InspectorController : ApiController
     {
         private BusInspectorEntities db = new BusInspectorEntities();
@@ -60,6 +61,23 @@ namespace BusInspector.Controllers.api
             }
             catch (Exception ex)
             {
+                return RespuestaViewModel.Error(ex);
+            }
+
+        }
+        [Route("api/Inspector/me")]
+        [Authorize]
+        [ResponseType(typeof(RespuestaViewModel))]
+        public async Task<RespuestaViewModel> GetInspector(decimal dni, decimal legajo)
+        {
+            try
+            {
+                Inspector inspector = db.Inspectors.Where(m => m.dni == dni && m.legajo == legajo).FirstOrDefault();
+                return RespuestaViewModel.OK(new { id = inspector.id, nombre = inspector.nombre });
+            }
+            catch (Exception ex)
+            {
+
                 return RespuestaViewModel.Error(ex);
             }
 
