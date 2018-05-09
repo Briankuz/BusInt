@@ -196,8 +196,15 @@ function mostrarCargando() {
 }
 
 function inicializarInspecciones() {
-    //mostrarCargando();
-    //inicializarPush();
+  var seccionid = getConfigValue("seccionid");
+
+var url = URL_SERVIDOR_REST + "api/seccion/me/"+ "?seccion=" + seccionid;
+lista = llamarServicioRestGET(url);
+setConfigValue("seccionnombre",lista.respuesta.nombre);
+var seccionnombre="<h1>"+ getConfigValue("seccionnombre") + "</h1>";
+    $(".nombre-seccion").append(seccionnombre);
+
+
 var inspectorid = getConfigValue("inspectorid");
     var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + inspectorid ;
     listaAdjudicaciones = llamarServicioRestGET(url);

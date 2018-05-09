@@ -29,6 +29,18 @@
             </div>
 
 
+            <h3>observar</h3>
+            <div>
+                Inspector: <input type="text" name="" ng-model="Inspector" /><br />
+                Interno: <input type="text" name="" ng-model="Interno" />
+                <!--hora : <input type="time" name="" ng-model="hora" /><br />-->
+                observacion: <input type="text" name="" ng-model="descripcion" /><br />
+                patente: <input type="text" name="" ng-model="patente" /><br />
+                seccion: <input type="text" name="" ng-model="seccion" /><br />
+            </div>
+            <div>
+                <button ng-click="click_post_observar()">post click_post_observar/</button>
+            </div>
 
 
 
@@ -81,6 +93,7 @@
     
         var URL_FIRMAR = url_root + "/api/Inspector";
         var URL_Seccion = url_root + "/api/Seccion";
+        var URL_OBSERVACION= url_root + "/api/Observacion";
                 
 
         var app = angular.module('myApp', []);
@@ -128,6 +141,22 @@
 
             $scope.Inspector = "1";
             $scope.Interno = "28";
+            $scope.seccion = "1";
+
+            $scope.click_post_observar= function () {
+                var data_ispeccion = { Inspector: $scope.Inspector, Interno: $scope.Interno, Seccion: $scope.seccion, hora: $scope.hora, patente: $scope.patente,descripcion: $scope.descripcion};
+                var data = data_ispeccion;
+                var url = URL_OBSERVACION;
+                $http.post(url, data)
+                    .then(function (response) {                        
+                        console.log(url + 'ok ' + url, response)
+                        alert("OK " + url + "response:" + JSON.stringify(response.data));
+                        $scope.resultado = JSON.stringify(response.data);
+                    })
+                    .catch(function (data) {
+                        alert("ERR" + url + " catch");
+                    });
+            }
 
 
             $scope.click_post_Inspeccion = function () {

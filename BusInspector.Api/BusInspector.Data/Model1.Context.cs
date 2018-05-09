@@ -32,6 +32,7 @@ namespace BusInspector.Data
         public virtual DbSet<logs_tipo> logs_tipo { get; set; }
         public virtual DbSet<Inspeccion> Inspeccions { get; set; }
         public virtual DbSet<Seccion> Seccions { get; set; }
+        public virtual DbSet<Observacion> Observacions { get; set; }
     
         public virtual ObjectResult<usuario_obtenerProductosDisponibles_Result> usuario_obtenerProductosDisponibles(Nullable<int> doc_tipo, string doc_nro)
         {

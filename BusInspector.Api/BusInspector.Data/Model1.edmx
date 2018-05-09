@@ -40,6 +40,18 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Observacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="inspector" Type="int" />
+          <Property Name="seccion" Type="int" />
+          <Property Name="interno" Type="varchar" MaxLength="50" />
+          <Property Name="patente" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Seccion">
           <Key>
             <PropertyRef Name="id" />
@@ -79,6 +91,7 @@
           <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Observacion" EntityType="Self.Observacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Inspeccion_Inspector" Association="Self.FK_Inspeccion_Inspector">
             <End Role="Inspector" EntitySet="Inspector" />
@@ -115,6 +128,7 @@
             <End Role="Inspeccion" EntitySet="Inspeccions" />
           </AssociationSet>
           <EntitySet Name="Seccions" EntityType="BusInspectorModel.Seccion" />
+          <EntitySet Name="Observacions" EntityType="BusInspectorModel.Observacion" />
         </EntityContainer>
         <ComplexType Name="usuario_obtenerProductosDisponibles_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -204,6 +218,18 @@
           <Property Name="nota" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="fechaBaja" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Observacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="inspector" Type="Int32" />
+          <Property Name="seccion" Type="Int32" />
+          <Property Name="interno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -256,6 +282,19 @@
                 <ScalarProperty Name="nota" ColumnName="nota" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Observacions">
+            <EntityTypeMapping TypeName="BusInspectorModel.Observacion">
+              <MappingFragment StoreEntitySet="Observacion">
+                <ScalarProperty Name="patente" ColumnName="patente" />
+                <ScalarProperty Name="interno" ColumnName="interno" />
+                <ScalarProperty Name="seccion" ColumnName="seccion" />
+                <ScalarProperty Name="inspector" ColumnName="inspector" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

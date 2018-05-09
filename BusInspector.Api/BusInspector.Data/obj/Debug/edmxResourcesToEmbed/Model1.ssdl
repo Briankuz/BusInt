@@ -35,6 +35,18 @@
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Observacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar(max)" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="inspector" Type="int" />
+    <Property Name="seccion" Type="int" />
+    <Property Name="interno" Type="varchar" MaxLength="50" />
+    <Property Name="patente" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Seccion">
     <Key>
       <PropertyRef Name="id" />
@@ -74,6 +86,7 @@
     <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Observacion" EntityType="Self.Observacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Inspeccion_Inspector" Association="Self.FK_Inspeccion_Inspector">
       <End Role="Inspector" EntitySet="Inspector" />
