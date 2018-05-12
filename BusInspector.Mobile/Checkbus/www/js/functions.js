@@ -253,7 +253,7 @@ function inicializarInspecciones() {
       $(".nombre-seccion").append(seccionnombre);
 
 
-      
+
 
 
     var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + getConfigValue("inspectorid") ;
@@ -323,4 +323,17 @@ function inicializarSeccion() {
 
     }
     // ocultarCargando();
+}
+
+function LlamarObservacion(Interno,Patente,Observacion) {
+  var inspectorid = getConfigValue("inspectorid");
+  var seccionid = getConfigValue("seccionid");
+    var parametros = {
+        inspector: inspectorid,
+        interno: Interno,
+        seccion: seccionid,
+        patente:Patente,
+        Descripcion:Observacion
+    };
+    llamarServicioRestPOSTJSON(URL_SERVIDOR_REST + "api/Observacion", parametros);
 }
