@@ -1,7 +1,37 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Inicio";
+	Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
-<h2>Index</h2>
 
+
+
+<div class="row">
+	<br />
+	<div class="panel panel-default">
+		<div class="panel-heading fondoCabecera">
+			<div class="derecha">
+				@if (Session["IdUsuario"] != null)
+				{
+					<a href="Administracion/Home" class="btn btn-default btn-xs">Administracion</a>
+
+				}
+				else
+				{
+					@Html.ActionLink("Iniciar Sesion", "Login", "Home", new { @class = "btn btn-default btn-xs" })
+				}
+			</div>
+			<h3 class="panel-title text-center"><img src="~/Content/Images/logo.png" alt="Logo de CheckBus" /></h3>
+		</div>
+		<div class="panel-body">
+
+			<div class="col-md-12">
+
+
+		
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
