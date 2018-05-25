@@ -21,3 +21,15 @@ C:\Tesis\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csp
 C:\Tesis\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
 C:\Tesis\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
 C:\Tesis\BusInt\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll.config
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.dll
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.xml
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\BusInt-master\BusInt-master\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache
