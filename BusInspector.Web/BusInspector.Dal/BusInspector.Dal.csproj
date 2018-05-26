@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{525A8334-F49D-4905-914C-EEBE0C57C5DB}</ProjectGuid>
+    <ProjectGuid>{3D3FFEAD-AECE-48B6-9DAC-A5838E12A974}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusInspector.Data</RootNamespace>
-    <AssemblyName>BusInspector.Data</AssemblyName>
+    <RootNamespace>BusInspector.Dal</RootNamespace>
+    <AssemblyName>BusInspector.Dal</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,50 +49,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="busintModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>busintModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="busintModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>busintModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="busintModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>busintModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Inspeccion.cs">
-      <DependentUpon>busintModel.tt</DependentUpon>
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Inspector.cs">
-      <DependentUpon>busintModel.tt</DependentUpon>
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
     <Compile Include="log.cs">
-      <DependentUpon>busintModel.tt</DependentUpon>
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
     <Compile Include="logs_tipo.cs">
-      <DependentUpon>busintModel.tt</DependentUpon>
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelCheckBus.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCheckBus.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelCheckBus.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelCheckBus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelCheckBus.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Observacion.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seccion.cs">
-      <DependentUpon>busintModel.tt</DependentUpon>
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs">
-      <DependentUpon>busintModel.tt</DependentUpon>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="busintModel.edmx">
+    <EntityDeploy Include="ModelCheckBus.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>busintModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelCheckBus.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="busintModel.edmx.diagram">
-      <DependentUpon>busintModel.edmx</DependentUpon>
+    <None Include="App.Config" />
+    <None Include="ModelCheckBus.edmx.diagram">
+      <DependentUpon>ModelCheckBus.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -100,15 +102,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="busintModel.Context.tt">
+    <Content Include="ModelCheckBus.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>busintModel.edmx</DependentUpon>
-      <LastGenOutput>busintModel.Context.cs</LastGenOutput>
+      <DependentUpon>ModelCheckBus.edmx</DependentUpon>
+      <LastGenOutput>ModelCheckBus.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="busintModel.tt">
+    <Content Include="ModelCheckBus.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>busintModel.edmx</DependentUpon>
-      <LastGenOutput>busintModel.cs</LastGenOutput>
+      <DependentUpon>ModelCheckBus.edmx</DependentUpon>
+      <LastGenOutput>ModelCheckBus.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

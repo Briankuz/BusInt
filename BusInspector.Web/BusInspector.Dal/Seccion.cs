@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BusInspector.Data
+namespace BusInspector.Dal
 {
     using System;
     using System.Collections.Generic;

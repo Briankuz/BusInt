@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("BusInspector.Data")]
+[assembly: AssemblyTitle("BusInspector.Dal")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bangho")]
-[assembly: AssemblyProduct("BusInspector.Data")]
+[assembly: AssemblyProduct("BusInspector.Dal")]
 [assembly: AssemblyCopyright("Copyright © Bangho 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("525a8334-f49d-4905-914c-eebe0c57c5db")]
+[assembly: Guid("3d3ffead-aece-48b6-9dac-a5838e12a974")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
