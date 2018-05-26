@@ -76,6 +76,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelCheckBus.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetadataInspector.cs" />
+    <Compile Include="Models\PartialInspector.cs" />
     <Compile Include="Observacion.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
@@ -92,7 +94,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelCheckBus.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelCheckBus.edmx.diagram">
       <DependentUpon>ModelCheckBus.edmx</DependentUpon>
     </None>
