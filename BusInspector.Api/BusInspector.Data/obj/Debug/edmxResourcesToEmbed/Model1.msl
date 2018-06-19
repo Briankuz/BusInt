@@ -43,6 +43,8 @@
     <EntitySetMapping Name="Seccions">
       <EntityTypeMapping TypeName="BusInspectorModel.Seccion">
         <MappingFragment StoreEntitySet="Seccion">
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
           <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
           <ScalarProperty Name="nota" ColumnName="nota" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />

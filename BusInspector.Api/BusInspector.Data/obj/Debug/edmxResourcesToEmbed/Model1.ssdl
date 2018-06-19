@@ -56,6 +56,8 @@
     <Property Name="direccion" Type="varchar" MaxLength="500" />
     <Property Name="nota" Type="varchar" MaxLength="500" />
     <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="Latitud" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="Longitud" Type="decimal" Precision="9" Scale="6" />
   </EntityType>
   <Association Name="FK_Inspeccion_Inspector">
     <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />

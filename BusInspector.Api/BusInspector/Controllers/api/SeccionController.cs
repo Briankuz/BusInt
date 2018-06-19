@@ -24,7 +24,7 @@ namespace BusInspector.Controllers.api
             {
 
                 //Where(m=> m.fechaBaja is null)
-                return RespuestaViewModel.OK(db.Seccions.ToList());
+                return RespuestaViewModel.OK(db.Seccions.Where(m=> m.Latitud!=0).ToList());
             }
             catch (Exception ex)
             {
@@ -50,6 +50,7 @@ namespace BusInspector.Controllers.api
             }
 
         }
+      
 
     }
 }

@@ -61,6 +61,8 @@
           <Property Name="direccion" Type="varchar" MaxLength="500" />
           <Property Name="nota" Type="varchar" MaxLength="500" />
           <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="Latitud" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="Longitud" Type="decimal" Precision="9" Scale="6" />
         </EntityType>
         <Association Name="FK_Inspeccion_Inspector">
           <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
@@ -217,6 +219,8 @@
           <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="nota" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="Latitud" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="Longitud" Type="Decimal" Precision="9" Scale="6" />
         </EntityType>
         <EntityType Name="Observacion">
           <Key>
@@ -278,6 +282,8 @@
           <EntitySetMapping Name="Seccions">
             <EntityTypeMapping TypeName="BusInspectorModel.Seccion">
               <MappingFragment StoreEntitySet="Seccion">
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
                 <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
                 <ScalarProperty Name="nota" ColumnName="nota" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />

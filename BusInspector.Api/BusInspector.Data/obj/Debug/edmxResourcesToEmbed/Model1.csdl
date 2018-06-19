@@ -111,6 +111,8 @@
     <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="nota" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+    <Property Name="Latitud" Type="Decimal" Precision="9" Scale="6" />
+    <Property Name="Longitud" Type="Decimal" Precision="9" Scale="6" />
   </EntityType>
   <EntityType Name="Observacion">
     <Key>

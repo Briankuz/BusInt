@@ -19,5 +19,7 @@ namespace BusInspector.Data
         public string direccion { get; set; }
         public string nota { get; set; }
         public Nullable<System.DateTime> fechaBaja { get; set; }
+        public Nullable<decimal> Latitud { get; set; }
+        public Nullable<decimal> Longitud { get; set; }
     }
 }
