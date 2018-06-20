@@ -267,7 +267,7 @@ function inicializarInspecciones() {
 
 
 
-    var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + getConfigValue("inspectorid") ;
+    var url = URL_SERVIDOR_REST + "api/Inspector?inspector=" + getConfigValue("inspectorid") + "&seccion=" + seccionid;
     lista = llamarServicioRestGET(url);
 
     if (lista.estado == "ok") {

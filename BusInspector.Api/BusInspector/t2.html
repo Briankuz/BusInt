@@ -215,10 +215,10 @@
 
 
             $scope.click_get_Inspecciones = function () {
-                //alert("click_get_api_dni");
+                
                 var url_p = URL_FIRMAR;
-                var url_p = url_p + "?inspector=" + $scope.Inspector ;
-                //$http.get(url + $scope.username)
+                var url_p = url_p + "?inspector=" + $scope.Inspector + "&seccion=" + $scope.seccion;
+                
                 alert(url_p);
                 $http.get(url_p)
                     .then(function (response) {

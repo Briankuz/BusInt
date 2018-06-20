@@ -41,12 +41,14 @@ namespace BusInspector.Controllers.api
         }
         [Authorize]        
         [ResponseType(typeof(RespuestaViewModel))]
-        public async Task<RespuestaViewModel> GetInspecciones(int inspector)
+        public async Task<RespuestaViewModel> GetInspecciones(int inspector, int seccion)
         {
             try
             {
                 //falta filtro por dia actual
-                var inspecciones = db.Inspeccions.OrderByDescending(m=>m.Fecha).Where(m => m.Inspector == inspector).Take(10).ToList();
+                DateTime today = DateTime.Now.Date;
+
+                var inspecciones = db.Inspeccions.OrderByDescending(m=>m.Fecha).Where(m => m.Inspector == inspector && m.Seccion==seccion && (m.Fecha.Value.Year == today.Year && m.Fecha.Value.Month == today.Month && m.Fecha.Value.Day == today.Day)).Take(10).ToList();
                 InspectorViewModel inspectorViewModel;
                 List<InspectorViewModel> li = new List<InspectorViewModel>();
                 foreach (var inspeccion in inspecciones)
