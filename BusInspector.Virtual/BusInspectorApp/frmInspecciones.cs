@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
         private FilterInfoCollection CaptureDevice;
         private VideoCaptureDevice FinalFrame;
 
-        SpeechSynthesizer ss;
+        
         string UltimaLectura="";
         static string baseUrl = Properties.Settings.Default.api;
         static string accessToken = null;
@@ -61,11 +61,7 @@ namespace WindowsFormsApp1
 
             cboCamaras.SelectedIndex = 0;
             FinalFrame = new VideoCaptureDevice();
-
-            ss = new SpeechSynthesizer();
-            ss.Rate = -5;
-            ss.Volume = 90;
-
+            
             UltimaLectura="";
 
         }     
@@ -108,8 +104,8 @@ namespace WindowsFormsApp1
                     {
                         Firmar(decoded);//API
                         dgvInspecciones.Rows.Insert(0, new string[] { decoded, DateTime.Now.ToLongTimeString() });
-                        //ss.SpeakAsync("Have a nice day, internal " + decoded);         
-                        ss.SpeakAsync("Que tenga un buen dia " + decoded);
+
+                        Voz(decoded);
                         UltimaLectura = decoded ;
                     }   
                 }               
@@ -219,5 +215,21 @@ namespace WindowsFormsApp1
         }
         #endregion
 
+        
+        private void Voz(string interno)
+        {
+
+            var synth = new SpeechSynthesizer();
+            var builder = new PromptBuilder();
+            synth.Rate = -2;
+            synth.Volume = 100;
+
+            builder.StartVoice("Microsoft Sabina Desktop");
+
+
+            builder.AppendText("Que tenga un buen día interno " + interno);
+            builder.EndVoice();
+            synth.SpeakAsync(new Prompt(builder));
+        }
     }
 }
