@@ -116,22 +116,6 @@ namespace WindowsFormsApp1
         }
 
     
-        //Generar QR
-        /*private void txtValor_TextChanged(object sender, EventArgs e)
-        {
-            QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
-            QrCode qrCode = new QrCode();
-            qrEncoder.TryEncode(txtValor.Text, out qrCode);
-
-            GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(400, QuietZoneModules.Zero), Brushes.Black, Brushes.White);
-            MemoryStream ms = new MemoryStream();
-
-            renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, ms);
-            var imageTemporal = new Bitmap(ms);
-            var imagen = new Bitmap(imageTemporal, new Size(new System.Drawing.Point(100, 100)));
-            panelResultado.BackgroundImage = imagen;
-        }*/
-
         private void frmInspecciones_DoubleClick(object sender, EventArgs e)
         {
             UltimaLectura = "";
