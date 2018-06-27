@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    <!-- Metas Tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="cine, cinema, cartelera, estrenos, pelicula, peliculas, reserva, entradas, online" />
+    <!-- Hojas de Estilo -->
+    <link href="@Url.Content("~/Content/Css/bootstrap.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="@Url.Content("~/Content/Css/materialize.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="@Url.Content("~/Content/Css/Admin/Admin.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @*<link href="@Url.Content("~/Content/Css/cine.css")" rel="stylesheet" type="text/css" media="all" />*@
+</head>
+<body>
+    <div class="header">
+        <div class="nav-wrapper">
+			<ul id="slide-out" class="sidenav sidenav-fixed">
+				<li>
+					<div class="user-view">
+						<div class="background">
+							<img src="~/images/login-background.jpg">
+						</div>
+						<a class="navbar-brand" href="@Url.Action("Index", "Home")">
+							<img src="~/images/logo-blanco.png" class="tamanoLogo" />
+						</a>
+						<a href="#name"><h5 class="white-text name">@Session["NombreUsuario"].ToString()</h5></a>
+						</br>
+					</div>
+				</li>
+				<li>@Html.ActionLink("Gestion de Conductores", "GestionConductor", "Administracion")</li>
+				<li>@Html.ActionLink("Gestion de Inspectores", "GestionInspector", "Administracion")</li>
+				<li>@Html.ActionLink("Gestion de Paradas", "GestionParada", "Administracion")</li>
+				<li>@Html.ActionLink("Gestion de Secciones", "GestionSeccion", "Administracion")</li>
+				<li>@Html.ActionLink("Gestion de Reportes", "GestionReportes", "Administracion")</li>
+				<li><a href="@Url.Action("Logout", "Home")">Cerrar Sesion</a></li>
+			</ul>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </div>
+    <main class="main">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+    
+
+        <script src="@Url.Content("~/Content/Js/Jquery/jquery.min.js")"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+        <script src="@Url.Content("~/Content/Js/globales.js")"></script>
+        <script src="@Url.Content("~/Content/Js/Admin/Admin.js")"></script>
+        <script src="@Url.Content("~/Content/Js/Materialize/materialize.js")"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

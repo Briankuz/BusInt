@@ -1,0 +1,37 @@
+﻿@model BusInspector.Dal.Parada
+@{
+	/**/
+
+	ViewBag.Title = "EditarParada";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>EditarParada</h2>
+
+</br>
+@using (Html.BeginForm("EditarParada", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+	<div class="input-field">
+		@Html.Label("Nombre")
+		@Html.EditorFor(m => m.nombre, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="input-field">
+		@Html.Label("Direccion")
+		@Html.EditorFor(m => m.direccion, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.direccion)
+	</div>
+
+	<div class="input-field">
+		@Html.Label("nota")
+		@Html.EditorFor(m => m.nota, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.nota)
+	</div>
+
+	<div class="input-field center-block">
+		<input type="submit" class="btn btn-outline-white btn-lg" value="Editar">
+		<a href="@Url.Action("GestionParada","Administracion")" class="btn btn-outline-white btn-lg">Cancelar</a>
+	</div>
+}
+

@@ -97,17 +97,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Css\bootstrap.css" />
-    <Content Include="Content\Css\bootstrap.min.css" />
+    <Content Include="Content\Css\Admin\Admin.css" />
     <Content Include="Content\Css\Login\Login.css" />
-    <Content Include="Content\Js\Bootstrap\bootstrap.min.js" />
+    <Content Include="Content\Css\materialize.css" />
+    <Content Include="Content\Css\materialize.min.css" />
+    <Content Include="Content\Js\Admin\Admin.js" />
     <Content Include="Content\Js\Jquery\jquery.flexisel.js" />
     <Content Include="Content\Js\Jquery\jquery.magnific-popup.js" />
     <Content Include="Content\Js\Jquery\jquery.min.js" />
     <Content Include="Content\Js\Login\Login.js" />
+    <Content Include="Content\Js\Materialize\materialize.js" />
+    <Content Include="Content\Js\Materialize\materialize.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\login-background.jpg" />
+    <Content Include="images\logo-login.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -124,6 +129,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Authorize.cs" />
+    <Compile Include="Models\InfoBusquedaResultdo.cs" />
+    <Compile Include="Models\InfoReportes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,10 +142,25 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Shared\_MasterLayout.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Administracion\Home.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Administracion\GestionInspector.cshtml" />
+    <Content Include="Views\Administracion\CrearInspector.cshtml" />
+    <Content Include="Views\Administracion\EditarInspector.cshtml" />
+    <Content Include="Views\Administracion\GestionConductor.cshtml" />
+    <Content Include="Views\Administracion\CrearConductor.cshtml" />
+    <Content Include="Views\Administracion\EditarConductor.cshtml" />
+    <Content Include="Views\Administracion\CrearParada.cshtml" />
+    <Content Include="Views\Administracion\GestionParada.cshtml" />
+    <Content Include="Views\Administracion\EditarParada.cshtml" />
+    <Content Include="Views\Administracion\CrearSeccion.cshtml" />
+    <Content Include="Views\Administracion\GestionSeccion.cshtml" />
+    <Content Include="Views\Administracion\EditarSeccion.cshtml" />
+    <Content Include="Views\Administracion\CrearReporte.cshtml" />
+    <Content Include="Views\Administracion\GestionReportes.cshtml" />
+    <Content Include="Views\Administracion\ReportesInspeccion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -147,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -24,7 +24,7 @@ namespace BusInspector.Web.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Login(Usuarios usuario)
+		public ActionResult Login(Usuario usuario)
 		{
 			if (ModelState.IsValid)
 			{
@@ -32,7 +32,7 @@ namespace BusInspector.Web.Controllers
 				{
 					var query = (from re in ctx.Usuarios select re).ToList();
 
-					foreach (Usuarios user in query)
+					foreach (Usuario user in query)
 					{
 						user.NombreUsuario = usuario.NombreUsuario;
 						user.Password = usuario.Password;

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BusInspector.Dal.Inspector>
+
+@{
+    ViewBag.Title = "AltaInspector";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Gestion Inspectores</h2>
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+    <h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Dni</th>
+            <th>Legajo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var ins in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(campo => ins.id)</td>
+                <td>@Html.DisplayFor(campo => ins.nombre)</td>
+                <td>@Html.DisplayFor(campo => ins.dni)</td>
+                <td>@Html.DisplayFor(campo => ins.legajo)</td>
+                <td>
+                    <a href="@Url.Action("EditarInspector", "Administracion", new { id = ins.id })"><i class="material-icons">edit</i></a>
+                    <a href="@Url.Action("EliminarInspector", "Administracion", new { id = ins.id })"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    </br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearInspector", "Administracion")"><i class="material-icons">add</i></a>
+

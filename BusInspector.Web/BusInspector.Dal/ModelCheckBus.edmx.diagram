@@ -4,16 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e18f3b26aed84740b64edfbe92b1a71e" Name="Diagram1">
-        <EntityTypeShape EntityType="CheckBusModel.Inspeccion" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckBusModel.Inspector" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckBusModel.log" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckBusModel.logs_tipo" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+      <Diagram DiagramId="011208c683d042e1a8836d517e1689ef" Name="Diagram1">
+        <EntityTypeShape EntityType="CheckBusModel.Conductor" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckBusModel.Inspeccion" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckBusModel.Inspector" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckBusModel.log" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckBusModel.logs_tipo" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CheckBusModel.Observacion" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckBusModel.Seccion" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CheckBusModel.Usuarios" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckBusModel.Parada" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckBusModel.Seccion" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CheckBusModel.Usuario" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="CheckBusModel.FK_Conductor_Inspector" ManuallyRouted="false" />
         <AssociationConnector Association="CheckBusModel.FK_Inspeccion_Inspector" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckBusModel.FK_Parada_Inspector" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckBusModel.FK_Seccion_Inspector" ManuallyRouted="false" />
         <AssociationConnector Association="CheckBusModel.fk_logs_logs_tipo" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckBusModel.FK_Observacion_Inspector" ManuallyRouted="false" />
+        <AssociationConnector Association="CheckBusModel.FK_Seccion_Parada" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

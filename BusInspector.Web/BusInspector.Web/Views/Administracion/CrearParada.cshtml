@@ -1,0 +1,38 @@
+﻿@model BusInspector.Dal.Parada
+
+@{
+				/**/
+
+				ViewBag.Title = "CrearParada";
+				Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>CrearParada</h2>
+<h5>@ViewBag.Mensaje</h5>
+
+</br>
+@using (Html.BeginForm("CrearParada", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+	<div class="input-field">
+		@Html.Label("Nombre")
+		@Html.TextBoxFor(m => m.nombre, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+	</div>
+	<div class="input-field">
+		@Html.Label("Direccion")
+		@Html.TextBoxFor(m => m.direccion, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.direccion)
+	</div>
+	<div class="input-field">
+		@Html.Label("nota")
+		@Html.TextBoxFor(m => m.nota, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.nota)
+	</div>
+
+	
+
+	<div class="input-field center-block">
+		<input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+	</div>
+}
+

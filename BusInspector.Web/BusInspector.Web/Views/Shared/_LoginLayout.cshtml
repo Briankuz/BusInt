@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+
+    <!-- Metas Tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="cine, cinema, cartelera, estrenos, pelicula, peliculas, reserva, entradas, online" />
+    <!-- Hojas de Estilo -->
+    <link href="@Url.Content("~/Content/Css/bootstrap.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="@Url.Content("~/Content/Css/materialize.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="@Url.Content("~/Content/Css/Login/Login.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                <img src="~/images/logo-blanco.png" class="responsive-img"/>
+            </a>
+    </nav>
+    <!-- Navbar -->
+
+
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="@Url.Content("~/Content/Js/Jquery/jquery.min.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <script src="@Url.Content("~/Content/Js/globales.js")"></script>
+    <script src="@Url.Content("~/Content/Js/Materialize/materialize.js")"></script>
+</body>
+</html>

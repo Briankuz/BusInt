@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusInspector.Web", "BusInspector.Web\BusInspector.Web.csproj", "{301B32B5-6F3F-49D2-B445-93877E1804E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusInspector.Repository", "BusInspector.Repository\BusInspector.Repository.csproj", "{4CE6B84C-DE53-4191-B3F8-53E3A2F5A29F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusInspector", "BusInspector.Repository\BusInspector.csproj", "{4CE6B84C-DE53-4191-B3F8-53E3A2F5A29F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusInspector.Dal", "BusInspector.Dal\BusInspector.Dal.csproj", "{3D3FFEAD-AECE-48B6-9DAC-A5838E12A974}"
 EndProject

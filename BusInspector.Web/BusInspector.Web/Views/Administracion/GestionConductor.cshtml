@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BusInspector.Dal.Conductor>
+
+@{
+	ViewBag.Title = "AltaConductor";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Gestion Conductor</h2>
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+	<h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table>
+	<thead>
+		<tr>
+			<th>IdConductor</th>
+			<th>Nombre y Apellido</th>
+			<th>Legajo</th>
+			<th>Dni</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var cond in Model)
+		{
+		<tr>
+			<td>@Html.DisplayFor(campo => cond.id)</td>
+			<td>@Html.DisplayFor(campo => cond.Nombre)</td>
+			<td>@Html.DisplayFor(campo => cond.Legajo)</td>
+			<td>@Html.DisplayFor(campo => cond.Dni)</td>
+			<td>
+				<a href="@Url.Action("EditarConductor", "Administracion", new { id = cond.id })"><i class="material-icons">edit</i></a>
+				<a href="@Url.Action("EliminarConductor", "Administracion", new { id = cond.id })"><i class="material-icons">delete</i></a>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
+    </br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearConductor", "Administracion")"><i class="material-icons">add</i></a>
+

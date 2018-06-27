@@ -1,37 +1,30 @@
 ﻿
 @{
-	ViewBag.Title = "Inicio";
-	Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
 
 
 
-<div class="row">
-	<br />
-	<div class="panel panel-default">
-		<div class="panel-heading fondoCabecera">
-			<div class="derecha">
-				@if (Session["IdUsuario"] != null)
-				{
-					<a href="Administracion/Home" class="btn btn-default btn-xs">Administracion</a>
+<div class="text-center white-text mx-5 wow fadeIn">
 
-				}
-				else
-				{
-					@Html.ActionLink("Iniciar Sesion", "Login", "Home", new { @class = "btn btn-default btn-xs" })
-				}
-			</div>
-			<h3 class="panel-title text-center"><img src="~/Content/Images/logo.png" alt="Logo de CheckBus" /></h3>
-		</div>
-		<div class="panel-body">
+    </br></br></br>
+    <h1 class="white-text">BIENVENIDO</h1>
+    @if (Session["IdUsuario"] != null)
+    {
+        <a href="Administracion/Home" class="btn btn-outline-white btn-lg">ADMINISTRACION</a>
+    }
+    else
+    {
 
-			<div class="col-md-12">
+        @Html.ActionLink("INICIAR SESION", "Login", "Home", new { @class = "btn btn-outline-white btn-lg" })
+    }
 
-
-		
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
+
+
+
+
+
+

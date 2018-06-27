@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BusInspector.Dal.Seccion>
+@{
+	ViewBag.Title = "GestionSeccion";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>GestionSeccion</h2>
+
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+	<h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>direccion</th>
+			<th>nota</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var sec in Model)
+		{
+			<tr>
+				<td>@Html.DisplayFor(campo => sec.id)</td>
+				<td>@Html.DisplayFor(campo => sec.nombre)</td>
+				<td>@Html.DisplayFor(campo => sec.direccion)</td>
+				<td>@Html.DisplayFor(campo => sec.nota)</td>
+				<td>
+					<a href="@Url.Action("EditarSeccion", "Administracion", new { id = sec.id })"><i class="material-icons">edit</i></a>
+					<a href="@Url.Action("EliminarSeccion", "Administracion", new { id = sec.id })"><i class="material-icons">delete</i></a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+    </br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearSeccion", "Administracion")"><i class="material-icons">add</i></a>
+
+
+

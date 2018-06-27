@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BusInspector.Dal.Inspector>
+
+
+@{
+	ViewBag.Title = "GestionReporte";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="row">
+	@if (TempData["Error"] != null)
+	{
+		<div class="alert alert-danger">@TempData["Error"]</div>
+	}
+
+
+	<div class="col l12 m10">
+		<div class="card blue-grey darken-1">
+
+			<div class="card-content white-text">
+				<div class="panel-body">
+					<h6 class="text-center">Seleccione el Inspector, Fecha de Inicio y Fin para generar el reporte</h6>
+					@using (Html.BeginForm("ReportesInspeccion", "Administracion", FormMethod.Post))
+					{
+						<div class="col-md-4">
+							@Html.Label("Inspector")
+							@Html.DropDownList("Inspector", new SelectList(ViewBag.Inspector, "id", "nombre"), new { @class = "form-control" })
+						</div>
+
+						<div class="col-md-4">
+							@Html.Label("Desde")
+							@Html.TextBox("FechaInicio", null, new { @class = "datepicker", type = "Date" })
+
+						</div>
+
+						<div class="col-md-4">
+							@Html.Label("Hasta")
+							@Html.TextBox("FechaFin", null, new { @class = "datepicker", type = "Date" }) <br />
+						</div>
+
+						<input id="Submit" type="submit" class="btn btn-success btn-block" value="Buscar">
+						@*<input id="btnExport" type="submit" class="btn btn-success btn-block" value="Generar Reporte">*@
+
+					}
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var elems = document.querySelectorAll('.datepicker');
+			var instances = M.Datepicker.init(elems, options);
+		});
+
+		// Or with jQuery
+
+		$(document).ready(function () {
+			$('.datepicker').datepicker();
+		});
+	</script>
+
+
+	<!--LOGICA DEL BOTON EXPORTAR-->
+
+	@*<script>
+		$(document).ready(function () {
+
+			$('#btnExport').click(function () {
+
+				window.location = '/Inventory/ExportInventory';
+
+			});
+		});
+	</script>*@
+
+
+
+

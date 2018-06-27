@@ -1,0 +1,34 @@
+﻿@model BusInspector.Dal.Inspector
+
+@{
+    ViewBag.Title = "CrearInspector";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>CrearInspector</h2>
+<h5>@ViewBag.Mensaje</h5>
+
+</br>
+@using (Html.BeginForm("CrearInspector", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+    <div class="input-field">
+        @Html.Label("Nombre y Apellido")
+        @Html.TextBoxFor(m => m.nombre, new { @class = "validate" })
+        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+    </div>
+    <div class="input-field">
+        @Html.Label("Dni")
+        @Html.TextBoxFor(m => m.dni, new { @class = "validate" })
+        @Html.ValidationMessageFor(model => model.dni)
+    </div>
+    <div class="input-field">
+        @Html.Label("Legajo")
+        @Html.TextBoxFor(m => m.legajo, new { @class = "validate" })
+        @Html.ValidationMessageFor(model => model.legajo)
+    </div>
+
+    <div class="input-field center-block">
+        <input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+    </div>
+}
+

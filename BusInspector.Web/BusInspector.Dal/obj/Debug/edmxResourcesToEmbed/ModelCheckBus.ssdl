@@ -1,11 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CheckBusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Conductor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dni" Type="int" />
+    <Property Name="Legajo" Type="int" />
+    <Property Name="CodInspector" Type="int" />
+  </EntityType>
   <EntityType Name="Inspeccion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Inspector" Type="int" />
+    <Property Name="CodInspector" Type="int" />
     <Property Name="Interno" Type="numeric" Precision="18" Scale="0" />
     <Property Name="Fecha" Type="datetime" />
     <Property Name="Seccion" Type="int" />
@@ -18,6 +28,7 @@
     <Property Name="nombre" Type="nvarchar" MaxLength="150" />
     <Property Name="dni" Type="numeric" Precision="18" Scale="0" />
     <Property Name="legajo" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="FechaCarga" Type="datetime" />
   </EntityType>
   <EntityType Name="logs">
     <Key>
@@ -46,6 +57,17 @@
     <Property Name="seccion" Type="int" />
     <Property Name="interno" Type="varchar" MaxLength="50" />
     <Property Name="patente" Type="varchar" MaxLength="50" />
+    <Property Name="CodInspector" Type="int" />
+  </EntityType>
+  <EntityType Name="Parada">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="150" />
+    <Property Name="direccion" Type="varchar" MaxLength="500" />
+    <Property Name="nota" Type="varchar" MaxLength="500" />
+    <Property Name="CodInspector" Type="int" />
   </EntityType>
   <EntityType Name="Seccion">
     <Key>
@@ -56,8 +78,12 @@
     <Property Name="direccion" Type="varchar" MaxLength="500" />
     <Property Name="nota" Type="varchar" MaxLength="500" />
     <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="CodParada" Type="int" />
+    <Property Name="CodInspector" Type="int" />
+    <Property Name="Latitud" Type="decimal" Precision="9" Scale="6" />
+    <Property Name="Longitud" Type="decimal" Precision="9" Scale="6" />
   </EntityType>
-  <EntityType Name="Usuarios">
+  <EntityType Name="Usuario">
     <Key>
       <PropertyRef Name="IdUsuario" />
     </Key>
@@ -65,6 +91,18 @@
     <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Conductor_Inspector">
+    <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
+    <End Role="Conductor" Type="Self.Conductor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspector">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conductor">
+        <PropertyRef Name="CodInspector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inspeccion_Inspector">
     <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
     <End Role="Inspeccion" Type="Self.Inspeccion" Multiplicity="*" />
@@ -73,7 +111,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Inspeccion">
-        <PropertyRef Name="Inspector" />
+        <PropertyRef Name="CodInspector" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -89,14 +127,68 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Observacion_Inspector">
+    <End Role="Observacion" Type="Self.Observacion" Multiplicity="0..1" />
+    <End Role="Observacion1" Type="Self.Observacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Observacion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Observacion1">
+        <PropertyRef Name="CodInspector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Parada_Inspector">
+    <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
+    <End Role="Parada" Type="Self.Parada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspector">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Parada">
+        <PropertyRef Name="CodInspector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seccion_Inspector">
+    <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
+    <End Role="Seccion" Type="Self.Seccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspector">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Seccion">
+        <PropertyRef Name="CodInspector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seccion_Parada">
+    <End Role="Parada" Type="Self.Parada" Multiplicity="0..1" />
+    <End Role="Seccion" Type="Self.Seccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parada">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Seccion">
+        <PropertyRef Name="CodParada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CheckBusModelStoreContainer">
+    <EntitySet Name="Conductor" EntityType="Self.Conductor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inspeccion" EntityType="Self.Inspeccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Observacion" EntityType="Self.Observacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parada" EntityType="Self.Parada" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Conductor_Inspector" Association="Self.FK_Conductor_Inspector">
+      <End Role="Inspector" EntitySet="Inspector" />
+      <End Role="Conductor" EntitySet="Conductor" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inspeccion_Inspector" Association="Self.FK_Inspeccion_Inspector">
       <End Role="Inspector" EntitySet="Inspector" />
       <End Role="Inspeccion" EntitySet="Inspeccion" />
@@ -104,6 +196,22 @@
     <AssociationSet Name="fk_logs_logs_tipo" Association="Self.fk_logs_logs_tipo">
       <End Role="logs_tipo" EntitySet="logs_tipo" />
       <End Role="logs" EntitySet="logs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Observacion_Inspector" Association="Self.FK_Observacion_Inspector">
+      <End Role="Observacion" EntitySet="Observacion" />
+      <End Role="Observacion1" EntitySet="Observacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Parada_Inspector" Association="Self.FK_Parada_Inspector">
+      <End Role="Inspector" EntitySet="Inspector" />
+      <End Role="Parada" EntitySet="Parada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Inspector" Association="Self.FK_Seccion_Inspector">
+      <End Role="Inspector" EntitySet="Inspector" />
+      <End Role="Seccion" EntitySet="Seccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Parada" Association="Self.FK_Seccion_Parada">
+      <End Role="Parada" EntitySet="Parada" />
+      <End Role="Seccion" EntitySet="Seccion" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
