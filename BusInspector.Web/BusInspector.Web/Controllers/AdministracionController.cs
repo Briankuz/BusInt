@@ -563,7 +563,7 @@ namespace BusInspector.Web.Controllers
             inicio = inicio.AddDays(-1);
             fin = fin.AddDays(1);
             
-            inspecciones = ctx.vw_Inspeccion.Where(m => m.Fecha > inicio && m.Fecha < fin && (m.Inspector_id==inspector || inspector==0) && (m.Conductor_id == conductor || conductor== 0)).ToList();
+            inspecciones = ctx.vw_Inspeccion.OrderByDescending(m=> m.Fecha).Where(m => m.Fecha > inicio && m.Fecha < fin && (m.Inspector_id==inspector || inspector==0) && (m.Conductor_id == conductor || conductor== 0)).ToList();
             
 			return inspecciones;
 		}
@@ -574,7 +574,7 @@ namespace BusInspector.Web.Controllers
             fin = fin.AddDays(1);
 
             
-            obs = ctx.vw_Observacion.Where(m => m.fecha > inicio && m.fecha < fin && (m.Inspector_id == inspector || inspector == 0) && (m.Conductor_id == conductor || conductor == 0)).ToList();
+            obs = ctx.vw_Observacion.OrderByDescending(m => m.fecha).Where(m => m.fecha > inicio && m.fecha < fin && (m.Inspector_id == inspector || inspector == 0) && (m.Conductor_id == conductor || conductor == 0)).ToList();
 
 
             return obs;
@@ -585,7 +585,7 @@ namespace BusInspector.Web.Controllers
             inicio = inicio.AddDays(-1);
             fin = fin.AddDays(1);
             
-            ins = ctx.vw_Control_Inspecciones.Where(m => m.Fecha > inicio && m.Fecha < fin && (m.Inspector_id == inspector || inspector == 0) && (m.Conductor_Id == conductor || conductor == 0)).ToList();
+            ins = ctx.vw_Control_Inspecciones.OrderByDescending(m => m.Fecha).Where(m => m.Fecha > inicio && m.Fecha < fin && (m.Inspector_id == inspector || inspector == 0) && (m.Conductor_Id == conductor || conductor == 0)).ToList();
 
             return ins;
         }
