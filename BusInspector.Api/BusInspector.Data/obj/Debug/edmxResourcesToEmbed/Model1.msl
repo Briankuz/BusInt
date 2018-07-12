@@ -1,12 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BusInspectorModelStoreContainer" CdmEntityContainer="BusInspectorEntities">
+    <EntitySetMapping Name="Seccions">
+      <EntityTypeMapping TypeName="BusInspectorModel.Seccion">
+        <MappingFragment StoreEntitySet="Seccion">
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
+          <ScalarProperty Name="CodParada" ColumnName="CodParada" />
+          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+          <ScalarProperty Name="nota" ColumnName="nota" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BusInspectorModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inspeccions">
+      <EntityTypeMapping TypeName="BusInspectorModel.Inspeccion">
+        <MappingFragment StoreEntitySet="Inspeccion">
+          <ScalarProperty Name="Seccion" ColumnName="Seccion" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Interno" ColumnName="Interno" />
+          <ScalarProperty Name="Inspector" ColumnName="Inspector" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Inspectors">
       <EntityTypeMapping TypeName="BusInspectorModel.Inspector">
         <MappingFragment StoreEntitySet="Inspector">
+          <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
           <ScalarProperty Name="legajo" ColumnName="legajo" />
           <ScalarProperty Name="dni" ColumnName="dni" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Internoes">
+      <EntityTypeMapping TypeName="BusInspectorModel.Interno">
+        <MappingFragment StoreEntitySet="Interno">
+          <ScalarProperty Name="CantidadPasajeros" ColumnName="CantidadPasajeros" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="Patente" ColumnName="Patente" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -29,33 +79,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Inspeccions">
-      <EntityTypeMapping TypeName="BusInspectorModel.Inspeccion">
-        <MappingFragment StoreEntitySet="Inspeccion">
-          <ScalarProperty Name="Seccion" ColumnName="Seccion" />
-          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-          <ScalarProperty Name="Interno" ColumnName="Interno" />
-          <ScalarProperty Name="Inspector" ColumnName="Inspector" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Seccions">
-      <EntityTypeMapping TypeName="BusInspectorModel.Seccion">
-        <MappingFragment StoreEntitySet="Seccion">
-          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
-          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
-          <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
-          <ScalarProperty Name="nota" ColumnName="nota" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Observacions">
       <EntityTypeMapping TypeName="BusInspectorModel.Observacion">
         <MappingFragment StoreEntitySet="Observacion">
+          <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
           <ScalarProperty Name="patente" ColumnName="patente" />
           <ScalarProperty Name="interno" ColumnName="interno" />
           <ScalarProperty Name="seccion" ColumnName="seccion" />

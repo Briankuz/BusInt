@@ -53,7 +53,14 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            iniciacializarTodo();
+        }
+
+        public void iniciacializarTodo()
+        {
             CaptureDevice = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            cboCamaras.Items.Clear();
             foreach (FilterInfo Device in CaptureDevice)
             {
                 cboCamaras.Items.Add(Device.Name);
@@ -61,10 +68,9 @@ namespace WindowsFormsApp1
 
             cboCamaras.SelectedIndex = 0;
             FinalFrame = new VideoCaptureDevice();
-            
-            UltimaLectura="";
 
-        }     
+            UltimaLectura = "";
+        }
 
    
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -214,6 +220,11 @@ namespace WindowsFormsApp1
             builder.AppendText("Que tenga un buen día interno " + interno);
             builder.EndVoice();
             synth.SpeakAsync(new Prompt(builder));
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            iniciacializarTodo();
         }
     }
 }

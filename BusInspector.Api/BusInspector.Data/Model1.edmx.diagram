@@ -4,22 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="09b1d714e99b4e1f99bee59e525c9548" Name="Diagram1" ZoomLevel="94">
+      <Diagram DiagramId="09b1d714e99b4e1f99bee59e525c9548" Name="Diagram1" ZoomLevel="70">
         <EntityTypeShape EntityType="BusInspectorModel.sec_apps" Width="1.5" PointX="9.375" PointY="3.75" />
         <EntityTypeShape EntityType="BusInspectorModel.sec_groups" Width="1.5" PointX="3.375" PointY="9.75" />
         <EntityTypeShape EntityType="BusInspectorModel.sec_groups_apps" Width="1.5" PointX="5.375" PointY="9.75" />
         <EntityTypeShape EntityType="BusInspectorModel.sec_users" Width="1.5" PointX="9.375" PointY="6.75" />
         <EntityTypeShape EntityType="BusInspectorModel.sec_users_groups" Width="1.5" PointX="7.375" PointY="9.75" />
         <EntityTypeShape EntityType="BusInspectorModel.sysdiagram" Width="1.5" PointX="9.375" PointY="9.75" />
-        <EntityTypeShape EntityType="BusInspectorModel.Inspector" Width="1.5" PointX="2.625" PointY="3.75" />
-        <EntityTypeShape EntityType="BusInspectorModel.log" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="BusInspectorModel.logs_tipo" Width="1.5" PointX="0.75" PointY="1.125" />
-        <AssociationConnector Association="BusInspectorModel.fk_logs_logs_tipo" />
-        <EntityTypeShape EntityType="BusInspectorModel.Inspeccion" Width="1.5" PointX="4.875" PointY="3.625" />
+        <EntityTypeShape EntityType="BusInspectorModel.Seccion" Width="1.5" PointX="3.875" PointY="5.5" />
+        <EntityTypeShape EntityType="BusInspectorModel.Inspeccion" Width="1.5" PointX="5" PointY="0.875" />
+        <EntityTypeShape EntityType="BusInspectorModel.Inspector" Width="1.5" PointX="2.75" PointY="0.875" />
+        <EntityTypeShape EntityType="BusInspectorModel.Interno" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="BusInspectorModel.FK_Inspeccion_Inspector" />
-        <EntityTypeShape EntityType="BusInspectorModel.Seccion" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="BusInspectorModel.Observacion" Width="1.5" PointX="0.75" PointY="6.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="BusInspectorModel.log" Width="1.5" PointX="8.625" PointY="4.875" />
+        <EntityTypeShape EntityType="BusInspectorModel.logs_tipo" Width="1.5" PointX="6.375" PointY="5.125" />
+        <EntityTypeShape EntityType="BusInspectorModel.Observacion" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="BusInspectorModel.fk_logs_logs_tipo" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

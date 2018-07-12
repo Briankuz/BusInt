@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -391,82 +392,130 @@ namespace BusInspector.Web.Controllers
 
 
 		[MyAuthorizeAdmin]
-
 		public ActionResult GestionReportes()
 		{
 
-			if (Session["IdUsuario"] == null)
-			{
-				TempData["urlController"] = Request.RequestContext.RouteData.Values["controller"].ToString();
-				TempData["urlAction"] = Request.RequestContext.RouteData.Values["action"].ToString();
-				return RedirectToAction("Login", "Home");
-			}
-			var inspec = ctx.Inspectors.ToList();
-			ViewBag.Inspector = inspec;
-
-			return View();
-
-
+            PrepararReporte();
+            return View();
+            
 		}
+
+        public void PrepararReporte()
+        {
+            if (Session["IdUsuario"] == null)
+            {
+                TempData["urlController"] = Request.RequestContext.RouteData.Values["controller"].ToString();
+                TempData["urlAction"] = Request.RequestContext.RouteData.Values["action"].ToString();
+                 RedirectToAction("Login", "Home");
+            }
+
+
+            List<Inspector> inspec = ctx.Inspectors.OrderBy(m => m.nombre).ToList();
+            Inspector i = new Inspector();
+            i.id = 0;
+            i.nombre = "Todos";
+            inspec.Insert(0, i);
+            ViewBag.Inspector = inspec;
+
+            List<Conductor> conductores = ctx.Conductors.OrderBy(m => m.Nombre).ToList();
+            Conductor c = new Conductor();
+            c.id = 0;
+            c.Nombre = "Todos";
+            conductores.Insert(0, c);
+
+            ViewBag.Inspector = inspec;
+            ViewBag.Conductor = conductores;
+        }
+
 
 
 
 		[HttpPost]
 		public ActionResult ReportesInspeccion(InfoReportes r)
 		{
-			// Verifico que el lapso de tiempo no supere los 30 dias
-			if (!(LapsoValido(r.FechaInicio, r.FechaFin)))
-			{
-				TempData["Error"] = "El lapso de per no debe ser mayor a 30 Dias.";
-				return RedirectToAction("GestionReportes", "Administracion");
-			}
-
-			// Si el lapso de tiempo es valido, voy a la tabla de reserva y traigo todas las reservas comprendidas en ese lapso de tiempo
-			// para esa pelicula
-			List<Inspector> listaInspector = TraerInspectorPorPeriodo(r.FechaInicio, r.FechaFin, r.CodInspector);
-
-
-			//Consulto si la lista llego vacia, en ese caso muetro un mensaje en pantalla
-			if (listaInspector.Count() == 0)
+		
+			List<vw_Inspeccion> listaInspector = TraerInspeccionesPorPeriodo(r.FechaInicio, r.FechaFin, r.CodInspector,r.CodConductor);
+                      
+            
+            //Consulto si la lista llego vacia, en ese caso muetro un mensaje en pantalla
+            if (listaInspector.Count() == 0)
 			{
 				TempData["Error"] = "No se encontraron Inspecciones para el Rango de Fecha solicitado";
 				return RedirectToAction("GestionReportes", "Administracion");
 			}
 
-			//Creo una lista con los datos requeridos
-			List<InfoBusquedaResultdo> listaBusquedaResultado = new List<InfoBusquedaResultdo>();
-
-			foreach (Inspector inspeccion in listaInspector)
-			{
-				InfoBusquedaResultdo infoBusquedaResult = new InfoBusquedaResultdo();
-				infoBusquedaResult.NombreChofer = TraerConductor(inspeccion.id).Nombre;
-				infoBusquedaResult.Legajo = TraerConductor(inspeccion.id).Legajo.ToString();
-				infoBusquedaResult.Dni = TraerConductor(inspeccion.id).Dni.ToString();
-				infoBusquedaResult.NombreParada = TraerParada(inspeccion.id).nombre;
-				listaBusquedaResultado.Add(infoBusquedaResult);
-			}
-
-
-			// LOGICA DE EXPORTACION 
-			// SE DEBERIA HACER UN METODO APARTE Y AGARRAR LA LISTA DEL METODO BUSCAR Y PASARSELA AL DATASOURCE
-
-			//var grid = new GridView();
-			//grid.DataSource = listaBusquedaResultado;
-			//grid.DataBind();
-			//Response.ClearContent();
-			//Response.AddHeader("content-disposition", "attachement; filename=data.xls");
-			//Response.ContentType = "application/excel";
-			//StringWriter sw = new StringWriter();
-			//HtmlTextWriter htw = new HtmlTextWriter(sw);
-			//grid.RenderControl(htw);
-			//Response.Output.Write(sw.ToString());
-			//Response.Flush();
-			//Response.End();
-
-			return View(listaBusquedaResultado);
+            return View(listaInspector);
 		}
 
 
+        [MyAuthorizeAdmin]
+        public ActionResult GestionReportesObservacion()
+        {
+            PrepararReporte();
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult ReportesObservacion(InfoReportes r)
+        {
+
+            List<vw_Observacion> listaInspector = TraerObservacionesPorPeriodo(r.FechaInicio, r.FechaFin, r.CodInspector,r.CodConductor);
+
+
+            //Consulto si la lista llego vacia, en ese caso muetro un mensaje en pantalla
+            if (listaInspector.Count() == 0)
+            {
+                TempData["Error"] = "No se encontraron Observaciones para el Rango de Fecha solicitado";
+                return RedirectToAction("GestionReportes", "Administracion");
+            }
+
+            return View(listaInspector);
+        }
+
+        [MyAuthorizeAdmin]
+        public ActionResult GestionReportesControlInspecciones()
+        {
+            PrepararReporte();
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult ReportesControlInspecciones(InfoReportes r)
+        {
+
+            List<vw_Control_Inspecciones> listaInspector = TraerControlInspeccionesPeriodo(r.FechaInicio, r.FechaFin, r.CodInspector,r.CodConductor);
+
+
+            //Consulto si la lista llego vacia, en ese caso muetro un mensaje en pantalla
+            if (listaInspector.Count() == 0)
+            {
+                TempData["Error"] = "No se encontraron Inspecciones para el Rango de Fecha solicitado";
+                return RedirectToAction("GestionReportesControlInspecciones", "Administracion");
+            }
+
+            return View(listaInspector);
+        }
+
+        [MyAuthorizeAdmin]
+        public void ExportToExcel()
+        {           
+            var grid = new GridView();
+            grid.DataSource = TempData["FullModel"];//model;
+            grid.DataBind();
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachement; filename=data.xls");
+            Response.ContentType = "application/excel";
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+            grid.RenderControl(htw);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
 
 
 
@@ -508,13 +557,40 @@ namespace BusInspector.Web.Controllers
 		}
 
 
-		private List<Inspector> TraerInspectorPorPeriodo(DateTime inicio, DateTime fin, int ins)
+		private List<vw_Inspeccion> TraerInspeccionesPorPeriodo(DateTime inicio, DateTime fin, int inspector,int conductor)
 		{
-			var Query = (from i in ctx.Inspectors where i.FechaCarga >= inicio && i.FechaCarga <= fin && i.id == i.id select i).ToList();
-			return Query;
+            List<vw_Inspeccion> inspecciones = new List<vw_Inspeccion>();
+            inicio = inicio.AddDays(-1);
+            fin = fin.AddDays(1);
+            
+            inspecciones = ctx.vw_Inspeccion.Where(m => m.Fecha > inicio && m.Fecha < fin && (m.Inspector_id==inspector || inspector==0) && (m.Conductor_id == conductor || conductor== 0)).ToList();
+            
+			return inspecciones;
 		}
+        private List<vw_Observacion> TraerObservacionesPorPeriodo(DateTime inicio, DateTime fin, int inspector,int conductor)
+        {
+            List<vw_Observacion> obs = new List<vw_Observacion>();
+            inicio = inicio.AddDays(-1);
+            fin = fin.AddDays(1);
 
-		private bool LapsoValido(DateTime inicio, DateTime fin)
+            
+            obs = ctx.vw_Observacion.Where(m => m.fecha > inicio && m.fecha < fin && (m.Inspector_id == inspector || inspector == 0) && (m.Conductor_id == conductor || conductor == 0)).ToList();
+
+
+            return obs;
+        }
+        private List<vw_Control_Inspecciones> TraerControlInspeccionesPeriodo(DateTime inicio, DateTime fin, int inspector, int conductor)
+        {
+            List<vw_Control_Inspecciones> ins = new List<vw_Control_Inspecciones>();
+            inicio = inicio.AddDays(-1);
+            fin = fin.AddDays(1);
+            
+            ins = ctx.vw_Control_Inspecciones.Where(m => m.Fecha > inicio && m.Fecha < fin && (m.Inspector_id == inspector || inspector == 0) && (m.Conductor_Id == conductor || conductor == 0)).ToList();
+
+            return ins;
+        }
+
+        private bool LapsoValido(DateTime inicio, DateTime fin)
 		{
 			var dif = fin - inicio;
 			int tiempo = dif.Days;
@@ -524,6 +600,187 @@ namespace BusInspector.Web.Controllers
 			return false;
 		}
 
+        #region Interno
 
-	}
+        [MyAuthorizeAdmin]
+        public ActionResult GestionInterno()
+        {
+            List<Interno> interno = (from i in ctx.Internoes
+                                     orderby i.id
+                                     select i).ToList();
+
+
+            return View(interno);
+        }
+
+        [MyAuthorizeAdmin]
+        public ActionResult CrearInterno()
+        {
+            return View();
+        }
+
+
+        [MyAuthorizeAdmin]
+        [HttpPost]
+        public ActionResult CrearInterno(Interno interno)
+        {
+            if (ModelState.IsValid)
+            {
+                ctx.Internoes.Add(interno);
+                ctx.SaveChanges();
+
+                if (interno != null)
+                {
+                    Session["Mensaje"] = "Interno Creado";
+                    return RedirectToAction("GestionInterno");
+                }
+
+                else
+                {
+                    ViewBag.Mensaje = "El interno no pudo ser creada";
+                    return View();
+                }
+
+            }
+
+            else
+            {
+                ViewBag.Mensaje = "El Interno no pudo ser creado";
+                return View();
+            }
+        }
+
+
+        [MyAuthorizeAdmin]
+        public ActionResult EditarInterno(int Id)
+        {
+            Interno interno = (from i in ctx.Internoes where i.id == Id select i).FirstOrDefault();
+
+            return View(interno);
+        }
+
+
+        [MyAuthorizeAdmin]
+        [HttpPost]
+        public ActionResult EditarInterno(Interno imodificado)
+        {
+            if (ModelState.IsValid)
+            {
+                var interno = (from i in ctx.Internoes where i.id == imodificado.id select i).FirstOrDefault();
+
+                interno.Marca = imodificado.Marca;
+                interno.Modelo = imodificado.Modelo;
+                interno.Patente = imodificado.Patente;
+
+                ctx.SaveChanges();
+
+                Session["Mensaje"] = "El Interno " + interno.id + " ha sido modificado exitosamente";
+                return RedirectToAction("GestionInterno");
+            }
+
+            else
+            {
+                ViewBag.Mensaje = "El interno no pudo ser editado";
+                return View();
+            }
+        }
+
+        [MyAuthorizeAdmin]
+        public ActionResult EliminarInterno(int Id)
+        {
+            var interno = (from i in ctx.Internoes where i.id.Equals(Id) select i).FirstOrDefault();
+
+            ctx.Internoes.Remove(interno);
+            ctx.SaveChanges();
+
+            Session["Mensaje"] = "Interno Eliminada";
+            return RedirectToAction("GestionInterno");
+        }
+
+        [MyAuthorizeAdmin]
+        public ActionResult GestionInternoConductor()
+        {
+
+
+            List<Conductor> condu = ListaConductores();
+
+
+            // Creo una lista con los datos requeridos
+            List<InfoConductorInterno> listaconductorinterno = new List<InfoConductorInterno>();
+
+            foreach (Conductor conductor in condu)
+            {
+                InfoConductorInterno infoconductorinterno = new InfoConductorInterno();
+                infoconductorinterno.Nombre = ObtenerConductor(Convert.ToInt32((conductor.id))).Nombre;
+                infoconductorinterno.Dni = ObtenerConductor(Convert.ToInt32((conductor.id))).Dni;
+                infoconductorinterno.Fecha = TraerFechaInterno(Convert.ToInt32((conductor.id))).Fecha;
+                var interno = TraerFechaInterno(Convert.ToInt32(conductor.id)).Interno;
+                infoconductorinterno.Interno = Convert.ToInt32(interno);
+
+                listaconductorinterno.Add(infoconductorinterno);
+            }
+
+
+            return View(listaconductorinterno);
+        }
+
+        private void GuardarInternoConductor(Interno_Conductor intcond)
+        {
+            ctx.Interno_Conductor.Add(intcond);
+            ctx.SaveChanges();
+        }
+
+        public List<Conductor> ListaConductores()
+        {
+            var conductor = (from c in ctx.Conductors select c).ToList();
+
+            return conductor;
+        }
+
+
+        public List<Interno_Conductor> ListaFechaInterno()
+        {
+            var conductorinterno = (from c in ctx.Interno_Conductor select c).ToList();
+
+            return conductorinterno;
+        }
+
+
+        private Conductor ObtenerConductor(int id)
+        {
+            var query = from c in ctx.Conductors where c.id == id select c;
+
+            Conductor co = new Conductor();
+
+            foreach (Conductor conductor in query)
+            {
+                co.Nombre = conductor.Nombre;
+                co.Dni = conductor.Dni;
+
+            }
+
+            return co;
+        }
+
+        private Interno_Conductor TraerFechaInterno(int id)
+        {
+            var query = from c in ctx.Interno_Conductor where c.Conductor == id select c;
+
+            Interno_Conductor co = new Interno_Conductor();
+
+            foreach (Interno_Conductor conductor in query)
+            {
+                co.Fecha = conductor.Fecha;
+                co.Interno = conductor.Interno;
+
+            }
+
+            return co;
+        }
+
+        #endregion
+
+    }
+
+
 }

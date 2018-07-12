@@ -59,6 +59,12 @@
     <Compile Include="Inspector.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interno.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interno_Conductor.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
     <Compile Include="log.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
@@ -99,6 +105,15 @@
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Control_Inspecciones.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Inspeccion.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_Observacion.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
   </ItemGroup>

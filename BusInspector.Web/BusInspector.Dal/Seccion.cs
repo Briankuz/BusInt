@@ -24,7 +24,7 @@ namespace BusInspector.Dal
         public Nullable<decimal> Latitud { get; set; }
         public Nullable<decimal> Longitud { get; set; }
     
-        public virtual Inspector Inspector { get; set; }
         public virtual Parada Parada { get; set; }
+        public virtual Inspector Inspector { get; set; }
     }
 }

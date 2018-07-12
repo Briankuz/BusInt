@@ -26,8 +26,8 @@ namespace BusInspector.Dal
         public string nota { get; set; }
         public Nullable<int> CodInspector { get; set; }
     
-        public virtual Inspector Inspector { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Seccion> Seccions { get; set; }
+        public virtual Inspector Inspector { get; set; }
     }
 }

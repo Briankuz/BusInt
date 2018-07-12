@@ -17,7 +17,6 @@ namespace BusInspector.Dal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Inspector()
         {
-            this.Conductors = new HashSet<Conductor>();
             this.Inspeccions = new HashSet<Inspeccion>();
             this.Paradas = new HashSet<Parada>();
             this.Seccions = new HashSet<Seccion>();
@@ -25,12 +24,10 @@ namespace BusInspector.Dal
     
         public int id { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> dni { get; set; }
-        public Nullable<int> legajo { get; set; }
+        public Nullable<decimal> dni { get; set; }
+        public Nullable<decimal> legajo { get; set; }
         public Nullable<System.DateTime> FechaCarga { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Conductor> Conductors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inspeccion> Inspeccions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

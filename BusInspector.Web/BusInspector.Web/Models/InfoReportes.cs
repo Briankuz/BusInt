@@ -10,8 +10,9 @@ namespace BusInspector.Web.Models
 		{
 			public DateTime FechaInicio { get; set; }
 			public DateTime FechaFin { get; set; }
-			public int Inspeccion { get; set; }
+			
 		    public int CodInspector { get; set; }
-		    public int CodParada { get; set; }
-	}
+		    public int CodConductor{ get; set; }
+            
+        }
 }

@@ -6,7 +6,7 @@ C:\Tesis\BusInt\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.
 C:\Tesis\BusInt\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.pdb
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.pdb
-C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csprojResolveAssemblyReference.cache
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csproj.CoreCompileInputs.cache
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.pdb
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csprojResolveAssemblyReference.cache

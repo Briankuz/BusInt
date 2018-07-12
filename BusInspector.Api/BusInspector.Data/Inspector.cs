@@ -23,6 +23,7 @@ namespace BusInspector.Data
         public string nombre { get; set; }
         public Nullable<decimal> dni { get; set; }
         public Nullable<decimal> legajo { get; set; }
+        public Nullable<System.DateTime> FechaCarga { get; set; }
     
         public virtual ICollection<Inspeccion> Inspeccions { get; set; }
     }

@@ -18,6 +18,18 @@
     <Property Name="nombre" Type="nvarchar" MaxLength="150" />
     <Property Name="dni" Type="numeric" Precision="18" Scale="0" />
     <Property Name="legajo" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="FechaCarga" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Interno">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Modelo" Type="varchar" MaxLength="150" />
+    <Property Name="Marca" Type="varchar" MaxLength="150" />
+    <Property Name="Patente" Type="varchar" MaxLength="50" />
+    <Property Name="Año" Type="smallint" />
+    <Property Name="CantidadPasajeros" Type="int" />
   </EntityType>
   <EntityType Name="logs">
     <Key>
@@ -44,8 +56,9 @@
     <Property Name="fecha" Type="datetime" />
     <Property Name="inspector" Type="int" />
     <Property Name="seccion" Type="int" />
-    <Property Name="interno" Type="varchar" MaxLength="50" />
+    <Property Name="interno" Type="numeric" Precision="18" Scale="0" Nullable="false" />
     <Property Name="patente" Type="varchar" MaxLength="50" />
+    <Property Name="CodInspector" Type="int" />
   </EntityType>
   <EntityType Name="Seccion">
     <Key>
@@ -56,8 +69,20 @@
     <Property Name="direccion" Type="varchar" MaxLength="500" />
     <Property Name="nota" Type="varchar" MaxLength="500" />
     <Property Name="fechaBaja" Type="datetime" />
+    <Property Name="CodParada" Type="int" />
+    <Property Name="CodInspector" Type="int" />
     <Property Name="Latitud" Type="decimal" Precision="9" Scale="6" />
     <Property Name="Longitud" Type="decimal" Precision="9" Scale="6" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_Inspeccion_Inspector">
     <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
@@ -86,10 +111,12 @@
   <EntityContainer Name="BusInspectorModelStoreContainer">
     <EntitySet Name="Inspeccion" EntityType="Self.Inspeccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interno" EntityType="Self.Interno" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Observacion" EntityType="Self.Observacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Inspeccion_Inspector" Association="Self.FK_Inspeccion_Inspector">
       <End Role="Inspector" EntitySet="Inspector" />
       <End Role="Inspeccion" EntitySet="Inspeccion" />

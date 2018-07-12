@@ -14,12 +14,19 @@ namespace BusInspector.Dal
     
     public partial class Conductor
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Conductor()
+        {
+            this.Inspeccions = new HashSet<Inspeccion>();
+        }
+    
+        public decimal id { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> Dni { get; set; }
         public Nullable<int> Legajo { get; set; }
         public Nullable<int> CodInspector { get; set; }
     
-        public virtual Inspector Inspector { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inspeccion> Inspeccions { get; set; }
     }
 }

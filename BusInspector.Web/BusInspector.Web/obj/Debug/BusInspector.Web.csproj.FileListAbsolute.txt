@@ -544,16 +544,11 @@ C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.Shell.Framework.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.VSHelp.dll
-C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.Telemetry.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\System.Threading.Tasks.Dataflow.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.ProjectAggregator.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.GraphModel.dll
-C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Newtonsoft.Json.dll
-C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.RemoteControl.dll
-C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.VisualStudio.Utilities.Internal.dll
-C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.Diagnostics.Tracing.EventSource.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\Microsoft.MSXML.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\BusInspector.Dal.pdb
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Web\bin\BusInspector.Dal.dll.config

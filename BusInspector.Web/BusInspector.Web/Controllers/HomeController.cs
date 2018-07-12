@@ -42,9 +42,11 @@ namespace BusInspector.Web.Controllers
 					{
 						Session["IdUsuario"] = log.IdUsuario.ToString();
 						Session["NombreUsuario"] = log.NombreUsuario;
-
-						// Verifico de que vista viene, en caso de que sea null significa que esta ingresando desde el index
-						if (TempData["urlAction"] == null)
+                        Session["Rol"] = log.Rol;
+                        Session["RolId"] = log.RolId;
+                        
+                        // Verifico de que vista viene, en caso de que sea null significa que esta ingresando desde el index
+                        if (TempData["urlAction"] == null)
 						{ return RedirectToAction("Home", "Administracion"); }
 
 						return RedirectToAction(TempData["urlAction"].ToString(), TempData["urlController"].ToString());

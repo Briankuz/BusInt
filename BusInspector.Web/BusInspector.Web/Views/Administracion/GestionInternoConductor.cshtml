@@ -1,0 +1,47 @@
+﻿@model List<BusInspector.Web.Models.InfoConductorInterno>
+
+
+
+@{
+	ViewBag.Title = "Interno del conductor";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Gestion interno por conductor</h2>
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+	<h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table>
+	<thead>
+		<tr>
+			<th>Interno</th>
+			<th>Fecha</th>
+			<th>Nombre</th>
+			<th>Dni</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var intCon in Model)
+		{
+		<tr>
+			<td>@Html.DisplayFor(campo => intCon.Interno)</td>
+			<td>@Html.DisplayFor(campo => intCon.Fecha)</td>
+			<td>@Html.DisplayFor(campo => intCon.Nombre)</td>
+			<td>@Html.DisplayFor(campo => intCon.Dni)</td>
+			@*<td>
+				<a href="@Url.Action("EditarInterno", "Administracion", new { id = intCon.Interno })"><i class="material-icons">edit</i></a>
+				<a href="@Url.Action("EliminarInterno", "Administracion", new { id = intCon.Interno })"><i class="material-icons">delete</i></a>
+			</td>*@
+		</tr>
+		}
+	</tbody>
+</table>
+
+    </br></br></br>
+@*<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearInternoConductor", "Administracion")"><i class="material-icons">add</i></a>*@
+

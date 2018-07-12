@@ -1,0 +1,67 @@
+﻿
+@model List<BusInspector.Dal.vw_Control_Inspecciones>
+
+@{
+    ViewBag.Title = "Control de Inspecciones";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+
+            <h3 class="text-center">Control de inspecciones</h3>
+
+            <table id="tbl" class="table">
+                <tr>
+                    <td><strong>Inspector</strong></td>
+                    <td><strong>Interno</strong></td>
+                    <td><strong>Conductor</strong></td>
+                    <td><strong>Fecha</strong></td>
+                    <td><strong>Seccion</strong></td>
+                    <td><strong>H Inspeccion</strong></td>
+                    <td><strong>H Seccion</strong></td>
+                    <td><strong>Dif Minutos</strong></td>
+                    <td><strong>Atrasado</strong></td>
+                    <td><strong>Adelantado</strong></td>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Inspector_Nombre</td>
+                    <td>@item.Interno</td>
+                    <td>@item.Conductor_Nombre</td>
+                    @*@string.Format("{0:hh:mm}", @item.Fecha)*@
+                    <td>@item.Fecha.Value.ToString("dd/MM/yyyy hh:mm")</td>
+                    <td>@item.Seccion_Nombre</td>
+                    @*<td>@item.hora_Inspeccion.Value.ToString("HH:mm")</td>
+        <td>@item.hora_Seccion.Value.ToString("HH:mm")</td>*@
+                    <td> @item.hora_Inspeccion</td>
+                    <td>@item.hora_Seccion</td  >
+                    <td>@item.DifMinutos</td>
+                    <td>@item.Atrasado</td>
+                    <td>@item.Adelanto</td>
+                </tr>
+                   
+                }
+
+            </table>
+
+            <input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>
+
+

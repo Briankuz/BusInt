@@ -25,14 +25,19 @@ namespace BusInspector.Dal
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Conductor> Conductors { get; set; }
-        public virtual DbSet<Inspeccion> Inspeccions { get; set; }
-        public virtual DbSet<Inspector> Inspectors { get; set; }
         public virtual DbSet<log> logs { get; set; }
         public virtual DbSet<logs_tipo> logs_tipo { get; set; }
-        public virtual DbSet<Observacion> Observacions { get; set; }
         public virtual DbSet<Parada> Paradas { get; set; }
         public virtual DbSet<Seccion> Seccions { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Conductor> Conductors { get; set; }
+        public virtual DbSet<Inspeccion> Inspeccions { get; set; }
+        public virtual DbSet<Inspector> Inspectors { get; set; }
+        public virtual DbSet<vw_Control_Inspecciones> vw_Control_Inspecciones { get; set; }
+        public virtual DbSet<vw_Inspeccion> vw_Inspeccion { get; set; }
+        public virtual DbSet<Observacion> Observacions { get; set; }
+        public virtual DbSet<Interno> Internoes { get; set; }
+        public virtual DbSet<vw_Observacion> vw_Observacion { get; set; }
+        public virtual DbSet<Interno_Conductor> Interno_Conductor { get; set; }
     }
 }

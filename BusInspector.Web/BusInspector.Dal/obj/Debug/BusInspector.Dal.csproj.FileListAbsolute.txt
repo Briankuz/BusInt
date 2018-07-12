@@ -16,8 +16,8 @@ C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.xml
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.xml
-C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CoreCompileInputs.cache
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb
+C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache

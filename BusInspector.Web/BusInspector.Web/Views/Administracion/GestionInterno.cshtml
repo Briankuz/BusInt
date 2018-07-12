@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BusInspector.Dal.Interno>
+
+@{
+	ViewBag.Title = "Interno";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Gestion interno</h2>
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+	<h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Modelo</th>
+			<th>Marca</th>
+			<th>Patente</th>
+			<th>Año</th>
+			<th>Cantidad Pasajero</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var inte in Model)
+		{
+		<tr>
+			<td>@Html.DisplayFor(campo => inte.id)</td>
+			<td>@Html.DisplayFor(campo => inte.Modelo)</td>
+			<td>@Html.DisplayFor(campo => inte.Marca)</td>
+			<td>@Html.DisplayFor(campo => inte.Patente)</td>
+			<td>@Html.DisplayFor(campo => inte.Año)</td>
+			<td>@Html.DisplayFor(campo => inte.CantidadPasajeros)</td>
+			<td>
+				<a href="@Url.Action("EditarInterno", "Administracion", new { id = inte.id })"><i class="material-icons">edit</i></a>
+				<a href="@Url.Action("EliminarInterno", "Administracion", new { id = inte.id })"><i class="material-icons">delete</i></a>
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>
+
+    </br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearInterno", "Administracion")"><i class="material-icons">add</i></a>
+

@@ -27,11 +27,13 @@ namespace BusInspector.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Seccion> Seccions { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Inspeccion> Inspeccions { get; set; }
         public virtual DbSet<Inspector> Inspectors { get; set; }
+        public virtual DbSet<Interno> Internoes { get; set; }
         public virtual DbSet<log> logs { get; set; }
         public virtual DbSet<logs_tipo> logs_tipo { get; set; }
-        public virtual DbSet<Inspeccion> Inspeccions { get; set; }
-        public virtual DbSet<Seccion> Seccions { get; set; }
         public virtual DbSet<Observacion> Observacions { get; set; }
     
         public virtual ObjectResult<usuario_obtenerProductosDisponibles_Result> usuario_obtenerProductosDisponibles(Nullable<int> doc_tipo, string doc_nro)

@@ -1,59 +1,55 @@
 ﻿
-@model List<BusInspector.Web.Models.InfoBusquedaResultdo>
+@model List<BusInspector.Dal.vw_Inspeccion>
 
 @{
-	ViewBag.Title = "ReportesInspeccion";
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "ReportesInspeccion";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-
-
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <div class="row">
-	<div class="panel panel-default">
-		<div class="panel-body text-center">
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
 
-			<h3 class="text-center">Reporte de Inspecciones</h3>
-			@*@using (Html.BeginForm("ReportesInspeccion", "Administracion", FormMethod.Post))
-		{*@
+            <h3 class="text-center">Reporte de Inspecciones</h3>
+ 
+            <table id="tbl" class="table">
+                <tr>
+                    <td><strong>Conductor </strong></td>
+                    <td><strong>Inspector </strong></td>
+                    <td><strong>Fecha</strong></td>
+                    <td><strong>Seccion </strong></td>
+                </tr>
 
-			<table class="table">
-				<tr>
-					<td><strong>Nombre del Chofer</strong></td>
-					<td><strong>Legajo</strong></td>
-					<td><strong>Nombre Parada</strong></td>
-					<td><strong>Dni</strong></td>
-				</tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
 
-				@foreach (var item in Model)
-				{
-					<tr>
-						<td>@item.NombreChofer</td>
-						<td>@item.Legajo</td>
-						<td>@item.NombreParada</td>
-						<td>@item.Dni</td>
-					</tr>
-				}
-			</table>
-			<input id="btnExport" type="submit" class="btn btn-success btn-block" value="Generar Reporte">
-			@*}*@
-		</div>
+                        <td> @String.Format("{0} ({1}) ", @item.Conductor_Nombre, @item.Conductor_id)   </td>
+
+                        <td> @String.Format("{0} ({1}) ", @item.Inspector_Nombre, @item.Inspector_id)</td>
+                        <td>@item.Fecha</td>
+
+                        <td>@String.Format("{0} ({1}) ", @item.Seccion_Nombre, @item.Seccion_Id) </td>
+                    </tr>
+
+                }
+
+            </table>
+
+            <input id = "btnExport" type = "submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+       
+
+        </div>
 
 
-	</div>
+    </div>
 </div>
-
-
 <script>
-	$(document).ready(function () {
-
-		$('#btnExport').click(function () {
-
-			window.location = '/Inventory/ExportInventory';
-
-		});
-	});
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
 </script>
 
 

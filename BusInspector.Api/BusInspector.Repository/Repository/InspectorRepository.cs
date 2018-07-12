@@ -25,7 +25,7 @@ namespace BusInspector.Repository.Repository
         {
             try
             {
-                LogRepository.Agregar(LogRepository.eTipoLog.Informacion, "validar(" + username + "," + password + ")");
+                //LogRepository.Agregar(LogRepository.eTipoLog.Informacion, "validar(" + username + "," + password + ")");
 
                 
                 decimal dni = decimal.Parse(username);

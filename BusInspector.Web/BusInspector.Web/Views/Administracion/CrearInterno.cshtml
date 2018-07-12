@@ -1,0 +1,44 @@
+﻿@model BusInspector.Dal.Interno
+@{
+	/**/
+
+	ViewBag.Title = "CrearInterno";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>CrearInterno</h2>
+
+</br>
+@using (Html.BeginForm("CrearInterno", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+	<div class="input-field">
+		@Html.Label("Modelo")
+		@Html.TextBoxFor(m => m.Modelo, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.Modelo, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="input-field">
+		@Html.Label("Marca")
+		@Html.TextBoxFor(m => m.Marca, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.Marca)
+	</div>
+	<div class="input-field">
+		@Html.Label("Patente")
+		@Html.TextBoxFor(m => m.Patente, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.Patente)
+	</div>
+	<div class="input-field">
+		@Html.Label("Año")
+		@Html.TextBoxFor(m => m.Año, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.Año)
+	</div>
+	<div class="input-field">
+		@Html.Label("Pasajero")
+		@Html.TextBoxFor(m => m.CantidadPasajeros, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.CantidadPasajeros)
+	</div>
+
+	<div class="input-field center-block">
+		<input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+	</div>
+}

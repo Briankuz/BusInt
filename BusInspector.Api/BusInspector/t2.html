@@ -74,6 +74,13 @@
         </div>
         <hr />
 
+        <h3>click_get_interno</h3>
+        <div>
+            interno: <input type="text" name="" ng-model="interno" />
+            <button ng-click="click_get_interno()">get api/click_get_interno</button>
+        </div>
+        <hr />
+
 
         <div>
             <h2>resultado: </h2>
@@ -81,7 +88,7 @@
         </div>
 
 
-        
+
     </div>
 
     <script>
@@ -93,7 +100,8 @@
     
         var URL_FIRMAR = url_root + "/api/Inspector";
         var URL_Seccion = url_root + "/api/Seccion";
-        var URL_OBSERVACION= url_root + "/api/Observacion";
+        var URL_OBSERVACION = url_root + "/api/Observacion";
+        var URL_Interno = url_root + "/api/Interno";
                 
 
         var app = angular.module('myApp', []);
@@ -263,7 +271,22 @@
                         alert("Error . url: " + url_p);
                     });
             }
-           
+            $scope.click_get_interno = function () {
+
+                var url_p = URL_Interno + "/existe/";
+                var url_p = url_p + "?interno=" + $scope.interno;
+
+                alert(url_p);
+                $http.get(url_p)
+                    .then(function (response) {
+                        console.log(url_p + ' ', response)
+                        alert("OK " + url_p + ": " + JSON.stringify(response.data));
+                        $scope.resultado = response.data;
+                    })
+                    .catch(function (data) {
+                        alert("Error . url: " + url_p);
+                    });
+            }
 
             $scope.click_post_log = function () {
                 //alert("click_post_api_log");

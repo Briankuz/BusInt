@@ -1,0 +1,57 @@
+﻿
+@model List<BusInspector.Dal.vw_Observacion>
+
+@{
+    ViewBag.Title = "ReportesObservacion";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+
+            <h3 class="text-center">Reporte de Observacion</h3>
+
+            <table id="tbl" class="table">
+                <tr>
+                    <td><strong>Conductor</strong></td>
+                    <td><strong>Interno</strong></td>
+                    <td><strong>Seccion</strong></td>
+                    <td><strong>Inspector</strong></td>
+                    <td><strong>Fecha</strong></td>
+                    <td><strong>Descripcion</strong></td>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+
+                    <td> @item.Conductor_Nombre</td>
+                    <td> @item.Interno_Patente</td>
+                    <td> @item.Seccion_Nombre</td>
+                    <td> @item.Inspector_Nombre</td>
+                    <td> @item.fecha.Value.ToString("dd/MM/yyyy hh:mm")</td>
+                    <td> @item.Descripcion</td>
+                </tr>
+
+                }
+
+            </table>
+
+            <input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+        </div>
+
+
+    </div>
+</div>
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>
+
+

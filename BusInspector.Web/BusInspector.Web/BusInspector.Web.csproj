@@ -131,7 +131,9 @@
     </Compile>
     <Compile Include="Models\Authorize.cs" />
     <Compile Include="Models\InfoBusquedaResultdo.cs" />
+    <Compile Include="Models\InfoConductorInterno.cs" />
     <Compile Include="Models\InfoReportes.cs" />
+    <Compile Include="Models\InformesFiltros.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +163,11 @@
     <Content Include="Views\Administracion\CrearReporte.cshtml" />
     <Content Include="Views\Administracion\GestionReportes.cshtml" />
     <Content Include="Views\Administracion\ReportesInspeccion.cshtml" />
+    <Content Include="Views\Administracion\GestionReportesObservacion.cshtml" />
+    <Content Include="Views\Administracion\ReportesObservacion.cshtml" />
+    <Content Include="Views\Administracion\GestionReportesControlInspecciones.cshtml" />
+    <Content Include="Views\Administracion\ReportesControlInspecciones.cshtml" />
+    <Content Include="Views\Administracion\_PartialInformesFiltros.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

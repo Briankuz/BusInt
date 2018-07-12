@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
           <Property Name="Dni" Type="int" />
           <Property Name="Legajo" Type="int" />
@@ -20,7 +20,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodInspector" Type="int" />
+          <Property Name="Inspector" Type="int" />
           <Property Name="Interno" Type="numeric" Precision="18" Scale="0" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="Seccion" Type="int" />
@@ -34,6 +34,27 @@
           <Property Name="dni" Type="numeric" Precision="18" Scale="0" />
           <Property Name="legajo" Type="numeric" Precision="18" Scale="0" />
           <Property Name="FechaCarga" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Interno">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="150" />
+          <Property Name="Marca" Type="varchar" MaxLength="150" />
+          <Property Name="Patente" Type="varchar" MaxLength="50" />
+          <Property Name="Año" Type="smallint" />
+          <Property Name="CantidadPasajeros" Type="int" />
+        </EntityType>
+        <EntityType Name="Interno_Conductor">
+          <Key>
+            <PropertyRef Name="Interno" />
+            <PropertyRef Name="Conductor" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Interno" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Conductor" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="logs">
           <Key>
@@ -60,7 +81,7 @@
           <Property Name="fecha" Type="datetime" />
           <Property Name="inspector" Type="int" />
           <Property Name="seccion" Type="int" />
-          <Property Name="interno" Type="varchar" MaxLength="50" />
+          <Property Name="interno" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="patente" Type="varchar" MaxLength="50" />
           <Property Name="CodInspector" Type="int" />
         </EntityType>
@@ -95,16 +116,78 @@
           <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rol" Type="char" MaxLength="1" />
+          <Property Name="RolId" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
-        <Association Name="FK_Conductor_Inspector">
-          <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
-          <End Role="Conductor" Type="Self.Conductor" Multiplicity="*" />
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Proyecto.dbo.vw_Control_Inspecciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Control_Inspecciones">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Conductor_Id" />
+            <PropertyRef Name="Atrasado" />
+            <PropertyRef Name="Adelanto" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Inspector_id" Type="int" />
+          <Property Name="Inspector_Nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="Interno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Conductor_Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Conductor_Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Seccion_Id" Type="int" />
+          <Property Name="Seccion_Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="hora_Inspeccion" Type="time" Precision="7" />
+          <Property Name="hora_Seccion" Type="time" Precision="7" />
+          <Property Name="DifMinutos" Type="int" />
+          <Property Name="Atrasado" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Adelanto" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Proyecto.dbo.vw_Inspeccion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Inspeccion">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Inspector_id" />
+            <PropertyRef Name="Seccion_Id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="interno" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Conductor_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Conductor_Nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Inspector_id" Type="int" Nullable="false" />
+          <Property Name="Inspector_Nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Seccion_Id" Type="int" Nullable="false" />
+          <Property Name="Seccion_Nombre" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Proyecto.dbo.vw_Observacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Observacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="Inspector_id" Type="int" />
+          <Property Name="Inspector_Nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="Seccion_Id" Type="int" />
+          <Property Name="Seccion_Nombre" Type="varchar" MaxLength="150" />
+          <Property Name="Interno_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Interno_Patente" Type="varchar" MaxLength="50" />
+          <Property Name="Conductor_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Conductor_Nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Inspeccion_Conductor">
+          <End Role="Conductor" Type="Self.Conductor" Multiplicity="0..1" />
+          <End Role="Inspeccion" Type="Self.Inspeccion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Inspector">
+            <Principal Role="Conductor">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Conductor">
-              <PropertyRef Name="CodInspector" />
+            <Dependent Role="Inspeccion">
+              <PropertyRef Name="Interno" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -116,7 +199,7 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Inspeccion">
-              <PropertyRef Name="CodInspector" />
+              <PropertyRef Name="Inspector" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -156,43 +239,67 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Seccion_Inspector">
-          <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
-          <End Role="Seccion" Type="Self.Seccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inspector">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Seccion">
-              <PropertyRef Name="CodInspector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seccion_Parada">
-          <End Role="Parada" Type="Self.Parada" Multiplicity="0..1" />
-          <End Role="Seccion" Type="Self.Seccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Parada">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Seccion">
-              <PropertyRef Name="CodParada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CheckBusModelStoreContainer">
           <EntitySet Name="Conductor" EntityType="Self.Conductor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inspeccion" EntityType="Self.Inspeccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interno" EntityType="Self.Interno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interno_Conductor" EntityType="Self.Interno_Conductor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="logs" EntityType="Self.logs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Observacion" EntityType="Self.Observacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parada" EntityType="Self.Parada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Conductor_Inspector" Association="Self.FK_Conductor_Inspector">
-            <End Role="Inspector" EntitySet="Inspector" />
+          <EntitySet Name="vw_Control_Inspecciones" EntityType="Self.vw_Control_Inspecciones" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Control_Inspecciones].[id] AS [id], 
+    [vw_Control_Inspecciones].[Inspector_id] AS [Inspector_id], 
+    [vw_Control_Inspecciones].[Inspector_Nombre] AS [Inspector_Nombre], 
+    [vw_Control_Inspecciones].[Interno] AS [Interno], 
+    [vw_Control_Inspecciones].[Conductor_Id] AS [Conductor_Id], 
+    [vw_Control_Inspecciones].[Conductor_Nombre] AS [Conductor_Nombre], 
+    [vw_Control_Inspecciones].[Fecha] AS [Fecha], 
+    [vw_Control_Inspecciones].[Seccion_Id] AS [Seccion_Id], 
+    [vw_Control_Inspecciones].[Seccion_Nombre] AS [Seccion_Nombre], 
+    [vw_Control_Inspecciones].[hora_Inspeccion] AS [hora_Inspeccion], 
+    [vw_Control_Inspecciones].[hora_Seccion] AS [hora_Seccion], 
+    [vw_Control_Inspecciones].[DifMinutos] AS [DifMinutos], 
+    [vw_Control_Inspecciones].[Atrasado] AS [Atrasado], 
+    [vw_Control_Inspecciones].[Adelanto] AS [Adelanto]
+    FROM [dbo].[vw_Control_Inspecciones] AS [vw_Control_Inspecciones]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Inspeccion" EntityType="Self.vw_Inspeccion" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Inspeccion].[id] AS [id], 
+    [vw_Inspeccion].[interno] AS [interno], 
+    [vw_Inspeccion].[Conductor_id] AS [Conductor_id], 
+    [vw_Inspeccion].[Conductor_Nombre] AS [Conductor_Nombre], 
+    [vw_Inspeccion].[Inspector_id] AS [Inspector_id], 
+    [vw_Inspeccion].[Inspector_Nombre] AS [Inspector_Nombre], 
+    [vw_Inspeccion].[Fecha] AS [Fecha], 
+    [vw_Inspeccion].[Seccion_Id] AS [Seccion_Id], 
+    [vw_Inspeccion].[Seccion_Nombre] AS [Seccion_Nombre]
+    FROM [dbo].[vw_Inspeccion] AS [vw_Inspeccion]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Observacion" EntityType="Self.vw_Observacion" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Observacion].[id] AS [id], 
+    [vw_Observacion].[Descripcion] AS [Descripcion], 
+    [vw_Observacion].[fecha] AS [fecha], 
+    [vw_Observacion].[Inspector_id] AS [Inspector_id], 
+    [vw_Observacion].[Inspector_Nombre] AS [Inspector_Nombre], 
+    [vw_Observacion].[Seccion_Id] AS [Seccion_Id], 
+    [vw_Observacion].[Seccion_Nombre] AS [Seccion_Nombre], 
+    [vw_Observacion].[Interno_id] AS [Interno_id], 
+    [vw_Observacion].[Interno_Patente] AS [Interno_Patente], 
+    [vw_Observacion].[Conductor_id] AS [Conductor_id], 
+    [vw_Observacion].[Conductor_Nombre] AS [Conductor_Nombre]
+    FROM [dbo].[vw_Observacion] AS [vw_Observacion]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Inspeccion_Conductor" Association="Self.FK_Inspeccion_Conductor">
             <End Role="Conductor" EntitySet="Conductor" />
+            <End Role="Inspeccion" EntitySet="Inspeccion" />
           </AssociationSet>
           <AssociationSet Name="FK_Inspeccion_Inspector" Association="Self.FK_Inspeccion_Inspector">
             <End Role="Inspector" EntitySet="Inspector" />
@@ -210,55 +317,11 @@
             <End Role="Inspector" EntitySet="Inspector" />
             <End Role="Parada" EntitySet="Parada" />
           </AssociationSet>
-          <AssociationSet Name="FK_Seccion_Inspector" Association="Self.FK_Seccion_Inspector">
-            <End Role="Inspector" EntitySet="Inspector" />
-            <End Role="Seccion" EntitySet="Seccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seccion_Parada" Association="Self.FK_Seccion_Parada">
-            <End Role="Parada" EntitySet="Parada" />
-            <End Role="Seccion" EntitySet="Seccion" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CheckBusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Conductor">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dni" Type="Int32" />
-          <Property Name="Legajo" Type="Int32" />
-          <Property Name="CodInspector" Type="Int32" />
-          <NavigationProperty Name="Inspector" Relationship="Self.FK_Conductor_Inspector" FromRole="Conductor" ToRole="Inspector" />
-        </EntityType>
-        <EntityType Name="Inspeccion">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodInspector" Type="Int32" />
-          <Property Name="Interno" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <Property Name="Seccion" Type="Int32" />
-          <NavigationProperty Name="Inspector" Relationship="Self.FK_Inspeccion_Inspector" FromRole="Inspeccion" ToRole="Inspector" />
-        </EntityType>
-        <EntityType Name="Inspector">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="dni" Type="Int32" />
-          <Property Name="legajo" Type="Int32" />
-          <NavigationProperty Name="Conductors" Relationship="Self.FK_Conductor_Inspector" FromRole="Inspector" ToRole="Conductor" />
-          <NavigationProperty Name="Inspeccions" Relationship="Self.FK_Inspeccion_Inspector" FromRole="Inspector" ToRole="Inspeccion" />
-          <NavigationProperty Name="Paradas" Relationship="Self.FK_Parada_Inspector" FromRole="Inspector" ToRole="Parada" />
-          <NavigationProperty Name="Seccions" Relationship="Self.FK_Seccion_Inspector" FromRole="Inspector" ToRole="Seccion" />
-          <Property Name="FechaCarga" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="log">
           <Key>
             <PropertyRef Name="id" />
@@ -277,21 +340,6 @@
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="logs" Relationship="Self.fk_logs_logs_tipo" FromRole="logs_tipo" ToRole="logs" />
         </EntityType>
-        <EntityType Name="Observacion">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="inspector" Type="Int32" />
-          <Property Name="seccion" Type="Int32" />
-          <Property Name="interno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CodInspector" Type="Int32" />
-          <NavigationProperty Name="Observacion1" Relationship="Self.FK_Observacion_Inspector" FromRole="Observacion" ToRole="Observacion1" />
-          <NavigationProperty Name="Observacion2" Relationship="Self.FK_Observacion_Inspector" FromRole="Observacion1" ToRole="Observacion" />
-        </EntityType>
         <EntityType Name="Parada">
           <Key>
             <PropertyRef Name="id" />
@@ -301,8 +349,8 @@
           <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="nota" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="CodInspector" Type="Int32" />
-          <NavigationProperty Name="Inspector" Relationship="Self.FK_Parada_Inspector" FromRole="Parada" ToRole="Inspector" />
           <NavigationProperty Name="Seccions" Relationship="Self.FK_Seccion_Parada" FromRole="Parada" ToRole="Seccion" />
+          <NavigationProperty Name="Inspector" Relationship="CheckBusModel.FK_Parada_Inspector" FromRole="Parada" ToRole="Inspector" />
         </EntityType>
         <EntityType Name="Seccion">
           <Key>
@@ -315,10 +363,10 @@
           <Property Name="fechaBaja" Type="DateTime" Precision="3" />
           <Property Name="CodParada" Type="Int32" />
           <Property Name="CodInspector" Type="Int32" />
-          <NavigationProperty Name="Inspector" Relationship="Self.FK_Seccion_Inspector" FromRole="Seccion" ToRole="Inspector" />
           <NavigationProperty Name="Parada" Relationship="Self.FK_Seccion_Parada" FromRole="Seccion" ToRole="Parada" />
           <Property Name="Latitud" Type="Decimal" Precision="9" Scale="6" />
           <Property Name="Longitud" Type="Decimal" Precision="9" Scale="6" />
+          <NavigationProperty Name="Inspector" Relationship="CheckBusModel.FK_Seccion_Inspector" FromRole="Seccion" ToRole="Inspector" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -327,55 +375,9 @@
           <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="RolId" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
-        <Association Name="FK_Conductor_Inspector">
-          <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
-          <End Role="Conductor" Type="Self.Conductor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inspector">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Conductor">
-              <PropertyRef Name="CodInspector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inspeccion_Inspector">
-          <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
-          <End Role="Inspeccion" Type="Self.Inspeccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inspector">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Inspeccion">
-              <PropertyRef Name="CodInspector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Parada_Inspector">
-          <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
-          <End Role="Parada" Type="Self.Parada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inspector">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Parada">
-              <PropertyRef Name="CodInspector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Seccion_Inspector">
-          <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
-          <End Role="Seccion" Type="Self.Seccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Inspector">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Seccion">
-              <PropertyRef Name="CodInspector" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_logs_logs_tipo">
           <End Role="logs_tipo" Type="Self.logs_tipo" Multiplicity="0..1" />
           <End Role="logs" Type="Self.log" Multiplicity="*" />
@@ -385,18 +387,6 @@
             </Principal>
             <Dependent Role="logs">
               <PropertyRef Name="tipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Observacion_Inspector">
-          <End Role="Observacion" Type="Self.Observacion" Multiplicity="0..1" />
-          <End Role="Observacion1" Type="Self.Observacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Observacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Observacion1">
-              <PropertyRef Name="CodInspector" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -413,83 +403,241 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MyContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Conductors" EntityType="Self.Conductor" />
-          <EntitySet Name="Inspeccions" EntityType="Self.Inspeccion" />
-          <EntitySet Name="Inspectors" EntityType="Self.Inspector" />
           <EntitySet Name="logs" EntityType="Self.log" />
           <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" />
-          <EntitySet Name="Observacions" EntityType="Self.Observacion" />
           <EntitySet Name="Paradas" EntityType="Self.Parada" />
           <EntitySet Name="Seccions" EntityType="Self.Seccion" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK_Conductor_Inspector" Association="Self.FK_Conductor_Inspector">
-            <End Role="Inspector" EntitySet="Inspectors" />
-            <End Role="Conductor" EntitySet="Conductors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inspeccion_Inspector" Association="Self.FK_Inspeccion_Inspector">
-            <End Role="Inspector" EntitySet="Inspectors" />
-            <End Role="Inspeccion" EntitySet="Inspeccions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Parada_Inspector" Association="Self.FK_Parada_Inspector">
-            <End Role="Inspector" EntitySet="Inspectors" />
-            <End Role="Parada" EntitySet="Paradas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Seccion_Inspector" Association="Self.FK_Seccion_Inspector">
-            <End Role="Inspector" EntitySet="Inspectors" />
-            <End Role="Seccion" EntitySet="Seccions" />
-          </AssociationSet>
           <AssociationSet Name="fk_logs_logs_tipo" Association="Self.fk_logs_logs_tipo">
             <End Role="logs_tipo" EntitySet="logs_tipo" />
             <End Role="logs" EntitySet="logs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Observacion_Inspector" Association="Self.FK_Observacion_Inspector">
-            <End Role="Observacion" EntitySet="Observacions" />
-            <End Role="Observacion1" EntitySet="Observacions" />
           </AssociationSet>
           <AssociationSet Name="FK_Seccion_Parada" Association="Self.FK_Seccion_Parada">
             <End Role="Parada" EntitySet="Paradas" />
             <End Role="Seccion" EntitySet="Seccions" />
           </AssociationSet>
+          <EntitySet Name="Conductors" EntityType="CheckBusModel.Conductor" />
+          <EntitySet Name="Inspeccions" EntityType="CheckBusModel.Inspeccion" />
+          <EntitySet Name="Inspectors" EntityType="CheckBusModel.Inspector" />
+          <AssociationSet Name="FK_Inspeccion_Conductor" Association="CheckBusModel.FK_Inspeccion_Conductor">
+            <End Role="Conductor" EntitySet="Conductors" />
+            <End Role="Inspeccion" EntitySet="Inspeccions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inspeccion_Inspector" Association="CheckBusModel.FK_Inspeccion_Inspector">
+            <End Role="Inspector" EntitySet="Inspectors" />
+            <End Role="Inspeccion" EntitySet="Inspeccions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parada_Inspector" Association="CheckBusModel.FK_Parada_Inspector">
+            <End Role="Inspector" EntitySet="Inspectors" />
+            <End Role="Parada" EntitySet="Paradas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seccion_Inspector" Association="CheckBusModel.FK_Seccion_Inspector">
+            <End Role="Inspector" EntitySet="Inspectors" />
+            <End Role="Seccion" EntitySet="Seccions" />
+          </AssociationSet>
+          <EntitySet Name="vw_Control_Inspecciones" EntityType="CheckBusModel.vw_Control_Inspecciones" />
+          <EntitySet Name="vw_Inspeccion" EntityType="CheckBusModel.vw_Inspeccion" />
+          <EntitySet Name="Observacions" EntityType="CheckBusModel.Observacion" />
+          <AssociationSet Name="FK_Observacion_Inspector" Association="CheckBusModel.FK_Observacion_Inspector">
+            <End Role="Observacion" EntitySet="Observacions" />
+            <End Role="Observacion1" EntitySet="Observacions" />
+          </AssociationSet>
+          <EntitySet Name="Internoes" EntityType="CheckBusModel.Interno" />
+          <EntitySet Name="vw_Observacion" EntityType="CheckBusModel.vw_Observacion" />
+          <EntitySet Name="Interno_Conductor" EntityType="CheckBusModel.Interno_Conductor" />
         </EntityContainer>
+        <EntityType Name="Conductor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dni" Type="Int32" />
+          <Property Name="Legajo" Type="Int32" />
+          <Property Name="CodInspector" Type="Int32" />
+          <NavigationProperty Name="Inspeccions" Relationship="CheckBusModel.FK_Inspeccion_Conductor" FromRole="Conductor" ToRole="Inspeccion" />
+        </EntityType>
+        <EntityType Name="Inspeccion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inspector" Type="Int32" />
+          <Property Name="Interno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Seccion" Type="Int32" />
+          <NavigationProperty Name="Conductor" Relationship="CheckBusModel.FK_Inspeccion_Conductor" FromRole="Inspeccion" ToRole="Conductor" />
+          <NavigationProperty Name="Inspector1" Relationship="CheckBusModel.FK_Inspeccion_Inspector" FromRole="Inspeccion" ToRole="Inspector" />
+        </EntityType>
+        <EntityType Name="Inspector">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="dni" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="legajo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FechaCarga" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Inspeccions" Relationship="CheckBusModel.FK_Inspeccion_Inspector" FromRole="Inspector" ToRole="Inspeccion" />
+          <NavigationProperty Name="Paradas" Relationship="CheckBusModel.FK_Parada_Inspector" FromRole="Inspector" ToRole="Parada" />
+          <NavigationProperty Name="Seccions" Relationship="CheckBusModel.FK_Seccion_Inspector" FromRole="Inspector" ToRole="Seccion" />
+        </EntityType>
+        <Association Name="FK_Inspeccion_Conductor">
+          <End Type="CheckBusModel.Conductor" Role="Conductor" Multiplicity="0..1" />
+          <End Type="CheckBusModel.Inspeccion" Role="Inspeccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conductor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inspeccion">
+              <PropertyRef Name="Interno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inspeccion_Inspector">
+          <End Type="CheckBusModel.Inspector" Role="Inspector" Multiplicity="0..1" />
+          <End Type="CheckBusModel.Inspeccion" Role="Inspeccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspector">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Inspeccion">
+              <PropertyRef Name="Inspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parada_Inspector">
+          <End Type="CheckBusModel.Inspector" Role="Inspector" Multiplicity="0..1" />
+          <End Type="CheckBusModel.Parada" Role="Parada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspector">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parada">
+              <PropertyRef Name="CodInspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seccion_Inspector">
+          <End Type="CheckBusModel.Inspector" Role="Inspector" Multiplicity="0..1" />
+          <End Type="CheckBusModel.Seccion" Role="Seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspector">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Seccion">
+              <PropertyRef Name="CodInspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_Control_Inspecciones">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Conductor_Id" />
+            <PropertyRef Name="Atrasado" />
+            <PropertyRef Name="Adelanto" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Inspector_id" Type="Int32" />
+          <Property Name="Inspector_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Interno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Conductor_Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Conductor_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Seccion_Id" Type="Int32" />
+          <Property Name="Seccion_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="hora_Inspeccion" Type="Time" Precision="7" />
+          <Property Name="hora_Seccion" Type="Time" Precision="7" />
+          <Property Name="DifMinutos" Type="Int32" />
+          <Property Name="Atrasado" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Adelanto" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_Inspeccion">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Inspector_id" />
+            <PropertyRef Name="Seccion_Id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="interno" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Conductor_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Conductor_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Inspector_id" Type="Int32" Nullable="false" />
+          <Property Name="Inspector_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Seccion_Id" Type="Int32" Nullable="false" />
+          <Property Name="Seccion_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Observacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="inspector" Type="Int32" />
+          <Property Name="seccion" Type="Int32" />
+          <Property Name="interno" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodInspector" Type="Int32" />
+          <NavigationProperty Name="Observacion1" Relationship="CheckBusModel.FK_Observacion_Inspector" FromRole="Observacion" ToRole="Observacion1" />
+          <NavigationProperty Name="Observacion2" Relationship="CheckBusModel.FK_Observacion_Inspector" FromRole="Observacion1" ToRole="Observacion" />
+        </EntityType>
+        <Association Name="FK_Observacion_Inspector">
+          <End Type="CheckBusModel.Observacion" Role="Observacion" Multiplicity="0..1" />
+          <End Type="CheckBusModel.Observacion" Role="Observacion1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observacion">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Observacion1">
+              <PropertyRef Name="CodInspector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Interno">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modelo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Año" Type="Int16" />
+          <Property Name="CantidadPasajeros" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_Observacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="Inspector_id" Type="Int32" />
+          <Property Name="Inspector_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Seccion_Id" Type="Int32" />
+          <Property Name="Seccion_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Interno_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Interno_Patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Conductor_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Conductor_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Interno_Conductor">
+          <Key>
+            <PropertyRef Name="Interno" />
+            <PropertyRef Name="Conductor" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Interno" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Conductor" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CheckBusModelStoreContainer" CdmEntityContainer="MyContext">
-          <EntitySetMapping Name="Conductors">
-            <EntityTypeMapping TypeName="CheckBusModel.Conductor">
-              <MappingFragment StoreEntitySet="Conductor">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Dni" ColumnName="Dni" />
-                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
-                <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inspeccions">
-            <EntityTypeMapping TypeName="CheckBusModel.Inspeccion">
-              <MappingFragment StoreEntitySet="Inspeccion">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
-                <ScalarProperty Name="Interno" ColumnName="Interno" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Seccion" ColumnName="Seccion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Inspectors">
-            <EntityTypeMapping TypeName="CheckBusModel.Inspector">
-              <MappingFragment StoreEntitySet="Inspector">
-                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="dni" ColumnName="dni" />
-                <ScalarProperty Name="legajo" ColumnName="legajo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="logs">
             <EntityTypeMapping TypeName="CheckBusModel.log">
               <MappingFragment StoreEntitySet="logs">
@@ -505,20 +653,6 @@
               <MappingFragment StoreEntitySet="logs_tipo">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Observacions">
-            <EntityTypeMapping TypeName="CheckBusModel.Observacion">
-              <MappingFragment StoreEntitySet="Observacion">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="inspector" ColumnName="inspector" />
-                <ScalarProperty Name="seccion" ColumnName="seccion" />
-                <ScalarProperty Name="interno" ColumnName="interno" />
-                <ScalarProperty Name="patente" ColumnName="patente" />
-                <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -551,9 +685,131 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="CheckBusModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conductors">
+            <EntityTypeMapping TypeName="CheckBusModel.Conductor">
+              <MappingFragment StoreEntitySet="Conductor">
+                <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
+                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
+                <ScalarProperty Name="Dni" ColumnName="Dni" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inspeccions">
+            <EntityTypeMapping TypeName="CheckBusModel.Inspeccion">
+              <MappingFragment StoreEntitySet="Inspeccion">
+                <ScalarProperty Name="Seccion" ColumnName="Seccion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Interno" ColumnName="Interno" />
+                <ScalarProperty Name="Inspector" ColumnName="Inspector" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inspectors">
+            <EntityTypeMapping TypeName="CheckBusModel.Inspector">
+              <MappingFragment StoreEntitySet="Inspector">
+                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
+                <ScalarProperty Name="legajo" ColumnName="legajo" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Control_Inspecciones">
+            <EntityTypeMapping TypeName="CheckBusModel.vw_Control_Inspecciones">
+              <MappingFragment StoreEntitySet="vw_Control_Inspecciones">
+                <ScalarProperty Name="Adelanto" ColumnName="Adelanto" />
+                <ScalarProperty Name="Atrasado" ColumnName="Atrasado" />
+                <ScalarProperty Name="DifMinutos" ColumnName="DifMinutos" />
+                <ScalarProperty Name="hora_Seccion" ColumnName="hora_Seccion" />
+                <ScalarProperty Name="hora_Inspeccion" ColumnName="hora_Inspeccion" />
+                <ScalarProperty Name="Seccion_Nombre" ColumnName="Seccion_Nombre" />
+                <ScalarProperty Name="Seccion_Id" ColumnName="Seccion_Id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Conductor_Nombre" ColumnName="Conductor_Nombre" />
+                <ScalarProperty Name="Conductor_Id" ColumnName="Conductor_Id" />
+                <ScalarProperty Name="Interno" ColumnName="Interno" />
+                <ScalarProperty Name="Inspector_Nombre" ColumnName="Inspector_Nombre" />
+                <ScalarProperty Name="Inspector_id" ColumnName="Inspector_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Inspeccion">
+            <EntityTypeMapping TypeName="CheckBusModel.vw_Inspeccion">
+              <MappingFragment StoreEntitySet="vw_Inspeccion">
+                <ScalarProperty Name="Seccion_Nombre" ColumnName="Seccion_Nombre" />
+                <ScalarProperty Name="Seccion_Id" ColumnName="Seccion_Id" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Inspector_Nombre" ColumnName="Inspector_Nombre" />
+                <ScalarProperty Name="Inspector_id" ColumnName="Inspector_id" />
+                <ScalarProperty Name="Conductor_Nombre" ColumnName="Conductor_Nombre" />
+                <ScalarProperty Name="Conductor_id" ColumnName="Conductor_id" />
+                <ScalarProperty Name="interno" ColumnName="interno" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Observacions">
+            <EntityTypeMapping TypeName="CheckBusModel.Observacion">
+              <MappingFragment StoreEntitySet="Observacion">
+                <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
+                <ScalarProperty Name="patente" ColumnName="patente" />
+                <ScalarProperty Name="interno" ColumnName="interno" />
+                <ScalarProperty Name="seccion" ColumnName="seccion" />
+                <ScalarProperty Name="inspector" ColumnName="inspector" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Internoes">
+            <EntityTypeMapping TypeName="CheckBusModel.Interno">
+              <MappingFragment StoreEntitySet="Interno">
+                <ScalarProperty Name="CantidadPasajeros" ColumnName="CantidadPasajeros" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Patente" ColumnName="Patente" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Observacion">
+            <EntityTypeMapping TypeName="CheckBusModel.vw_Observacion">
+              <MappingFragment StoreEntitySet="vw_Observacion">
+                <ScalarProperty Name="Conductor_Nombre" ColumnName="Conductor_Nombre" />
+                <ScalarProperty Name="Conductor_id" ColumnName="Conductor_id" />
+                <ScalarProperty Name="Interno_Patente" ColumnName="Interno_Patente" />
+                <ScalarProperty Name="Interno_id" ColumnName="Interno_id" />
+                <ScalarProperty Name="Seccion_Nombre" ColumnName="Seccion_Nombre" />
+                <ScalarProperty Name="Seccion_Id" ColumnName="Seccion_Id" />
+                <ScalarProperty Name="Inspector_Nombre" ColumnName="Inspector_Nombre" />
+                <ScalarProperty Name="Inspector_id" ColumnName="Inspector_id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interno_Conductor">
+            <EntityTypeMapping TypeName="CheckBusModel.Interno_Conductor">
+              <MappingFragment StoreEntitySet="Interno_Conductor">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Conductor" ColumnName="Conductor" />
+                <ScalarProperty Name="Interno" ColumnName="Interno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

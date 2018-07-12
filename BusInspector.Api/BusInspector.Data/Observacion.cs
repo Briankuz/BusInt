@@ -19,7 +19,8 @@ namespace BusInspector.Data
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> inspector { get; set; }
         public Nullable<int> seccion { get; set; }
-        public string interno { get; set; }
+        public decimal interno { get; set; }
         public string patente { get; set; }
+        public Nullable<int> CodInspector { get; set; }
     }
 }

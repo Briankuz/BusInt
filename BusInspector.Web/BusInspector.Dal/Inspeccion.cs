@@ -15,11 +15,12 @@ namespace BusInspector.Dal
     public partial class Inspeccion
     {
         public int id { get; set; }
-        public Nullable<int> CodInspector { get; set; }
+        public Nullable<int> Inspector { get; set; }
         public Nullable<decimal> Interno { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Seccion { get; set; }
     
-        public virtual Inspector Inspector { get; set; }
+        public virtual Conductor Conductor { get; set; }
+        public virtual Inspector Inspector1 { get; set; }
     }
 }
