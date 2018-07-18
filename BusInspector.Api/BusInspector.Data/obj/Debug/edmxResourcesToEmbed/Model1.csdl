@@ -86,6 +86,7 @@
     <Property Name="legajo" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="FechaCarga" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Inspeccions" Relationship="BusInspectorModel.FK_Inspeccion_Inspector" FromRole="Inspector" ToRole="Inspeccion" />
+    <Property Name="FechaBaja" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Interno">
     <Key>
@@ -97,6 +98,7 @@
     <Property Name="Patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Año" Type="Int16" />
     <Property Name="CantidadPasajeros" Type="Int32" />
+    <Property Name="Activo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
   </EntityType>
   <Association Name="FK_Inspeccion_Inspector">
     <End Type="BusInspectorModel.Inspector" Role="Inspector" Multiplicity="0..1" />

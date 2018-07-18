@@ -9,6 +9,25 @@
     <Property Name="Dni" Type="int" />
     <Property Name="Legajo" Type="int" />
     <Property Name="CodInspector" Type="int" />
+    <Property Name="Baja" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Conductor_Recorrido_Frecuencia">
+    <Key>
+      <PropertyRef Name="Conductor" />
+      <PropertyRef Name="Recorrido" />
+      <PropertyRef Name="Frecuencia" />
+    </Key>
+    <Property Name="Conductor" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Recorrido" Type="int" Nullable="false" />
+    <Property Name="Frecuencia" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Frecuencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+    <Property Name="HorarioInicial" Type="time" Precision="7" />
   </EntityType>
   <EntityType Name="Inspeccion">
     <Key>
@@ -29,6 +48,7 @@
     <Property Name="dni" Type="numeric" Precision="18" Scale="0" />
     <Property Name="legajo" Type="numeric" Precision="18" Scale="0" />
     <Property Name="FechaCarga" Type="datetime" />
+    <Property Name="FechaBaja" Type="datetime" />
   </EntityType>
   <EntityType Name="Interno">
     <Key>
@@ -40,6 +60,7 @@
     <Property Name="Patente" Type="varchar" MaxLength="50" />
     <Property Name="Año" Type="smallint" />
     <Property Name="CantidadPasajeros" Type="int" />
+    <Property Name="Activo" Type="nchar" MaxLength="2" Nullable="false" />
   </EntityType>
   <EntityType Name="Interno_Conductor">
     <Key>
@@ -90,6 +111,13 @@
     <Property Name="nota" Type="varchar" MaxLength="500" />
     <Property Name="CodInspector" Type="int" />
   </EntityType>
+  <EntityType Name="Recorrido">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Seccion">
     <Key>
       <PropertyRef Name="id" />
@@ -104,6 +132,17 @@
     <Property Name="Latitud" Type="decimal" Precision="9" Scale="6" />
     <Property Name="Longitud" Type="decimal" Precision="9" Scale="6" />
   </EntityType>
+  <EntityType Name="Seccion_Horario">
+    <Key>
+      <PropertyRef Name="Seccion" />
+      <PropertyRef Name="Recorrido" />
+      <PropertyRef Name="Frecuencia" />
+    </Key>
+    <Property Name="Seccion" Type="int" Nullable="false" />
+    <Property Name="Recorrido" Type="int" Nullable="false" />
+    <Property Name="Frecuencia" Type="int" Nullable="false" />
+    <Property Name="Hora" Type="time" Precision="7" />
+  </EntityType>
   <EntityType Name="Usuario">
     <Key>
       <PropertyRef Name="IdUsuario" />
@@ -113,6 +152,7 @@
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Rol" Type="char" MaxLength="1" />
     <Property Name="RolId" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="fechabaja" Type="date" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'Proyecto.dbo.vw_Control_Inspecciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -169,11 +209,47 @@ warning 6002: The table/view 'Proyecto.dbo.vw_Observacion' does not have a prima
     <Property Name="Inspector_Nombre" Type="nvarchar" MaxLength="150" />
     <Property Name="Seccion_Id" Type="int" />
     <Property Name="Seccion_Nombre" Type="varchar" MaxLength="150" />
-    <Property Name="Interno_id" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Interno_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
     <Property Name="Interno_Patente" Type="varchar" MaxLength="50" />
     <Property Name="Conductor_id" Type="numeric" Precision="18" Scale="0" />
     <Property Name="Conductor_Nombre" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_Conductor_Recorrido_Frecuencia_Conductor">
+    <End Role="Conductor" Type="Self.Conductor" Multiplicity="1" />
+    <End Role="Conductor_Recorrido_Frecuencia" Type="Self.Conductor_Recorrido_Frecuencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conductor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conductor_Recorrido_Frecuencia">
+        <PropertyRef Name="Conductor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Conductor_Recorrido_Frecuencia_Frecuencia">
+    <End Role="Frecuencia" Type="Self.Frecuencia" Multiplicity="1" />
+    <End Role="Conductor_Recorrido_Frecuencia" Type="Self.Conductor_Recorrido_Frecuencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frecuencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Conductor_Recorrido_Frecuencia">
+        <PropertyRef Name="Frecuencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Conductor_Recorrido_Frecuencia_Recorrido">
+    <End Role="Recorrido" Type="Self.Recorrido" Multiplicity="1" />
+    <End Role="Conductor_Recorrido_Frecuencia" Type="Self.Conductor_Recorrido_Frecuencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recorrido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Conductor_Recorrido_Frecuencia">
+        <PropertyRef Name="Recorrido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inspeccion_Conductor">
     <End Role="Conductor" Type="Self.Conductor" Multiplicity="0..1" />
     <End Role="Inspeccion" Type="Self.Inspeccion" Multiplicity="*" />
@@ -210,18 +286,6 @@ warning 6002: The table/view 'Proyecto.dbo.vw_Observacion' does not have a prima
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Observacion_Inspector">
-    <End Role="Observacion" Type="Self.Observacion" Multiplicity="0..1" />
-    <End Role="Observacion1" Type="Self.Observacion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Observacion">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Observacion1">
-        <PropertyRef Name="CodInspector" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Parada_Inspector">
     <End Role="Inspector" Type="Self.Inspector" Multiplicity="0..1" />
     <End Role="Parada" Type="Self.Parada" Multiplicity="*" />
@@ -234,8 +298,46 @@ warning 6002: The table/view 'Proyecto.dbo.vw_Observacion' does not have a prima
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Seccion_Horario_Frecuencia">
+    <End Role="Frecuencia" Type="Self.Frecuencia" Multiplicity="1" />
+    <End Role="Seccion_Horario" Type="Self.Seccion_Horario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frecuencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seccion_Horario">
+        <PropertyRef Name="Frecuencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seccion_Horario_Recorrido">
+    <End Role="Recorrido" Type="Self.Recorrido" Multiplicity="1" />
+    <End Role="Seccion_Horario" Type="Self.Seccion_Horario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recorrido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seccion_Horario">
+        <PropertyRef Name="Recorrido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seccion_Horario_Seccion">
+    <End Role="Seccion" Type="Self.Seccion" Multiplicity="1" />
+    <End Role="Seccion_Horario" Type="Self.Seccion_Horario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Seccion_Horario">
+        <PropertyRef Name="Seccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CheckBusModelStoreContainer">
     <EntitySet Name="Conductor" EntityType="Self.Conductor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conductor_Recorrido_Frecuencia" EntityType="Self.Conductor_Recorrido_Frecuencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Frecuencia" EntityType="Self.Frecuencia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inspeccion" EntityType="Self.Inspeccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Interno" EntityType="Self.Interno" Schema="dbo" store:Type="Tables" />
@@ -244,7 +346,9 @@ warning 6002: The table/view 'Proyecto.dbo.vw_Observacion' does not have a prima
     <EntitySet Name="logs_tipo" EntityType="Self.logs_tipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Observacion" EntityType="Self.Observacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parada" EntityType="Self.Parada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Recorrido" EntityType="Self.Recorrido" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seccion_Horario" EntityType="Self.Seccion_Horario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vw_Control_Inspecciones" EntityType="Self.vw_Control_Inspecciones" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -292,6 +396,18 @@ warning 6002: The table/view 'Proyecto.dbo.vw_Observacion' does not have a prima
     [vw_Observacion].[Conductor_Nombre] AS [Conductor_Nombre]
     FROM [dbo].[vw_Observacion] AS [vw_Observacion]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_Conductor_Recorrido_Frecuencia_Conductor" Association="Self.FK_Conductor_Recorrido_Frecuencia_Conductor">
+      <End Role="Conductor" EntitySet="Conductor" />
+      <End Role="Conductor_Recorrido_Frecuencia" EntitySet="Conductor_Recorrido_Frecuencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Conductor_Recorrido_Frecuencia_Frecuencia" Association="Self.FK_Conductor_Recorrido_Frecuencia_Frecuencia">
+      <End Role="Frecuencia" EntitySet="Frecuencia" />
+      <End Role="Conductor_Recorrido_Frecuencia" EntitySet="Conductor_Recorrido_Frecuencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Conductor_Recorrido_Frecuencia_Recorrido" Association="Self.FK_Conductor_Recorrido_Frecuencia_Recorrido">
+      <End Role="Recorrido" EntitySet="Recorrido" />
+      <End Role="Conductor_Recorrido_Frecuencia" EntitySet="Conductor_Recorrido_Frecuencia" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inspeccion_Conductor" Association="Self.FK_Inspeccion_Conductor">
       <End Role="Conductor" EntitySet="Conductor" />
       <End Role="Inspeccion" EntitySet="Inspeccion" />
@@ -304,13 +420,21 @@ warning 6002: The table/view 'Proyecto.dbo.vw_Observacion' does not have a prima
       <End Role="logs_tipo" EntitySet="logs_tipo" />
       <End Role="logs" EntitySet="logs" />
     </AssociationSet>
-    <AssociationSet Name="FK_Observacion_Inspector" Association="Self.FK_Observacion_Inspector">
-      <End Role="Observacion" EntitySet="Observacion" />
-      <End Role="Observacion1" EntitySet="Observacion" />
-    </AssociationSet>
     <AssociationSet Name="FK_Parada_Inspector" Association="Self.FK_Parada_Inspector">
       <End Role="Inspector" EntitySet="Inspector" />
       <End Role="Parada" EntitySet="Parada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Horario_Frecuencia" Association="Self.FK_Seccion_Horario_Frecuencia">
+      <End Role="Frecuencia" EntitySet="Frecuencia" />
+      <End Role="Seccion_Horario" EntitySet="Seccion_Horario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Horario_Recorrido" Association="Self.FK_Seccion_Horario_Recorrido">
+      <End Role="Recorrido" EntitySet="Recorrido" />
+      <End Role="Seccion_Horario" EntitySet="Seccion_Horario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Horario_Seccion" Association="Self.FK_Seccion_Horario_Seccion">
+      <End Role="Seccion" EntitySet="Seccion" />
+      <End Role="Seccion_Horario" EntitySet="Seccion_Horario" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

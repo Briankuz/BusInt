@@ -31,7 +31,7 @@ namespace BusInspector.Repository.Repository
                 decimal dni = decimal.Parse(username);
                 decimal legajo = decimal.Parse(password);
 
-                bool usValido = _context.Inspectors.Where(x => x.legajo== legajo && x.dni==dni).Count() > 0;
+                bool usValido = _context.Inspectors.Where(x => x.legajo== legajo && x.dni==dni && x.FechaBaja==null).Count() > 0;
 
                 if (usValido)
                 { return usValido;}

@@ -21,3 +21,51 @@ C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll.config
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.dll
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.xml
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll.config
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.pdb
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.dll
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.xml
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojAssemblyReference.cache
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
+C:\Users\Administrador\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll.config
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.dll
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.xml
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll.config
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.dll
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\bin\Debug\BusInspector.Dal.pdb
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.dll
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.xml
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csprojResolveAssemblyReference.cache
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CoreCompileInputs.cache
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.csproj.CopyComplete
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.dll
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Dal\obj\Debug\BusInspector.Dal.pdb

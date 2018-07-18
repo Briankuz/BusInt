@@ -20,5 +20,6 @@ namespace BusInspector.Dal
         public string Patente { get; set; }
         public Nullable<short> Año { get; set; }
         public Nullable<int> CantidadPasajeros { get; set; }
+        public string Activo { get; set; }
     }
 }

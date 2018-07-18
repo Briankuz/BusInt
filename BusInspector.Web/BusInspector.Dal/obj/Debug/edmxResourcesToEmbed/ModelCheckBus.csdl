@@ -45,6 +45,7 @@
     <Property Name="Latitud" Type="Decimal" Precision="9" Scale="6" />
     <Property Name="Longitud" Type="Decimal" Precision="9" Scale="6" />
     <NavigationProperty Name="Inspector" Relationship="CheckBusModel.FK_Seccion_Inspector" FromRole="Seccion" ToRole="Inspector" />
+    <NavigationProperty Name="Seccion_Horario" Relationship="CheckBusModel.FK_Seccion_Horario_Seccion" FromRole="Seccion" ToRole="Seccion_Horario" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -55,6 +56,7 @@
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Rol" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="RolId" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="fechabaja" Type="DateTime" Precision="0" />
   </EntityType>
   <Association Name="fk_logs_logs_tipo">
     <End Role="logs_tipo" Type="Self.logs_tipo" Multiplicity="0..1" />
@@ -123,6 +125,34 @@
     <EntitySet Name="Internoes" EntityType="CheckBusModel.Interno" />
     <EntitySet Name="vw_Observacion" EntityType="CheckBusModel.vw_Observacion" />
     <EntitySet Name="Interno_Conductor" EntityType="CheckBusModel.Interno_Conductor" />
+    <EntitySet Name="Conductor_Recorrido_Frecuencia" EntityType="CheckBusModel.Conductor_Recorrido_Frecuencia" />
+    <EntitySet Name="Frecuencias" EntityType="CheckBusModel.Frecuencia" />
+    <EntitySet Name="Recorridoes" EntityType="CheckBusModel.Recorrido" />
+    <EntitySet Name="Seccion_Horario" EntityType="CheckBusModel.Seccion_Horario" />
+    <AssociationSet Name="FK_Conductor_Recorrido_Frecuencia_Conductor" Association="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Conductor">
+      <End Role="Conductor" EntitySet="Conductors" />
+      <End Role="Conductor_Recorrido_Frecuencia" EntitySet="Conductor_Recorrido_Frecuencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Conductor_Recorrido_Frecuencia_Frecuencia" Association="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Frecuencia">
+      <End Role="Frecuencia" EntitySet="Frecuencias" />
+      <End Role="Conductor_Recorrido_Frecuencia" EntitySet="Conductor_Recorrido_Frecuencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Conductor_Recorrido_Frecuencia_Recorrido" Association="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Recorrido">
+      <End Role="Recorrido" EntitySet="Recorridoes" />
+      <End Role="Conductor_Recorrido_Frecuencia" EntitySet="Conductor_Recorrido_Frecuencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Horario_Frecuencia" Association="CheckBusModel.FK_Seccion_Horario_Frecuencia">
+      <End Role="Frecuencia" EntitySet="Frecuencias" />
+      <End Role="Seccion_Horario" EntitySet="Seccion_Horario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Horario_Recorrido" Association="CheckBusModel.FK_Seccion_Horario_Recorrido">
+      <End Role="Recorrido" EntitySet="Recorridoes" />
+      <End Role="Seccion_Horario" EntitySet="Seccion_Horario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seccion_Horario_Seccion" Association="CheckBusModel.FK_Seccion_Horario_Seccion">
+      <End Role="Seccion" EntitySet="Seccions" />
+      <End Role="Seccion_Horario" EntitySet="Seccion_Horario" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Conductor">
     <Key>
@@ -134,6 +164,8 @@
     <Property Name="Legajo" Type="Int32" />
     <Property Name="CodInspector" Type="Int32" />
     <NavigationProperty Name="Inspeccions" Relationship="CheckBusModel.FK_Inspeccion_Conductor" FromRole="Conductor" ToRole="Inspeccion" />
+    <NavigationProperty Name="Conductor_Recorrido_Frecuencia" Relationship="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Conductor" FromRole="Conductor" ToRole="Conductor_Recorrido_Frecuencia" />
+    <Property Name="Baja" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Inspeccion">
     <Key>
@@ -159,6 +191,7 @@
     <NavigationProperty Name="Inspeccions" Relationship="CheckBusModel.FK_Inspeccion_Inspector" FromRole="Inspector" ToRole="Inspeccion" />
     <NavigationProperty Name="Paradas" Relationship="CheckBusModel.FK_Parada_Inspector" FromRole="Inspector" ToRole="Parada" />
     <NavigationProperty Name="Seccions" Relationship="CheckBusModel.FK_Seccion_Inspector" FromRole="Inspector" ToRole="Seccion" />
+    <Property Name="FechaBaja" Type="DateTime" Precision="3" />
   </EntityType>
   <Association Name="FK_Inspeccion_Conductor">
     <End Type="CheckBusModel.Conductor" Role="Conductor" Multiplicity="0..1" />
@@ -283,6 +316,7 @@
     <Property Name="Patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Año" Type="Int16" />
     <Property Name="CantidadPasajeros" Type="Int32" />
+    <Property Name="Activo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="vw_Observacion">
     <Key>
@@ -295,7 +329,7 @@
     <Property Name="Inspector_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Seccion_Id" Type="Int32" />
     <Property Name="Seccion_Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="Interno_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Interno_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="Interno_Patente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Conductor_id" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="Conductor_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -310,4 +344,122 @@
     <Property Name="Conductor" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
+  <EntityType Name="Conductor_Recorrido_Frecuencia">
+    <Key>
+      <PropertyRef Name="Conductor" />
+      <PropertyRef Name="Recorrido" />
+      <PropertyRef Name="Frecuencia" />
+    </Key>
+    <Property Name="Conductor" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Recorrido" Type="Int32" Nullable="false" />
+    <Property Name="Frecuencia" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Conductor1" Relationship="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Conductor" FromRole="Conductor_Recorrido_Frecuencia" ToRole="Conductor" />
+    <NavigationProperty Name="Frecuencia1" Relationship="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Frecuencia" FromRole="Conductor_Recorrido_Frecuencia" ToRole="Frecuencia" />
+    <NavigationProperty Name="Recorrido1" Relationship="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Recorrido" FromRole="Conductor_Recorrido_Frecuencia" ToRole="Recorrido" />
+  </EntityType>
+  <EntityType Name="Frecuencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="HorarioInicial" Type="Time" Precision="7" />
+    <NavigationProperty Name="Conductor_Recorrido_Frecuencia" Relationship="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Frecuencia" FromRole="Frecuencia" ToRole="Conductor_Recorrido_Frecuencia" />
+    <NavigationProperty Name="Seccion_Horario" Relationship="CheckBusModel.FK_Seccion_Horario_Frecuencia" FromRole="Frecuencia" ToRole="Seccion_Horario" />
+  </EntityType>
+  <EntityType Name="Recorrido">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Conductor_Recorrido_Frecuencia" Relationship="CheckBusModel.FK_Conductor_Recorrido_Frecuencia_Recorrido" FromRole="Recorrido" ToRole="Conductor_Recorrido_Frecuencia" />
+    <NavigationProperty Name="Seccion_Horario" Relationship="CheckBusModel.FK_Seccion_Horario_Recorrido" FromRole="Recorrido" ToRole="Seccion_Horario" />
+  </EntityType>
+  <EntityType Name="Seccion_Horario">
+    <Key>
+      <PropertyRef Name="Seccion" />
+      <PropertyRef Name="Recorrido" />
+      <PropertyRef Name="Frecuencia" />
+    </Key>
+    <Property Name="Seccion" Type="Int32" Nullable="false" />
+    <Property Name="Recorrido" Type="Int32" Nullable="false" />
+    <Property Name="Frecuencia" Type="Int32" Nullable="false" />
+    <Property Name="Hora" Type="Time" Precision="7" />
+    <NavigationProperty Name="Frecuencia1" Relationship="CheckBusModel.FK_Seccion_Horario_Frecuencia" FromRole="Seccion_Horario" ToRole="Frecuencia" />
+    <NavigationProperty Name="Recorrido1" Relationship="CheckBusModel.FK_Seccion_Horario_Recorrido" FromRole="Seccion_Horario" ToRole="Recorrido" />
+    <NavigationProperty Name="Seccion1" Relationship="CheckBusModel.FK_Seccion_Horario_Seccion" FromRole="Seccion_Horario" ToRole="Seccion" />
+  </EntityType>
+  <Association Name="FK_Conductor_Recorrido_Frecuencia_Conductor">
+    <End Type="CheckBusModel.Conductor" Role="Conductor" Multiplicity="1" />
+    <End Type="CheckBusModel.Conductor_Recorrido_Frecuencia" Role="Conductor_Recorrido_Frecuencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conductor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conductor_Recorrido_Frecuencia">
+        <PropertyRef Name="Conductor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Conductor_Recorrido_Frecuencia_Frecuencia">
+    <End Type="CheckBusModel.Frecuencia" Role="Frecuencia" Multiplicity="1" />
+    <End Type="CheckBusModel.Conductor_Recorrido_Frecuencia" Role="Conductor_Recorrido_Frecuencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frecuencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Conductor_Recorrido_Frecuencia">
+        <PropertyRef Name="Frecuencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Conductor_Recorrido_Frecuencia_Recorrido">
+    <End Type="CheckBusModel.Recorrido" Role="Recorrido" Multiplicity="1" />
+    <End Type="CheckBusModel.Conductor_Recorrido_Frecuencia" Role="Conductor_Recorrido_Frecuencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recorrido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Conductor_Recorrido_Frecuencia">
+        <PropertyRef Name="Recorrido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seccion_Horario_Frecuencia">
+    <End Type="CheckBusModel.Frecuencia" Role="Frecuencia" Multiplicity="1" />
+    <End Type="CheckBusModel.Seccion_Horario" Role="Seccion_Horario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frecuencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seccion_Horario">
+        <PropertyRef Name="Frecuencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seccion_Horario_Recorrido">
+    <End Type="CheckBusModel.Recorrido" Role="Recorrido" Multiplicity="1" />
+    <End Type="CheckBusModel.Seccion_Horario" Role="Seccion_Horario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recorrido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seccion_Horario">
+        <PropertyRef Name="Recorrido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seccion_Horario_Seccion">
+    <End Type="CheckBusModel.Seccion" Role="Seccion" Multiplicity="1" />
+    <End Type="CheckBusModel.Seccion_Horario" Role="Seccion_Horario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Seccion_Horario">
+        <PropertyRef Name="Seccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

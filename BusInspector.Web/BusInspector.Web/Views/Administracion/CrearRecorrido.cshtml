@@ -1,0 +1,22 @@
+﻿@model BusInspector.Dal.Recorrido
+@{
+	ViewBag.Title = "CrearRecorrido";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Crear Recorrido</h2>
+
+</br>
+@using (Html.BeginForm("CrearRecorrido", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+	<div class="input-field">
+		@Html.Label("Descripcion")
+		@Html.TextBoxFor(m => m.Descripcion, new { @class = "validate" })
+		@Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+	</div>
+
+	
+	<div class="input-field center-block">
+		<input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+	</div>
+}

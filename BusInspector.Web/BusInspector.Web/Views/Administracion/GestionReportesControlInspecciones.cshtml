@@ -5,33 +5,27 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-<div class="row">
-    @if (TempData["Error"] != null)
-    {
-        <div class="alert alert-danger">@TempData["Error"]</div>
-    }
+<h2>Control de Inspecciones</h2>
 
 
-    <div class="col l12 m10">
-        <div class="card blue-grey darken-1">
-
-            <div class="card-content white-text">
-                <div class="panel-body">
-                    <h6 class="text-center">Seleccione el Inspector, Fecha de Inicio y Fin para generar el reporte</h6>
-                    @using (Html.BeginForm("ReportesControlInspecciones", "Administracion", FormMethod.Post))
-    {
-                @Html.Partial("_PartialInformesFiltros");
-
-
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
 }
-                </div>
 
-
-            </div>
+<div class="col s12">
+    <div class="card">
+        <div class="card-content">
+                <h5 class="text-center">Seleccione el Inspector, Fecha de Inicio y Fin para generar el reporte</h5>
+                <br>
+                @using (Html.BeginForm("ReportesControlInspecciones", "Administracion", FormMethod.Post))
+                {
+                    @Html.Partial("_PartialInformesFiltros");
+                }
         </div>
     </div>
 </div>
+
 
 
 

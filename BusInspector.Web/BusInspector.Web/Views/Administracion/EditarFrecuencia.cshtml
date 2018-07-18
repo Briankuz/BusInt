@@ -1,0 +1,31 @@
+﻿@model BusInspector.Dal.Frecuencia
+@{
+                /**/
+
+                ViewBag.Title = "EditarFrecuencia";
+                Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Editar Frecuencia</h2>
+
+</br>
+@using (Html.BeginForm("EditarFrecuencia", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+    <div class="input-field">
+        @Html.Label("Descripcion")
+        @Html.EditorFor(m => m.Descripcion, new { @class = "validate" })
+        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Horario Inicial</label>
+        @Html.EditorFor(m => m.HorarioInicial, new { type = "time", @class = "validate" })
+        @Html.ValidationMessageFor(model => model.HorarioInicial)
+    </div>
+
+    <div class="input-field center-block">
+       <input type="submit" class="btn btn-outline-white btn-lg" value="Editar">
+       <a href="@Url.Action("GestionFrecuencia","Administracion")" class="btn btn-outline-white btn-lg">Cancelar</a>
+    </div>
+}
+

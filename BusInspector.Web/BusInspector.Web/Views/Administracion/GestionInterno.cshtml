@@ -1,49 +1,75 @@
 ﻿@model IEnumerable<BusInspector.Dal.Interno>
 
 @{
-	ViewBag.Title = "Interno";
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Interno";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <h2>Gestion interno</h2>
 <h7>@ViewBag.Mensaje</h7>
 @if (Session["Mensaje"] != null)
 {
-	<h7>@Session["Mensaje"].ToString()</h7>
+    <h7>@Session["Mensaje"].ToString()</h7>
 }
 
 </br>
-<table>
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Modelo</th>
-			<th>Marca</th>
-			<th>Patente</th>
-			<th>Año</th>
-			<th>Cantidad Pasajero</th>
-		</tr>
-	</thead>
+<table class="highlight centered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Patente</th>
+            <th>Año</th>
+            <th>Cant. Pasajeros</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
 
-	<tbody>
-		@foreach (var inte in Model)
-		{
-		<tr>
-			<td>@Html.DisplayFor(campo => inte.id)</td>
-			<td>@Html.DisplayFor(campo => inte.Modelo)</td>
-			<td>@Html.DisplayFor(campo => inte.Marca)</td>
-			<td>@Html.DisplayFor(campo => inte.Patente)</td>
-			<td>@Html.DisplayFor(campo => inte.Año)</td>
-			<td>@Html.DisplayFor(campo => inte.CantidadPasajeros)</td>
-			<td>
-				<a href="@Url.Action("EditarInterno", "Administracion", new { id = inte.id })"><i class="material-icons">edit</i></a>
-				<a href="@Url.Action("EliminarInterno", "Administracion", new { id = inte.id })"><i class="material-icons">delete</i></a>
-			</td>
-		</tr>
-		}
-	</tbody>
+    <tbody>
+        @foreach (var inte in Model)
+        {
+            <tr>
+                <td>@inte.id.ToString()</td>
+                <td>@inte.Modelo</td>
+                <td>@inte.Marca</td>
+                <td>@inte.Patente</td>
+                <td>@inte.Año</td>
+                <td>@inte.CantidadPasajeros</td>
+                <td>@inte.Activo</td>
+
+
+                @*<td>@Html.DisplayFor(campo => inte.id.ToString())</td>
+                    <td>@Html.DisplayFor(campo => inte.Modelo)</td>
+                    <td>@Html.DisplayFor(campo => inte.Marca)</td>
+                    <td>@Html.DisplayFor(campo => inte.Patente)</td>
+                    <td>@Html.DisplayFor(campo => inte.Año)</td>
+                    <td>@Html.DisplayFor(campo => inte.CantidadPasajeros)</td>*@
+                <td>
+                    <a href="@Url.Action("EditarInterno", "Administracion", new { id = inte.id })"><i class="material-icons">edit</i></a>
+                    <a href="@Url.Action("EliminarInterno", "Administracion", new { id = inte.id })"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
 </table>
 
-    </br></br></br>
+</br></br></br>
 <a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearInterno", "Administracion")"><i class="material-icons">add</i></a>
+</br></br>
+<br>
+<br>
+<input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>
 

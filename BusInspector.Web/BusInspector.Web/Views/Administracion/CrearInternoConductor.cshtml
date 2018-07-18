@@ -1,0 +1,34 @@
+﻿@model BusInspector.Dal.Interno_Conductor
+@{
+	ViewBag.Title = "CrearInternoConductor";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Crear Interno Conductor</h2>
+<h5>@ViewBag.Mensaje</h5>
+
+</br>
+@using (Html.BeginForm("CrearInternoConductor", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+    <div class="input-field">
+        <label style="position: relative !important;">Interno</label>
+        @Html.DropDownListFor(m => m.Interno, new SelectList(ViewBag.ListaInternos, "id","id"))
+        @Html.ValidationMessageFor(model => model.Interno, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Conductor</label>
+        @Html.DropDownListFor(m => m.Conductor, new SelectList(ViewBag.ListaConductores, "id","id"))
+        @Html.ValidationMessageFor(model => model.Conductor)
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Fecha</label>
+        @Html.TextBoxFor(m => m.Fecha, DateTime.Now.ToString("yyyy-MM-dd"), new { type = "date", @class = "validate" })
+        @Html.ValidationMessageFor(model => model.Fecha)
+    </div>
+
+	<div class="input-field center-block">
+		<input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+	</div>
+}

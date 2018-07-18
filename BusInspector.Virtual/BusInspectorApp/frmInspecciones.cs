@@ -182,7 +182,7 @@ namespace WindowsFormsApp1
         {
 
 
-            string par = "{ \"Inspector\": \"1\",";
+            string par = "{ \"Inspector\": \"" + Properties.Settings.Default.usuarioId + "\",";
             par += "\"Interno\": \"" + Interno + "\",";
             par += "\"Seccion\": \"" + Properties.Settings.Default.seccionId + "\"}";
             

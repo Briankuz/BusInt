@@ -1,0 +1,43 @@
+﻿@model BusInspector.Dal.Seccion_Horario
+@{
+    ViewBag.Title = "EditarSeccionHorario";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Editar Horario</h2>
+
+</br>
+@using (Html.BeginForm("EditarSeccionHorarios", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+  
+    <div class="input-field">
+        <label style="position: relative !important;">Recorrido</label>
+        @Html.DropDownList("Recorrido", new SelectList(ViewBag.Recorrido, "Id", "Descripcion"), new { @class = "form-control" }) @*, @disabled = "disabled" }) *@
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Seccion</label>
+        @Html.DropDownList("Seccion", new SelectList(ViewBag.Seccion, "id", "nombre"), new { @class = "form-control" }) @*, @disabled = "disabled" }) *@
+    </div>
+    <div class="input-field">
+        <label style="position: relative !important;">Frecuencia</label>
+        @Html.DropDownList("Frecuencia", new SelectList(ViewBag.Frecuencia, "id", "Descripcion"), new { @class = "form-control" }) @*, @disabled = "disabled" }) *@
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Hora</label>
+        @Html.EditorFor(m => m.Hora, new { type = "time", @class = "validate" })
+        @Html.ValidationMessageFor(model => model.Hora)
+    </div>
+
+
+
+
+
+
+            <div class="input-field center-block">
+                <input type="submit" class="btn btn-outline-white btn-lg" value="Editar">
+                <a href="@Url.Action("GestionSeccionHorarios","Administracion")" class="btn btn-outline-white btn-lg">Cancelar</a>
+            </div>
+        }
+

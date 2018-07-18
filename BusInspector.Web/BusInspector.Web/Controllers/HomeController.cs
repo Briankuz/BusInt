@@ -1,5 +1,6 @@
 ﻿
 using BusInspector.Dal;
+using BusInspector.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace BusInspector.Web.Controllers
 						Session["NombreUsuario"] = log.NombreUsuario;
                         Session["Rol"] = log.Rol;
                         Session["RolId"] = log.RolId;
-                        
+
                         // Verifico de que vista viene, en caso de que sea null significa que esta ingresando desde el index
                         if (TempData["urlAction"] == null)
 						{ return RedirectToAction("Home", "Administracion"); }
@@ -57,9 +58,10 @@ namespace BusInspector.Web.Controllers
 					}
 				}
 			}
-			return RedirectToAction("Login", "Home");
+         
+            return RedirectToAction("Login", "Home");
 
-		}
+        }
 
 
 

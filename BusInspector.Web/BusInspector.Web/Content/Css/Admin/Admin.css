@@ -1,7 +1,5 @@
-﻿
-
-header, main, footer {
-    padding-left: 200px;
+﻿header, main, footer {
+    padding-left: 300px;
 }
 
 @media only screen and (max-width : 992px) {
@@ -9,3 +7,22 @@ header, main, footer {
         padding-left: 0;
     }
 }
+
+.naranja {
+    background-color: #FF6010 !important;
+}
+
+.celeste {
+    background-color: #009CE7 !important;
+}
+
+.btn:hover, .btn:active {
+    color: white !important;
+}
+
+.card .card-title-mini {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+

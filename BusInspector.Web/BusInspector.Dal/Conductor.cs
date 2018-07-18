@@ -18,6 +18,7 @@ namespace BusInspector.Dal
         public Conductor()
         {
             this.Inspeccions = new HashSet<Inspeccion>();
+            this.Conductor_Recorrido_Frecuencia = new HashSet<Conductor_Recorrido_Frecuencia>();
         }
     
         public decimal id { get; set; }
@@ -25,8 +26,11 @@ namespace BusInspector.Dal
         public Nullable<int> Dni { get; set; }
         public Nullable<int> Legajo { get; set; }
         public Nullable<int> CodInspector { get; set; }
+        public Nullable<System.DateTime> Baja { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inspeccion> Inspeccions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conductor_Recorrido_Frecuencia> Conductor_Recorrido_Frecuencia { get; set; }
     }
 }

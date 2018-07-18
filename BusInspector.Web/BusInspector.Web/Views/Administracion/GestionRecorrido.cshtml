@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BusInspector.Dal.Recorrido>
+@{
+    ViewBag.Title = "GestionRecorrido";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<h2>Gestion De Recorridos</h2>
+
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+    <h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table class="highlight centered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var Rec in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(campo => Rec.Id)</td>
+                <td>@Html.DisplayFor(campo => Rec.Descripcion)</td>
+                <td>
+                    <a href="@Url.Action("EditarRecorrido", "Administracion", new { id = Rec.Id })"><i class="material-icons">edit</i></a>
+                    <a href="@Url.Action("EliminarRecorrido", "Administracion", new { id = Rec.Id })"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+</br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearRecorrido", "Administracion")"><i class="material-icons">add</i></a>
+</br></br>
+
+
+<br>
+<br>
+<input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>
+

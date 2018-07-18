@@ -19,5 +19,6 @@ namespace BusInspector.Dal
         public string Password { get; set; }
         public string Rol { get; set; }
         public Nullable<decimal> RolId { get; set; }
+        public Nullable<System.DateTime> fechabaja { get; set; }
     }
 }

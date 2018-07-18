@@ -10,3 +10,21 @@ C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.dll
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.pdb
 C:\Projets\InspeccionDeColectivosWeb\InspeccionDeColectivosWeb\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.dll
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.pdb
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.dll
+C:\Users\PC\Desktop\BusInspector.Web (1)\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.pdb
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.dll
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.pdb
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csprojResolveAssemblyReference.cache
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.dll
+C:\Users\PC\Desktop\CheckBusWeb V1\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.pdb
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.dll
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Repository\bin\Debug\BusInspector.Repository.pdb
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csprojResolveAssemblyReference.cache
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.csproj.CoreCompileInputs.cache
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.dll
+C:\Projets\CheckBusWeb V2\CheckBusWeb V2\BusInspector.Web\BusInspector.Repository\obj\Debug\BusInspector.Repository.pdb

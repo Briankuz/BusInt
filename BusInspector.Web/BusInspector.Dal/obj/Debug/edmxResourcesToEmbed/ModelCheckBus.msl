@@ -48,6 +48,7 @@
     <EntitySetMapping Name="Usuarios">
       <EntityTypeMapping TypeName="CheckBusModel.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="fechabaja" ColumnName="fechabaja" />
           <ScalarProperty Name="RolId" ColumnName="RolId" />
           <ScalarProperty Name="Rol" ColumnName="Rol" />
           <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
@@ -59,6 +60,7 @@
     <EntitySetMapping Name="Conductors">
       <EntityTypeMapping TypeName="CheckBusModel.Conductor">
         <MappingFragment StoreEntitySet="Conductor">
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
           <ScalarProperty Name="CodInspector" ColumnName="CodInspector" />
           <ScalarProperty Name="Legajo" ColumnName="Legajo" />
           <ScalarProperty Name="Dni" ColumnName="Dni" />
@@ -81,6 +83,7 @@
     <EntitySetMapping Name="Inspectors">
       <EntityTypeMapping TypeName="CheckBusModel.Inspector">
         <MappingFragment StoreEntitySet="Inspector">
+          <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
           <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
           <ScalarProperty Name="legajo" ColumnName="legajo" />
           <ScalarProperty Name="dni" ColumnName="dni" />
@@ -141,6 +144,7 @@
     <EntitySetMapping Name="Internoes">
       <EntityTypeMapping TypeName="CheckBusModel.Interno">
         <MappingFragment StoreEntitySet="Interno">
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
           <ScalarProperty Name="CantidadPasajeros" ColumnName="CantidadPasajeros" />
           <ScalarProperty Name="Año" ColumnName="Año" />
           <ScalarProperty Name="Patente" ColumnName="Patente" />
@@ -173,6 +177,42 @@
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Conductor" ColumnName="Conductor" />
           <ScalarProperty Name="Interno" ColumnName="Interno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conductor_Recorrido_Frecuencia">
+      <EntityTypeMapping TypeName="CheckBusModel.Conductor_Recorrido_Frecuencia">
+        <MappingFragment StoreEntitySet="Conductor_Recorrido_Frecuencia">
+          <ScalarProperty Name="Frecuencia" ColumnName="Frecuencia" />
+          <ScalarProperty Name="Recorrido" ColumnName="Recorrido" />
+          <ScalarProperty Name="Conductor" ColumnName="Conductor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Frecuencias">
+      <EntityTypeMapping TypeName="CheckBusModel.Frecuencia">
+        <MappingFragment StoreEntitySet="Frecuencia">
+          <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recorridoes">
+      <EntityTypeMapping TypeName="CheckBusModel.Recorrido">
+        <MappingFragment StoreEntitySet="Recorrido">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seccion_Horario">
+      <EntityTypeMapping TypeName="CheckBusModel.Seccion_Horario">
+        <MappingFragment StoreEntitySet="Seccion_Horario">
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="Frecuencia" ColumnName="Frecuencia" />
+          <ScalarProperty Name="Recorrido" ColumnName="Recorrido" />
+          <ScalarProperty Name="Seccion" ColumnName="Seccion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

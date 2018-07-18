@@ -21,7 +21,7 @@ namespace BusInspector.Dal
         public string Inspector_Nombre { get; set; }
         public Nullable<int> Seccion_Id { get; set; }
         public string Seccion_Nombre { get; set; }
-        public Nullable<decimal> Interno_id { get; set; }
+        public decimal Interno_id { get; set; }
         public string Interno_Patente { get; set; }
         public Nullable<decimal> Conductor_id { get; set; }
         public string Conductor_Nombre { get; set; }

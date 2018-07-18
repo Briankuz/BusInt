@@ -4,22 +4,25 @@
     ViewBag.Title = "AltaInspector";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h2>Gestion Inspectores</h2>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<h2>Gestion de Inspectores</h2>
 <h7>@ViewBag.Mensaje</h7>
+@{ViewBag.Mensaje = null;}
 @if (Session["Mensaje"] != null)
 {
     <h7>@Session["Mensaje"].ToString()</h7>
 }
 
 </br>
-<table>
+<table class="highlight centered">
     <thead>
         <tr>
             <th>Id</th>
             <th>Nombre</th>
             <th>Dni</th>
             <th>Legajo</th>
+            <th>Alta</th>
+            <th>Baja</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -28,19 +31,49 @@
         @foreach (var ins in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(campo => ins.id)</td>
-                <td>@Html.DisplayFor(campo => ins.nombre)</td>
-                <td>@Html.DisplayFor(campo => ins.dni)</td>
-                <td>@Html.DisplayFor(campo => ins.legajo)</td>
+                <td>@ins.id</td>
+                <td>@ins.nombre</td>
+                <td>@ins.dni.ToString()</td>
+                <td>@ins.legajo.ToString()</td>
+                <td>@ins.FechaCarga</td>
+                @if (@ins.FechaBaja == null)
+                {
+                    <td>-</td>
+                }
+                else
+                {
+                    var baja = ins.FechaBaja.Value.ToShortDateString();
+                    <td>@baja</td>
+                }
                 <td>
-                    <a href="@Url.Action("EditarInspector", "Administracion", new { id = ins.id })"><i class="material-icons">edit</i></a>
-                    <a href="@Url.Action("EliminarInspector", "Administracion", new { id = ins.id })"><i class="material-icons">delete</i></a>
+                    @if (ins.FechaBaja == null)
+                    {
+                        <a href="@Url.Action("EditarInspector", "Administracion", new { id = ins.id })"><i class="material-icons">edit</i></a>
+                        <a href="@Url.Action("EliminarInspector", "Administracion", new { id = ins.id })"><i class="material-icons">delete</i></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("AltaInspector", "Administracion", new { id = ins.id })"><i class="material-icons">add</i></a>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-    </br></br></br>
+</br></br></br>
 <a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearInspector", "Administracion")"><i class="material-icons">add</i></a>
+</br></br>
+
+<br>
+<br>
+<input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>
 

@@ -1,0 +1,36 @@
+﻿@model BusInspector.Dal.Conductor_Recorrido_Frecuencia
+
+
+@{
+    ViewBag.Title = "CrearGestionConductorRecorridoFrecuencia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>Crear Conductor Recorrido Frecuencia</h4>
+<h5>@ViewBag.Mensaje</h5>
+
+</br>
+@using (Html.BeginForm("CrearConductorRecorridoFrecuencia", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+<div class="input-field">
+    <label style="position: relative !important;">Conductor</label>
+    @Html.DropDownListFor(m => m.Conductor, new SelectList(ViewBag.ListaConductores, "id", "Nombre"))
+    @Html.ValidationMessageFor(m => m.Conductor, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-field">
+    <label style="position: relative !important;">Recorrido</label>
+    @Html.DropDownListFor(m => m.Recorrido, new SelectList(ViewBag.ListaRecorridos, "Id", "Descripcion"))
+    @Html.ValidationMessageFor(m => m.Recorrido, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-field">
+    <label style="position: relative !important;">Frecuencia</label>
+    @Html.DropDownListFor(m => m.Frecuencia, new SelectList(ViewBag.ListaFrecuencias, "Id", "HorarioInicial"))
+    @Html.ValidationMessageFor(m => m.Frecuencia, "", new { @class = "text-danger" })
+</div>
+
+<div class="input-field center-block" style="margin-top: 2em;">
+    <input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+</div>
+}

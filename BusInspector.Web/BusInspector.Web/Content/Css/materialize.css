@@ -3436,13 +3436,13 @@ table span.badge {
 
 @media only screen and (min-width: 601px) {
   .container {
-    width: 85%;
+    width: 90%;
   }
 }
 
 @media only screen and (min-width: 993px) {
   .container {
-    width: 70%;
+    width: 90%;
   }
 }
 
@@ -5204,28 +5204,28 @@ small {
   cursor: default;
 }
 
-.btn.disabled:hover, .disabled.btn-large:hover, .disabled.btn-small:hover,
-.btn-floating.disabled:hover,
-.btn-large.disabled:hover,
-.btn-small.disabled:hover,
-.btn-flat.disabled:hover,
-.btn:disabled:hover,
-.btn-large:disabled:hover,
-.btn-small:disabled:hover,
-.btn-floating:disabled:hover,
-.btn-large:disabled:hover,
-.btn-small:disabled:hover,
-.btn-flat:disabled:hover,
-.btn[disabled]:hover,
-[disabled].btn-large:hover,
-[disabled].btn-small:hover,
-.btn-floating[disabled]:hover,
-.btn-large[disabled]:hover,
-.btn-small[disabled]:hover,
-.btn-flat[disabled]:hover {
-  background-color: #DFDFDF !important;
-  color: #9F9F9F !important;
-}
+    .btn.disabled:hover, .disabled.btn-large:hover, .disabled.btn-small:hover,
+    .btn-floating.disabled:hover,
+    .btn-large.disabled:hover,
+    .btn-small.disabled:hover,
+    .btn-flat.disabled:hover,
+    .btn:disabled:hover,
+    .btn-large:disabled:hover,
+    .btn-small:disabled:hover,
+    .btn-floating:disabled:hover,
+    .btn-large:disabled:hover,
+    .btn-small:disabled:hover,
+    .btn-flat:disabled:hover,
+    .btn[disabled]:hover,
+    [disabled].btn-large:hover,
+    [disabled].btn-small:hover,
+    .btn-floating[disabled]:hover,
+    .btn-large[disabled]:hover,
+    .btn-small[disabled]:hover,
+    .btn-flat[disabled]:hover {
+    background-color: #DFDFDF !important;
+    color: #fff; !important;
+    }
 
 .btn, .btn-large, .btn-small,
 .btn-floating,
@@ -5245,10 +5245,10 @@ small {
   line-height: inherit;
 }
 
-.btn:focus, .btn-large:focus, .btn-small:focus,
-.btn-floating:focus {
-  background-color: #1d7d74;
-}
+    .btn:focus, .btn-large:focus, .btn-small:focus,
+    .btn-floating:focus {
+    background-color: #fff;
+    }
 
 .btn, .btn-large, .btn-small {
   text-decoration: none;
@@ -6697,7 +6697,7 @@ textarea.materialize-textarea {
 [type="radio"]:not(:checked),
 [type="radio"]:checked {
   position: absolute;
-  opacity: 0;
+  opacity: 5 !important;
   pointer-events: none;
 }
 

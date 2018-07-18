@@ -53,6 +53,12 @@
     <Compile Include="Conductor.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
+    <Compile Include="Conductor_Recorrido_Frecuencia.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Frecuencia.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
     <Compile Include="Inspeccion.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
@@ -87,13 +93,21 @@
       <DependentUpon>ModelCheckBus.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MetadataConductor.cs" />
+    <Compile Include="Models\MetadataFrecuencia.cs" />
     <Compile Include="Models\MetadataInspector.cs" />
+    <Compile Include="Models\MetadataInterno.cs" />
     <Compile Include="Models\MetadataParada.cs" />
+    <Compile Include="Models\MetadataRecorrido.cs" />
     <Compile Include="Models\MetadataSeccion.cs" />
+    <Compile Include="Models\MetaDataSeccionHorarios.cs" />
     <Compile Include="Models\PartialConductor.cs" />
+    <Compile Include="Models\PartialFrecuencia.cs" />
     <Compile Include="Models\PartialInspector.cs" />
+    <Compile Include="Models\PartialInterno.cs" />
     <Compile Include="Models\PartialParada.cs" />
+    <Compile Include="Models\PartialRecorrido.cs" />
     <Compile Include="Models\PartialSeccion.cs" />
+    <Compile Include="Models\PartialSeccionHorarios.cs" />
     <Compile Include="Observacion.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
@@ -101,7 +115,13 @@
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recorrido.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
     <Compile Include="Seccion.cs">
+      <DependentUpon>ModelCheckBus.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Seccion_Horario.cs">
       <DependentUpon>ModelCheckBus.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">

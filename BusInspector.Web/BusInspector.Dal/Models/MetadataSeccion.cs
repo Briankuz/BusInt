@@ -6,7 +6,8 @@ namespace BusInspector.Dal
 {
 	public class MetadataSeccion
 	{
-		[Required(ErrorMessage = "Este campo no puede quedar vacio")]
+        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "Solo se admiten letras")]
+        [Required(ErrorMessage = "Este campo no puede quedar vacio")]
 		[StringLength(50)]
 		public string nombre { get; set; }
 

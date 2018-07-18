@@ -2,17 +2,176 @@
 
 
 @{
-	ViewBag.Title = "Inicio";
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="panel panel-default">
-	<div class="panel-body">
-		@if (Session["NombreUsuario"] != null)
-	   {
-		<h4 class="text-center">Bienvenido @Session["NombreUsuario"].ToString() al Sitio de Administracion</h4>
-       }
+<div class="row">
+    <div class="col s8">
+        <div class="card naranja">
+            <div class="card-content white-text">
+                    @if (Session["NombreUsuario"] != null)
+                    {
+                        <span class="card-title">Bienvenido @Session["NombreUsuario"].ToString() al Sitio de Administracion</span>
+                    }
+                    <h6 class="text-center" style="margin-bottom: 1.1em !important;">Selecciona alguna de las opciones del menu superior para poder adminsitrar el complejo.</h6>
+            </div>
+        </div>
+    </div> 
 
-		<h6 class="text-center">Selecciona alguna de las opciones del menu superior para poder adminsitrar el complejo.</h6>
-	</div>
+
+    <div class="col s4">
+        <div class="card celeste">
+            <div class="card-content">
+                <!-- clock widget start -->
+                <script type="text/javascript">var css_file = document.createElement("link"); css_file.setAttribute("rel", "stylesheet"); css_file.setAttribute("type", "text/css"); css_file.setAttribute("href", "//s.bookcdn.com//css/cl/bw-cl-100x100.css"); document.getElementsByTagName("head")[0].appendChild(css_file);</script> <div class="responsive-img" id="tw_4_353347497"><div style="width:100%; margin: 0 auto;"><a href="http://booked.net/time/buenos-aires-18250">Ciudad Autónoma de Buenos Aires</a><br /></div></div>
+                <script type="text/javascript">function setWidgetData_353347497(data) { if (typeof (data) != 'undefined' && data.results.length > 0) { for (var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_' + params.widget_type + '_' + params.widget_id); if (objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_353347497 = -1;</script>
+                <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=209&type=4&id=353347497&scode=124&city_id=18250&wlangid=4&mode=1&details=0&background=c9207b&color=ffffff&add_background=ffffff&add_color=c9207b&head_color=ffffff&border=0&transparent=1"></script>
+                <!-- clock widget end -->
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="row ">
+    <div class="col m8 s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Resumen de Hoy</span>
+                <canvas class="responsive-img" id="bar-chart-horizontal" width="100%"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col m4 s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Inspeccionados</span>
+                <canvas class="responsive-img" id="pie-chart" style="margin-top:3em !important;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col m12 s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Recorrido 1</span>
+                    
+
+
+                <canvas class="responsive-img" id="line-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'pie',
+        data: {
+            labels: ["Inspeccionados", "Sin Inspeccionar"],
+            datasets: [{
+                backgroundColor: ["#FF6010", "#009CE7"],
+                data: [@ViewBag.Inspeccionados,@ViewBag.Internos]
+            }]
+        },
+    });
+
+    new Chart(document.getElementById("bar-chart-horizontal"), {
+        type: 'horizontalBar',
+        data: {
+            labels: ["Adelantados", "Atrasados", "En Horario"],
+            datasets: [
+                {
+                    label: "hola",
+                    backgroundColor: ["#FF6010", "#009CE7", "#D3D3D3"],
+                    data: [@ViewBag.Adelantados, @ViewBag.Atrasados, @ViewBag.Atiempo]
+                }
+            ]
+
+        },
+
+        options: {
+            scales: {
+
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+
+            legend: {
+                display: false
+            },
+
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("line-chart"), {
+        type: 'line',
+        data: {
+            labels: [
+                @{ var sep = ", "; var comillas = '"'; }
+                @foreach (var seccion in ViewBag.Secciones)
+                {
+                    @Html.Raw(comillas)  @Html.Raw(seccion.nombre) @Html.Raw(comillas)
+                    @sep
+                }
+            ],
+            datasets: [{
+                data: [
+                    @foreach (var data in ViewBag.Data)
+                    {
+                        @data
+                        @sep
+                    }
+                ],
+                label: "Recorrido 1",
+                borderColor: "#009CE7",
+                fill: false
+            }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Cantidad de atrasos por parada'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false
+                    }
+                }]
+            },
+
+            legend: {
+                display: false
+            },
+
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+
+
+

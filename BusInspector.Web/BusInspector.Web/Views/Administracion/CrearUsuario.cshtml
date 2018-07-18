@@ -1,0 +1,38 @@
+﻿@model BusInspector.Web.Models.UsuarioViewModel
+
+@{
+    /**/
+
+    ViewBag.Title = "Crear usuario";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Crear Usuario</h2>
+<h5>@ViewBag.Mensaje</h5>
+
+<br>
+@using (Html.BeginForm("CrearUsuario", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+   
+    <div class="input-field">
+        @Html.Label("NombreUsuario")
+        @Html.TextBoxFor(m => m.usuario.NombreUsuario, new { @class = "validate" })
+        @Html.ValidationMessageFor(model => model.usuario.NombreUsuario, "", new { @class = "text-danger" })
+    </div>
+    <div class="input-field">
+        @Html.Label("Password")
+        @Html.TextBoxFor(m => m.usuario.Password, new { @class = "validate" })
+        @Html.ValidationMessageFor(model => model.usuario.Password)
+    </div>
+
+    <div class="input-field">
+        @Html.Label("Actor")<br />
+        @Html.DropDownListFor(m => m.conductorinspector.codigo, new SelectList(ViewBag.conductorinspector, "codigo", "descripcion"), new { @class = "form-control", style = "display: list-item;" })
+    </div>
+
+
+    <div class="input-field center-block">
+        <input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+    </div>
+}
+

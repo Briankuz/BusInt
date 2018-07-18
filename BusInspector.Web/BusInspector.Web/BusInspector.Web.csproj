@@ -130,10 +130,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Authorize.cs" />
+    <Compile Include="Models\ConductorRecorridoFrecuencia.cs" />
     <Compile Include="Models\InfoBusquedaResultdo.cs" />
     <Compile Include="Models\InfoConductorInterno.cs" />
     <Compile Include="Models\InfoReportes.cs" />
     <Compile Include="Models\InformesFiltros.cs" />
+    <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +170,28 @@
     <Content Include="Views\Administracion\GestionReportesControlInspecciones.cshtml" />
     <Content Include="Views\Administracion\ReportesControlInspecciones.cshtml" />
     <Content Include="Views\Administracion\_PartialInformesFiltros.cshtml" />
+    <Content Include="Views\Administracion\CrearFrecuencia.cshtml" />
+    <Content Include="Views\Administracion\CrearInterno.cshtml" />
+    <Content Include="Views\Administracion\CrearRecorrido.cshtml" />
+    <Content Include="Views\Administracion\CrearSeccionHorario.cshtml" />
+    <Content Include="Views\Administracion\EditarFrecuencia.cshtml" />
+    <Content Include="Views\Administracion\EditarInterno.cshtml" />
+    <Content Include="Views\Administracion\EditarRecorrido.cshtml" />
+    <Content Include="Views\Administracion\EditarSeccionHorarios.cshtml" />
+    <Content Include="Views\Administracion\GestionFrecuencia.cshtml" />
+    <Content Include="Views\Administracion\GestionInterno.cshtml" />
+    <Content Include="Views\Administracion\GestionInternoConductor.cshtml" />
+    <Content Include="Views\Administracion\GestionRecorrido.cshtml" />
+    <Content Include="Views\Administracion\GestionSeccionHorarios.cshtml" />
+    <Content Include="Views\Administracion\CrearInternoConductor.cshtml" />
+    <Content Include="Views\Administracion\EditarInternoConductor.cshtml" />
+    <Content Include="Views\Administracion\GestionConductorRecorridoFrecuencia.cshtml" />
+    <Content Include="Views\Administracion\EditarConductorRecorridoFrecuencia.cshtml" />
+    <Content Include="Views\Administracion\CrearConductorRecorridoFrecuencia.cshtml" />
+    <Content Include="Views\Administracion\ReportesInspeccionUltimos.cshtml" />
+    <Content Include="Views\Administracion\CrearUsuario.cshtml" />
+    <Content Include="Views\Administracion\EditarUsuario.cshtml" />
+    <Content Include="Views\Administracion\GestionUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

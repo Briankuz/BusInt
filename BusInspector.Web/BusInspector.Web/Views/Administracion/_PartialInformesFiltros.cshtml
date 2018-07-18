@@ -2,30 +2,31 @@
 @switch (Session["Rol"])
 {
     case "A":
-        <div class="col-md-4">
-            @Html.Label("Inspector")
-            @Html.DropDownList("CodInspector", new SelectList(ViewBag.Inspector, "id", "nombre"), new { @class = "form-control", style = "display: list-item;" })
+        <div class="col s6">
+            @Html.Label("Inspector")<br>
+            @Html.DropDownList("CodInspector", new SelectList(ViewBag.Inspector, "id", "nombre"), new { @class = "form-control" })
 
         </div>
-        <div class="col-md-4">
-            @Html.Label("Conductor")
-            @Html.DropDownList("CodConductor", new SelectList(ViewBag.Conductor, "id", "Nombre"), new { @class = "form-control", style = "display: list-item;" })
+        <div class="col s6">
+            @Html.Label("Conductor")<br>
+            @Html.DropDownList("CodConductor", new SelectList(ViewBag.Conductor, "id", "Nombre"), new { @class = "form-control" })
 
         </div>
         break;
+
     case "I":
 
         @Html.Hidden("CodInspector", Session["RolId"])
-        <div class="col-md-4">
-            @Html.Label("Conductor")
-            @Html.DropDownList("CodConductor", new SelectList(ViewBag.Conductor, "id", "Nombre"), new { @class = "form-control", style = "display: list-item;" })
+        <div class="col s6">
+            @Html.Label("Conductor")<br>
+            @Html.DropDownList("CodConductor", new SelectList(ViewBag.Conductor, "id", "Nombre"), new { @class = "form-control" })
 
         </div>
         break;
     case "C":
-        <div class="col-md-4">
-            @Html.Label("Inspector")
-            @Html.DropDownList("CodInspector", new SelectList(ViewBag.Inspector, "id", "nombre"), new { @class = "form-control", style = "display: list-item;" })
+        <div class="col s6">
+            @Html.Label("Inspector")<br>
+            @Html.DropDownList("CodInspector", new SelectList(ViewBag.Inspector, "id", "nombre"), new { @class = "form-control" })
 
         </div>
      
@@ -35,16 +36,18 @@
 
 
 
-<div class="col-md-4">
-    @Html.Label("Desde")
-    @Html.TextBox("FechaInicio", DateTime.Now.AddMonths(-2).ToString("yyyy-MM-dd"), new { @type = "date" })
-</div>
+        <div class="col s6">
+            @Html.Label("Desde")
+            @Html.TextBox("FechaInicio", DateTime.Now.AddMonths(-2).ToString("yyyy-MM-dd"), new { @type = "date" })
+        </div>
 
-<div class="col-md-4">
-    @Html.Label("Hasta")
-    @Html.TextBox("FechaFin", DateTime.Now.ToString("yyyy-MM-dd"), new { @type = "date" })
-</div>
+        <div class="col s6">
+            @Html.Label("Hasta")
+            @Html.TextBox("FechaFin", DateTime.Now.ToString("yyyy-MM-dd"), new { @type = "date" })
+        </div>
 
 
-
-<input id="Submit" type="submit" class="btn btn-success btn-block" value="Buscar">
+        <br><br>
+        <div class="col s12">
+            <input id="Submit" type="submit" class="btn btn-success btn-block" value="Buscar">
+        </div>

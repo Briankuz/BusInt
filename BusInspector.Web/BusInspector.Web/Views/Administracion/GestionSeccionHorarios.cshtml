@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BusInspector.Dal.Seccion_Horario>
+
+@{
+    ViewBag.Title = "Gestion de Horarios";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<h2>Gestion de Horarios</h2>
+
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+    <h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table class="highlight centered">
+    <thead>
+        <tr>
+            <th>Recorrido</th>
+            <th>Seccion</th>
+            <th>Frecuencia</th>
+            <th>Hora</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var sec in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(campo => sec.Recorrido1.Descripcion)</td>
+                <td>@Html.DisplayFor(campo => sec.Seccion1.nombre)</td>
+                <td>@Html.DisplayFor(campo => sec.Frecuencia1.Descripcion)</td>
+                <td>@Html.DisplayFor(campo => sec.Hora)</td>
+                <td>
+                    <a href="@Url.Action("EditarSeccionHorarios", "Administracion", new { recorrido = sec.Recorrido, seccion = sec.Seccion, frecuencia = sec.Frecuencia  })"><i class="material-icons">edit</i></a>
+                    <a href="@Url.Action("EliminarSeccionHorario", "Administracion", new { recorrido = sec.Recorrido, seccion = sec.Seccion, frecuencia = sec.Frecuencia })"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+</br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearSeccionHorario", "Administracion")"><i class="material-icons">add</i></a>
+</br></br>
+
+
+
+<br>
+<br>
+<input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>

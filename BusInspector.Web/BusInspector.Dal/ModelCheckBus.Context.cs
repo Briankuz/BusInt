@@ -39,5 +39,9 @@ namespace BusInspector.Dal
         public virtual DbSet<Interno> Internoes { get; set; }
         public virtual DbSet<vw_Observacion> vw_Observacion { get; set; }
         public virtual DbSet<Interno_Conductor> Interno_Conductor { get; set; }
+        public virtual DbSet<Conductor_Recorrido_Frecuencia> Conductor_Recorrido_Frecuencia { get; set; }
+        public virtual DbSet<Frecuencia> Frecuencias { get; set; }
+        public virtual DbSet<Recorrido> Recorridoes { get; set; }
+        public virtual DbSet<Seccion_Horario> Seccion_Horario { get; set; }
     }
 }

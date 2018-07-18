@@ -8,42 +8,56 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="cine, cinema, cartelera, estrenos, pelicula, peliculas, reserva, entradas, online" />
     <!-- Hojas de Estilo -->
-    @*<link href="@Url.Content("~/Content/Css/bootstrap.css")" rel="stylesheet" type="text/css" media="all" />*@
     <link href="@Url.Content("~/Content/Css/materialize.css")" rel="stylesheet" type="text/css" media="all" />
     <link href="@Url.Content("~/Content/Css/Admin/Admin.css")" rel="stylesheet" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @*<link href="@Url.Content("~/Content/Css/cine.css")" rel="stylesheet" type="text/css" media="all" />*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
 <body>
     <div class="header">
+
+        <!-- Dropdown Structure -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li>@Html.ActionLink("Gestion de Conductores", "GestionConductor", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion de Inspectores", "GestionInspector", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion de  Interno", "GestionInterno", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion Interno por conductor", "GestionInternoConductor", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion de Secciones", "GestionSeccion", "Administracion")</li>
+
+            <li>@Html.ActionLink("Gestion de Recorridos", "GestionRecorrido", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion de Frecuencias", "GestionFrecuencia", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion de Horarios", "GestionSeccionHorarios", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion de CRF", "GestionConductorRecorridoFrecuencia", "Administracion")</li>
+            <li>@Html.ActionLink("Gestion de Usuarios", "GestionUsuario", "Administracion")</li>
+        </ul>
+
         <div class="nav-wrapper">
             <ul id="slide-out" class="sidenav sidenav-fixed">
                 <li>
-                    <div class="user-view">
+                    <div class="user-view" style="padding-bottom:1em;">
                         <div class="background">
                             <img src="~/images/login-background.jpg">
                         </div>
-                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <a class="navbar-brand" href="@Url.Action("Logout", "Home")">
                             <img src="~/images/logo-blanco.png" class="tamanoLogo" />
+                            <h5 class="white-text name" style="margin-top:-1em;">@Session["NombreUsuario"].ToString()</h5>
                         </a>
-                        <a href="#name"><h5 class="white-text name">@Session["NombreUsuario"].ToString()</h5></a>
-                        </br>
                     </div>
                 </li>
+
+
                 @if (Session["Rol"].Equals("A"))
                 {
-                    <li>@Html.ActionLink("Gestion de Conductores", "GestionConductor", "Administracion")</li>
-                    <li>@Html.ActionLink("Gestion de Inspectores", "GestionInspector", "Administracion")</li>
-                    <li>@Html.ActionLink("Gestion de  Interno", "GestionInterno", "Administracion")</li>
-                    <li>@Html.ActionLink("Gestion Interno por conductor", "GestionInternoConductor", "Administracion")</li>
-                    <li>@Html.ActionLink("Gestion de Secciones", "GestionSeccion", "Administracion")</li>
+                    <!-- Dropdown Trigger -->
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Gestion de Contenido<i class="material-icons right">arrow_drop_down</i></a></li>
                 }
-                
-                    <li>@Html.ActionLink("Control de Inspecciones", "GestionReportesControlInspecciones", "Administracion")</li>
-                    <li>@Html.ActionLink("Inspecciones", "GestionReportes", "Administracion")</li>
-                    <li>@Html.ActionLink("Observaciones", "GestionReportesObservacion", "Administracion")</li>
-                
-            <li><a href="@Url.Action("Logout", "Home")">Cerrar Sesion</a></li>
+
+                <li>@Html.ActionLink("Control de Inspecciones", "GestionReportesControlInspecciones", "Administracion")</li>
+                <li>@Html.ActionLink("Inspecciones", "GestionReportes", "Administracion")</li>
+                <li>@Html.ActionLink("Observaciones", "GestionReportesObservacion", "Administracion")</li>
+
+                <li><a href="@Url.Action("Logout", "Home")">Cerrar Sesion</a></li>
             </ul>
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
@@ -53,14 +67,12 @@
             @RenderBody()
         </div>
     </main>
-    
 
-        <script src="@Url.Content("~/Content/Js/Jquery/jquery.min.js")"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
-        <script src="@Url.Content("~/Content/Js/globales.js")"></script>
-        <script src="@Url.Content("~/Content/Js/Admin/Admin.js")"></script>
-        <script src="@Url.Content("~/Content/Js/Materialize/materialize.js")"></script>
-       @* <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    <script src="@Url.Content("~/Content/Js/Jquery/jquery.min.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <script src="@Url.Content("~/Content/Js/globales.js")"></script>
+    <script src="@Url.Content("~/Content/Js/Materialize/materialize.js")"></script>
+    <script src="@Url.Content("~/Content/Js/Admin/Admin.js")"></script>
 </body>
 </html>

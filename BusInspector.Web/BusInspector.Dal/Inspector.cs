@@ -27,6 +27,7 @@ namespace BusInspector.Dal
         public Nullable<decimal> dni { get; set; }
         public Nullable<decimal> legajo { get; set; }
         public Nullable<System.DateTime> FechaCarga { get; set; }
+        public Nullable<System.DateTime> FechaBaja { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inspeccion> Inspeccions { get; set; }

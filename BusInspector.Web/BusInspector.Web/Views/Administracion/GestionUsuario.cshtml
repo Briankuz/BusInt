@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BusInspector.Web.Models.UsuarioViewModel>
+
+@{
+    ViewBag.Title = "Alta usuario";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Gestion Parada</h2>
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+    <h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>rol</th>
+            <th>rol nombre</th>
+            <th>fecha de baja</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var par in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(campo => par.usuario.IdUsuario)</td>
+                <td>@Html.DisplayFor(campo => par.usuario.NombreUsuario)</td>
+
+                @switch (par.usuario.Rol)
+                {
+                    case "A":
+                        <td>Admin</td>
+                        <td></td>
+                        break;
+                    case "I":
+                        <td>Inspector</td>
+                        <td>@Html.DisplayFor(campo => par.inspector.nombre)</td>
+                        break;
+                    case "C":
+                        <td>Conductor</td>
+                        <td>@Html.DisplayFor(campo => par.conductor.Nombre)</td>
+                        break;
+                    default:
+                        break;
+                }
+                <td>@Html.DisplayFor(campo => par.usuario.fechabaja)</td>
+                <td>
+                    <a href="@Url.Action("EditarUsuario", "Administracion", new { id = par.usuario.IdUsuario })"><i class="material-icons">edit</i></a>
+                    <a href="@Url.Action("EliminarUsuario", "Administracion", new { id = par.usuario.IdUsuario})"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    </br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearUsuario", "Administracion")"><i class="material-icons">add</i></a>
+
+
+

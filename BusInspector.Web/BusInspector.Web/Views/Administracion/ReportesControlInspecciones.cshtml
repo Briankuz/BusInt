@@ -29,21 +29,37 @@
 
                 @foreach (var item in Model)
                 {
-                <tr>
+                    if (item.Adelanto == "SI")
+                    {
+                        <tr class="naranja white-text">
                     <td>@item.Inspector_Nombre</td>
                     <td>@item.Interno</td>
                     <td>@item.Conductor_Nombre</td>
-                    @*@string.Format("{0:hh:mm}", @item.Fecha)*@
                     <td>@item.Fecha.Value.ToString("dd/MM/yyyy hh:mm")</td>
                     <td>@item.Seccion_Nombre</td>
-                    @*<td>@item.hora_Inspeccion.Value.ToString("HH:mm")</td>
-        <td>@item.hora_Seccion.Value.ToString("HH:mm")</td>*@
+                    <td> @item.hora_Inspeccion</td>
+                    <td>@item.hora_Seccion</td  >
+                    <td>@item.DifMinutos</td>
+                    <td>@item.Atrasado</td>
+                    <td>@item.Adelanto</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                    <td>@item.Inspector_Nombre</td>
+                    <td>@item.Interno</td>
+                    <td>@item.Conductor_Nombre</td>
+                    <td>@item.Fecha.Value.ToString("dd/MM/yyyy hh:mm")</td>
+                    <td>@item.Seccion_Nombre</td>
                     <td> @item.hora_Inspeccion</td>
                     <td>@item.hora_Seccion</td  >
                     <td>@item.DifMinutos</td>
                     <td>@item.Atrasado</td>
                     <td>@item.Adelanto</td>
                 </tr>
+                    }
+                
                    
                 }
 

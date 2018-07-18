@@ -41,6 +41,7 @@
     <EntitySetMapping Name="Inspectors">
       <EntityTypeMapping TypeName="BusInspectorModel.Inspector">
         <MappingFragment StoreEntitySet="Inspector">
+          <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
           <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
           <ScalarProperty Name="legajo" ColumnName="legajo" />
           <ScalarProperty Name="dni" ColumnName="dni" />
@@ -52,6 +53,7 @@
     <EntitySetMapping Name="Internoes">
       <EntityTypeMapping TypeName="BusInspectorModel.Interno">
         <MappingFragment StoreEntitySet="Interno">
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
           <ScalarProperty Name="CantidadPasajeros" ColumnName="CantidadPasajeros" />
           <ScalarProperty Name="Año" ColumnName="Año" />
           <ScalarProperty Name="Patente" ColumnName="Patente" />

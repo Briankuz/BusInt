@@ -1,46 +1,76 @@
 ﻿@model IEnumerable<BusInspector.Dal.Conductor>
 
 @{
-	ViewBag.Title = "AltaConductor";
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "GestionConductor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <h2>Gestion Conductor</h2>
 <h7>@ViewBag.Mensaje</h7>
 @if (Session["Mensaje"] != null)
 {
-	<h7>@Session["Mensaje"].ToString()</h7>
+    <h7>@Session["Mensaje"].ToString()</h7>
 }
 
 </br>
-<table>
-	<thead>
-		<tr>
-			<th>IdConductor</th>
-			<th>Nombre y Apellido</th>
-			<th>Legajo</th>
-			<th>Dni</th>
-			<th>Acciones</th>
-		</tr>
-	</thead>
+<table class="highlight centered">
+    <thead>
+        <tr>
+            <th>IdConductor</th>
+            <th>Nombre y Apellido</th>
+            <th>Legajo</th>
+            <th>Dni</th>
+            <th>Baja</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
 
-	<tbody>
-		@foreach (var cond in Model)
-		{
-		<tr>
-			<td>@Html.DisplayFor(campo => cond.id)</td>
-			<td>@Html.DisplayFor(campo => cond.Nombre)</td>
-			<td>@Html.DisplayFor(campo => cond.Legajo)</td>
-			<td>@Html.DisplayFor(campo => cond.Dni)</td>
-			<td>
-				<a href="@Url.Action("EditarConductor", "Administracion", new { id = cond.id })"><i class="material-icons">edit</i></a>
-				<a href="@Url.Action("EliminarConductor", "Administracion", new { id = cond.id })"><i class="material-icons">delete</i></a>
-			</td>
-		</tr>
-		}
-	</tbody>
+    <tbody>
+        @foreach (var cond in Model)
+        {
+            <tr>
+                <td>@cond.id.ToString()</td>
+                <td>@Html.DisplayFor(campo => cond.Nombre)</td>
+                <td>@Html.DisplayFor(campo => cond.Legajo)</td>
+                <td>@Html.DisplayFor(campo => cond.Dni)</td>
+                @if (@cond.Baja == null)
+                {
+                    <td>-</td>
+                }
+                else
+                {
+                    var baja = cond.Baja.Value.ToShortDateString();
+                    <td>@baja</td>
+                }
+                <td>
+                    @if (cond.Baja == null)
+                    {
+                        <a href="@Url.Action("EditarConductor", "Administracion", new { id = cond.id })"><i class="material-icons">edit</i></a>
+                        <a href="@Url.Action("EliminarConductor", "Administracion", new { id = cond.id })"><i class="material-icons">delete</i></a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("AltaConductor", "Administracion", new { id = cond.id })"><i class="material-icons">add</i></a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-    </br></br></br>
+</br></br></br>
 <a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearConductor", "Administracion")"><i class="material-icons">add</i></a>
+</br></br>
 
+
+<br>
+<br>
+<input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>

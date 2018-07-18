@@ -5,11 +5,6 @@
 	Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-@if (TempData["Error"] != null)
-{
-	<div class="alert alert-danger">@TempData["Error"]</div>
-}
-
 
 <link href="~/Content/Css/Login/Login.css" rel="stylesheet" />
 <script src="~/Content/Js/Login/Login.js"></script>
@@ -18,28 +13,33 @@
 
 <div class="row" style="margin-top: 20px">
 	<div class="col s12 m6 offset-m3">
-        <div class="card" style="margin-top:25%">
+        <div class="card" style="margin-top:20%">
             <div class="card-content">
                 @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-signin" }))
                 {
 
-                 <span class="card-title">LOGIN</span>
+                    <span class="card-title">LOGIN</span>
 
-                 <div class="input-field">
-                    @Html.Label("Nombre")
-                    @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "validate" })
-                    @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
-                </div>
-                <div class="input-field">
-                    @Html.Label("Contraseña")
-                    @Html.PasswordFor(m => m.Password, new { @class = "validate" })
-                    @Html.ValidationMessageFor(model => model.Password)
-                </div>
+                    if (TempData["Error"] != null)
+                    {
+                        <h7 class="alert alert-danger">@TempData["Error"]</h7>
+                    }
 
-                <div class="input-field center-block">
+                    <div class="input-field">
+                        @Html.Label("Nombre")
+                        @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "validate" })
+                        @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="input-field">
+                        @Html.Label("Contraseña")
+                        @Html.PasswordFor(m => m.Password, new { @class = "validate" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+
+                    <div class="input-field center-block">
                     <input type="submit" class="btn btn-outline-white btn-lg" value="Login">
-                 </div>
-                }
+                    </div>
+                  }
 
             </div>
         </div>

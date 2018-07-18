@@ -1,0 +1,43 @@
+﻿@model BusInspector.Dal.Seccion_Horario
+@{
+    ViewBag.Title = "CrearSeccionHorario";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Crear Horario</h2>
+
+</br>
+
+@using (Html.BeginForm("CrearSeccionHorario", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+{
+
+    <div class="input-field">
+        <label style="position: relative !important;">Recorrido</label>
+        @Html.DropDownList("Recorrido", new SelectList(ViewBag.Recorrido, "Id", "Descripcion"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Recorrido, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Seccion</label>
+        @Html.DropDownList("Seccion", new SelectList(ViewBag.Seccion, "id", "nombre"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Seccion, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Frecuencia</label>
+        @Html.DropDownList("Frecuencia", new SelectList(ViewBag.Frecuencia, "id", "Descripcion"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Frecuencia, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="input-field">
+        <label style="position: relative !important;">Hora</label>
+        @Html.TextBoxFor(m => m.Hora, new { type = "time", @class = "validate" })
+        @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
+    </div>
+
+    <br>
+    <div class="input-field center-block">
+        <input type="submit" class="btn btn-outline-white btn-lg" value="Crear">
+    </div>
+    <br><br>
+}

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BusInspector.Web.Models.ConductorRecorridoFrecuencia>
+
+@{
+    ViewBag.Title = "GestionConductorRecorridoFrecuenia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<h4>Gestion Conductor Recorrido Frencuencia</h4>
+<h7>@ViewBag.Mensaje</h7>
+@if (Session["Mensaje"] != null)
+{
+    <h7>@Session["Mensaje"].ToString()</h7>
+}
+
+</br>
+<table class="highlight centered">
+    <thead>
+        <tr>
+            <th>Nombre Conductor</th>
+            <th>Recorrido</th>
+            <th>Frecuencia</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var crf in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(campo => crf.nombreConductor)</td>
+                <td>@Html.DisplayFor(campo => crf.nombreRecorrido)</td>
+                <td>@Html.DisplayFor(campo => crf.nombreFrecuencia)</td>
+                <td>
+                    <a href="@Url.Action("EditarConductorRecorridoFrecuencia", "Administracion", new { idCond = crf.idConductor, idRec= crf.idRecorrido, idFrec = crf.idFrecuencia })"><i class="material-icons">edit</i></a>
+                    <a href="@Url.Action("EliminarConductorRecorridoFrecuencia", "Administracion", new { idCond = crf.idConductor, idRec= crf.idRecorrido, idFrec = crf.idFrecuencia })"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    </br></br></br>
+<a class="btn-floating btn-large waves-effect waves-light orange" href="@Url.Action("CrearConductorRecorridoFrecuencia", "Administracion")"><i class="material-icons">add</i></a>
+
+<br>
+<br>
+<input id="btnExport" type="submit" class="excel btn btn-success btn-block" value="Exportar a Excel">
+
+
+<script>
+$(document).on('click', '.excel', function () {
+@{ TempData["FullModel"] = Model; }
+window.location.href = '/Administracion/ExportToExcel/';
+});
+</script>
+
+
+
+
