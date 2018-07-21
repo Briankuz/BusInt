@@ -25,11 +25,11 @@ namespace BusInspector.Web.Controllers
             }
             DateTime hoy = DateTime.Today;
             DateTime manana = DateTime.Today.AddDays(1).AddTicks(-1);
-            int internos = (from i in ctx.Internoes select i).Count();
-            int inspeccionados = (from ins in ctx.Inspeccions where ins.Fecha >= hoy && ins.Fecha <= manana select ins).Distinct().Count();
+            int conductores = (from i in ctx.Internoes select i).Count();
+            int inspeccionados = (from ins in ctx.Inspeccions where ins.Fecha >= hoy && ins.Fecha <= manana  select ins.Interno).Distinct().Count();
 
 
-            ViewBag.Internos = internos - inspeccionados;
+            ViewBag.Internos = conductores - inspeccionados;
             ViewBag.Inspeccionados = inspeccionados;
 
             ViewBag.Adelantados = (from ad in ctx.vw_Control_Inspecciones where ad.Adelanto == "si" && ad.Fecha >= hoy && ad.Fecha <= manana select ad).Count();
@@ -563,7 +563,7 @@ namespace BusInspector.Web.Controllers
             if (listaInspector.Count() == 0)
             {
                 TempData["Error"] = "No se encontraron Observaciones para el Rango de Fecha solicitado";
-                return RedirectToAction("GestionReportes", "Administracion");
+                return RedirectToAction("GestionReportesObservacion", "Administracion");
             }
 
             return View(listaInspector);

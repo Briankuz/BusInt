@@ -226,5 +226,11 @@ namespace WindowsFormsApp1
         {
             iniciacializarTodo();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UltimaLectura = "";
+            dgvInspecciones.Rows.Clear();
+        }
     }
 }

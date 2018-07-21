@@ -1,1 +1,0 @@
-alter table usuario add fechabaja date null

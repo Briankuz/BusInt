@@ -39,6 +39,7 @@
             this.dgvInspecciones = new System.Windows.Forms.DataGridView();
             this.Coche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInspecciones)).BeginInit();
             this.SuspendLayout();
@@ -132,11 +133,22 @@
             this.Hora.ReadOnly = true;
             this.Hora.Width = 60;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(306, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Limpiar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmInspecciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvInspecciones);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnIniciarInspecciones);
@@ -167,6 +179,7 @@
         private System.Windows.Forms.DataGridView dgvInspecciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn Coche;
         private System.Windows.Forms.DataGridViewTextBoxColumn Hora;
+        private System.Windows.Forms.Button button1;
     }
 }
 
